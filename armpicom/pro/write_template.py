@@ -5,11 +5,11 @@
      write_template.py
  Copyright
      Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
-     gen_rpi_pico is free software: you can redistribute it and/or modify it
+     armpicom is free software: you can redistribute it and/or modify it
      under the terms of the GNU General Public License as published by the
      Free Software Foundation, either version 3 of the License, or
      (at your option) any later version.
-     gen_rpi_pico is distributed in the hope that it will be useful, but
+     armpicom is distributed in the hope that it will be useful, but
      WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
      See the GNU General Public License for more details.
@@ -35,9 +35,9 @@ except ImportError as ats_error_message:
     sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2021, https://vroncevic.github.io/gen_rpi_pico'
+__copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic']
-__license__ = 'https://github.com/vroncevic/gen_rpi_pico/blob/dev/LICENSE'
+__license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
 __version__ = '1.0.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
@@ -60,7 +60,7 @@ class WriteTemplate(FileChecking):
                 | __str__ - dunder method for WriteTemplate.
     '''
 
-    GEN_VERBOSE = 'GEN_RPI_PICO::PRO::WRITE_TEMPLATE'
+    GEN_VERBOSE = 'ARMPICOM::PRO::WRITE_TEMPLATE'
 
     def __init__(self, verbose=False):
         '''

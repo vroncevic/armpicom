@@ -5,18 +5,18 @@
      __init__.py
  Copyright
      Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
-     gen_rpi_pico is free software: you can redistribute it and/or modify it
+     armpicom is free software: you can redistribute it and/or modify it
      under the terms of the GNU General Public License as published by the
      Free Software Foundation, either version 3 of the License, or
      (at your option) any later version.
-     gen_rpi_pico is distributed in the hope that it will be useful, but
+     armpicom is distributed in the hope that it will be useful, but
      WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
      See the GNU General Public License for more details.
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Defined class GenGen_rpi_pico with attribute(s) and method(s).
+     Defined class GenArmpicom with attribute(s) and method(s).
      Generate module file generator_test.py by template and parameters.
 '''
 
@@ -24,8 +24,8 @@ import sys
 
 try:
     from pathlib import Path
-    from gen_rpi_pico.pro.read_template import ReadTemplate
-    from gen_rpi_pico.pro.write_template import WriteTemplate
+    from armpicom.pro.read_template import ReadTemplate
+    from armpicom.pro.write_template import WriteTemplate
     from ats_utilities.checker import ATSChecker
     from ats_utilities.config_io.base_check import FileChecking
     from ats_utilities.console_io.error import error_message
@@ -38,18 +38,18 @@ except ImportError as ats_error_message:
     sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2021, https://vroncevic.github.io/gen_rpi_pico'
+__copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic']
-__license__ = 'https://github.com/vroncevic/gen_rpi_pico/blob/dev/LICENSE'
+__license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
 __version__ = '1.0.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class GenGen_rpi_pico(FileChecking):
+class GenArmpicom(FileChecking):
     '''
-        Defined class GenGen_rpi_pico with attribute(s) and method(s).
+        Defined class GenArmpicom with attribute(s) and method(s).
         Generate module file generator_test.py by template and parameters.
         It defines:
 
@@ -64,10 +64,10 @@ class GenGen_rpi_pico(FileChecking):
                 | get_reader - getter for template reader.
                 | get_writer - getter for template writer.
                 | gen_setup - generate module file setup.py.
-                | __str__ - dunder method for GenGen_rpi_pico.
+                | __str__ - dunder method for GenArmpicom.
     '''
 
-    GEN_VERBOSE = 'GEN_RPI_PICO::PRO::GEN_SETUP'
+    GEN_VERBOSE = 'ARMPICOM::PRO::GEN_SETUP'
 
     def __init__(self, verbose=False):
         '''
@@ -78,7 +78,7 @@ class GenGen_rpi_pico(FileChecking):
             :exceptions: None
         '''
         FileChecking.__init__(self, verbose=verbose)
-        verbose_message(GenGen_rpi_pico.GEN_VERBOSE, verbose, 'init setup')
+        verbose_message(GenArmpicom.GEN_VERBOSE, verbose, 'init setup')
         self.__reader = ReadTemplate(verbose=verbose)
         self.__writer = WriteTemplate(verbose=verbose)
 
@@ -124,7 +124,7 @@ class GenGen_rpi_pico(FileChecking):
             raise ATSBadCallError(error)
         status, setup_content = False, None
         verbose_message(
-            GenGen_rpi_pico.GEN_VERBOSE, verbose, 'generating module', pro_name
+            GenArmpicom.GEN_VERBOSE, verbose, 'generating module', pro_name
         )
         template_file, module = 'generator_test.template', 'generator_test.py'
         if bool(template_file):
@@ -139,7 +139,7 @@ class GenGen_rpi_pico(FileChecking):
 
     def __str__(self):
         '''
-            Dunder method for GenGen_rpi_pico.
+            Dunder method for GenArmpicom.
 
             :return: object in a human-readable format.
             :rtype: <str>

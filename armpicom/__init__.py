@@ -5,18 +5,18 @@
      __init__.py
  Copyright
      Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
-     gen_rpi_pico is free software: you can redistribute it and/or modify it
+     armpicom is free software: you can redistribute it and/or modify it
      under the terms of the GNU General Public License as published by the
      Free Software Foundation, either version 3 of the License, or
      (at your option) any later version.
-     gen_rpi_pico is distributed in the hope that it will be useful, but
+     armpicom is distributed in the hope that it will be useful, but
      WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
      See the GNU General Public License for more details.
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Defined class Gen_rpi_pico with attribute(s) and method(s).
+     Defined class Armpicom with attribute(s) and method(s).
      Load a base info, create an CLI interface and run operation(s).
 '''
 
@@ -25,7 +25,7 @@ from os.path import exists
 
 try:
     from pathlib import Path
-    from gen_rpi_pico.pro import GenGen_rpi_pico
+    from armpicom.pro import GenArmpicom
     from ats_utilities.logging import ATSLogger
     from ats_utilities.cli.cfg_cli import CfgCLI
     from ats_utilities.cooperative import CooperativeMeta
@@ -46,9 +46,9 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class Gen_rpi_pico(CfgCLI):
+class Armpicom(CfgCLI):
     '''
-        Defined class Gen_rpi_pico with attribute(s) and method(s).
+        Defined class Armpicom with attribute(s) and method(s).
         Load a base info, create an CLI interface and run operation(s).
         It defines:
 
@@ -62,13 +62,13 @@ class Gen_rpi_pico(CfgCLI):
             :methods:
                 | __init__ - initial constructor.
                 | process - process and run operation.
-                | __str__ - dunder method for Gen_rpi_pico.
+                | __str__ - dunder method for Armpicom.
     '''
 
     __metaclass__ = CooperativeMeta
-    GEN_VERBOSE = 'GEN_RPI_PICO'
-    CONFIG = '/conf/gen_rpi_pico.cfg'
-    LOG = '/log/gen_rpi_pico.log'
+    GEN_VERBOSE = 'ARMPICOM'
+    CONFIG = '/conf/armpicom.cfg'
+    LOG = '/log/armpicom.log'
     OPS = ['-g', '--gen', '-v', '--verbose', '--version']
 
     def __init__(self, verbose=False):
@@ -80,26 +80,26 @@ class Gen_rpi_pico(CfgCLI):
             :exceptions: None
         '''
         current_dir = Path(__file__).resolve().parent
-        base_info = '{0}{1}'.format(current_dir, Gen_rpi_pico.CONFIG)
+        base_info = '{0}{1}'.format(current_dir, Armpicom.CONFIG)
         CfgCLI.__init__(self, base_info, verbose=verbose)
-        verbose_message(Gen_rpi_pico.GEN_VERBOSE, verbose, 'init tool info')
+        verbose_message(Armpicom.GEN_VERBOSE, verbose, 'init tool info')
         self.logger = ATSLogger(
-            Gen_rpi_pico.GEN_VERBOSE.lower(),
-            '{0}{1}'.format(current_dir, Gen_rpi_pico.LOG),
+            Armpicom.GEN_VERBOSE.lower(),
+            '{0}{1}'.format(current_dir, Armpicom.LOG),
             verbose=verbose
         )
         if self.tool_operational:
             self.add_new_option(
-                Gen_rpi_pico.OPS[0], Gen_rpi_pico.OPS[1],
+                Armpicom.OPS[0], Armpicom.OPS[1],
                 dest='gen', help='generate option'
             )
             self.add_new_option(
-                Gen_rpi_pico.OPS[2], Gen_rpi_pico.OPS[3],
+                Armpicom.OPS[2], Armpicom.OPS[3],
                 action='store_true', default=False,
                 help='activate verbose mode for generation'
             )
             self.add_new_option(
-                Gen_rpi_pico.OPS[4], action='version', version=__version__
+                Armpicom.OPS[4], action='version', version=__version__
             )
 
     def process(self, verbose=False):
@@ -117,7 +117,7 @@ class Gen_rpi_pico(CfgCLI):
             num_of_args_sys = len(sys.argv)
             if num_of_args_sys > 1:
                 operation = sys.argv[1]
-                if operation not in Gen_rpi_pico.OPS:
+                if operation not in Armpicom.OPS:
                     sys.argv.append('-h')
             else:
                 sys.argv.append('-h')
@@ -127,16 +127,16 @@ class Gen_rpi_pico(CfgCLI):
                 if bool(getattr(args, 'gen')):
                     print(
                         '{0} {1} [{2}]'.format(
-                            '[{0}]'.format(Gen_rpi_pico.GEN_VERBOSE.lower()),
+                            '[{0}]'.format(Armpicom.GEN_VERBOSE.lower()),
                             'generating', getattr(args, 'gen')
                         )
                     )
-                    generator = GenGen_rpi_pico(verbose=verbose)
+                    generator = GenArmpicom(verbose=verbose)
                     status = generator.gen_setup(
                         getattr(args, 'gen'), verbose
                     )
                     if status:
-                        success_message(Gen_rpi_pico.GEN_VERBOSE, 'done\n')
+                        success_message(Armpicom.GEN_VERBOSE, 'done\n')
                         self.logger.write_log(
                             '{0} {1} done'.format(
                                 'generating tool/gen',
@@ -145,28 +145,28 @@ class Gen_rpi_pico(CfgCLI):
                         )
                     else:
                         error_message(
-                            Gen_rpi_pico.GEN_VERBOSE, 'generation failed'
+                            Armpicom.GEN_VERBOSE, 'generation failed'
                         )
                         self.logger.write_log(
                             'generation failed', ATSLogger.ATS_ERROR
                         )
                 else:
                     error_message(
-                        Gen_rpi_pico.GEN_VERBOSE, 'provide project name'
+                        Armpicom.GEN_VERBOSE, 'provide project name'
                     )
                     self.logger.write_log(
                         'provide project name', ATSLogger.ATS_ERROR
                     )
             else:
                 error_message(
-                    Gen_rpi_pico.GEN_VERBOSE, 'project already exist'
+                    Armpicom.GEN_VERBOSE, 'project already exist'
                 )
                 self.logger.write_log(
                     'project already exist', ATSLogger.ATS_ERROR
                 )
         else:
             error_message(
-                Gen_rpi_pico.GEN_VERBOSE, 'tool is not operational'
+                Armpicom.GEN_VERBOSE, 'tool is not operational'
             )
             self.logger.write_log(
                 'tool is not operational', ATSLogger.ATS_ERROR
@@ -175,7 +175,7 @@ class Gen_rpi_pico(CfgCLI):
 
     def __str__(self):
         '''
-            Dunder method for Gen_rpi_pico.
+            Dunder method for Armpicom.
 
             :return: object in a human-readable format.
             :rtype: <str>
