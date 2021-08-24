@@ -11,8 +11,8 @@ other information that should be provided before the tool is installed.
 
 |Python package| |GitHub issues| |Documentation Status| |GitHub contributors|
 
-.. |Python package| image:: https://github.com/vroncevic/armpicom/workflows/Python%20package/badge.svg
-   :target: https://github.com/vroncevic/armpicom/workflows/Python%20package/badge.svg?branch=main
+.. |Python package| image:: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_package.yml/badge.svg
+   :target: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_package.yml
 
 .. |GitHub issues| image:: https://img.shields.io/github/issues/vroncevic/armpicom.svg
    :target: https://github.com/vroncevic/armpicom/issues
