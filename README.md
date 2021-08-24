@@ -34,7 +34,7 @@ Used next development environment
 
 ![Development environment](https://raw.githubusercontent.com/vroncevic/armpicom/dev/docs/debtux.png)
 
-![Install Python2 Package](https://github.com/vroncevic/armpicom/workflows/Install%20Python2%20Package%20armpicom/badge.svg?branch=master) ![Install Python3 Package](https://github.com/vroncevic/armpicom/workflows/Install%20Python3%20Package%20armpicom/badge.svg?branch=master)
+![Install Python2 Package](https://github.com/vroncevic/armpicom/workflows/Install%20Python2%20Package%20armpicom/badge.svg?branch=main) ![Install Python3 Package](https://github.com/vroncevic/armpicom/workflows/Install%20Python3%20Package%20armpicom/badge.svg?branch=main)
 
 Currently there are three ways to install tool:
 * Install process based on pip
