@@ -12,7 +12,7 @@ other information that should be provided before the tool is installed.
 |Python package| |GitHub issues| |Documentation Status| |GitHub contributors|
 
 .. |Python package| image:: https://github.com/vroncevic/armpicom/workflows/Python%20package/badge.svg
-   :target: https://github.com/vroncevic/armpicom/workflows/Python%20package/badge.svg?branch=master
+   :target: https://github.com/vroncevic/armpicom/workflows/Python%20package/badge.svg?branch=main
 
 .. |GitHub issues| image:: https://img.shields.io/github/issues/vroncevic/armpicom.svg
    :target: https://github.com/vroncevic/armpicom/issues
@@ -36,10 +36,10 @@ Installation
 |Install Python2 Package| |Install Python3 Package|
 
 .. |Install Python2 Package| image:: https://github.com/vroncevic/armpicom/workflows/Install%20Python2%20Package%20armpicom/badge.svg
-   :target: https://github.com/vroncevic/armpicom/workflows/Install%20Python2%20Package%20armpicom/badge.svg?branch=master
+   :target: https://github.com/vroncevic/armpicom/workflows/Install%20Python2%20Package%20armpicom/badge.svg?branch=main
 
 .. |Install Python3 Package| image:: https://github.com/vroncevic/armpicom/workflows/Install%20Python3%20Package%20armpicom/badge.svg
-   :target: https://github.com/vroncevic/armpicom/workflows/Install%20Python3%20Package%20armpicom/badge.svg?branch=master
+   :target: https://github.com/vroncevic/armpicom/workflows/Install%20Python3%20Package%20armpicom/badge.svg?branch=main
 
 Navigate to release `page`_ download and extract release archive.
 
