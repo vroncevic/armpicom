@@ -16,7 +16,7 @@
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Defined class GenArmpicom with attribute(s) and method(s).
+     Defined class GenArmPicoM with attribute(s) and method(s).
      Generate module file generator_test.py by template and parameters.
 '''
 
@@ -24,6 +24,8 @@ import sys
 
 try:
     from pathlib import Path
+    from armpicom.pro.config import ProConfig
+    from armpicom.pro.config.pro_name import ProName
     from armpicom.pro.read_template import ReadTemplate
     from armpicom.pro.write_template import WriteTemplate
     from ats_utilities.checker import ATSChecker
@@ -47,9 +49,9 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class GenArmpicom(FileChecking):
+class GenArmPicoM(FileChecking, ProConfig, ProName):
     '''
-        Defined class GenArmpicom with attribute(s) and method(s).
+        Defined class GenArmPicoM with attribute(s) and method(s).
         Generate module file generator_test.py by template and parameters.
         It defines:
 
@@ -58,16 +60,16 @@ class GenArmpicom(FileChecking):
                 | PRO_STRUCTURE - project setup (template, module).
                 | __reader - reader API.
                 | __writer - writer API.
-                | __config - project setup in dict format.
             :methods:
                 | __init__ - initial constructor.
                 | get_reader - getter for template reader.
                 | get_writer - getter for template writer.
-                | gen_setup - generate module file setup.py.
-                | __str__ - dunder method for GenArmpicom.
+                | gen_project - generate RPI PI Pico CMake structure.
+                | __str__ - dunder method for GenArmPicoM.
     '''
 
     GEN_VERBOSE = 'ARMPICOM::PRO::GEN_SETUP'
+    PRO_STRUCTURE = '/../conf/project.yaml'
 
     def __init__(self, verbose=False):
         '''
@@ -78,9 +80,22 @@ class GenArmpicom(FileChecking):
             :exceptions: None
         '''
         FileChecking.__init__(self, verbose=verbose)
-        verbose_message(GenArmpicom.GEN_VERBOSE, verbose, 'init setup')
+        ProConfig.__init__(self, verbose=verbose)
+        ProName.__init__(self, verbose=verbose)
+        verbose_message(GenArmPicoM.GEN_VERBOSE, verbose, 'init generator')
         self.__reader = ReadTemplate(verbose=verbose)
         self.__writer = WriteTemplate(verbose=verbose)
+        project_structure = '{0}{1}'.format(
+            Path(__file__).parent, GenArmPicoM.PRO_STRUCTURE
+        )
+        self.check_path(file_path=project_structure, verbose=verbose)
+        self.check_mode(file_mode='r', verbose=verbose)
+        self.check_format(
+            file_path=project_structure, file_format='yaml', verbose=verbose
+        )
+        if self.is_file_ok():
+            yml2obj = Yaml2Object(project_structure)
+            self.config = yml2obj.read_configuration()
 
     def get_reader(self):
         '''
@@ -102,9 +117,9 @@ class GenArmpicom(FileChecking):
         '''
         return self.__writer
 
-    def gen_setup(self, pro_name, verbose=False):
+    def gen_project(self, pro_name, verbose=False):
         '''
-            Generate module generator_test.py.
+            Generate RPI PI Pico CMake structure.
 
             :param pro_name: project name.
             :type pro_name: <str>
@@ -115,37 +130,30 @@ class GenArmpicom(FileChecking):
             :exceptions: ATSTypeError | ATSBadCallError
         '''
         checker, error, status = ATSChecker(), None, False
-        error, status = checker.check_params([
-            ('str:pro_name', pro_name)
-        ])
+        error, status = checker.check_params([('str:pro_name', pro_name)])
         if status == ATSChecker.TYPE_ERROR:
             raise ATSTypeError(error)
         if status == ATSChecker.VALUE_ERROR:
             raise ATSBadCallError(error)
-        status, setup_content = False, None
-        verbose_message(
-            GenArmpicom.GEN_VERBOSE, verbose, 'generating module', pro_name
-        )
-        template_file, module = 'generator_test.template', 'generator_test.py'
-        if bool(template_file):
-            setup_content = self.__reader.read(
-                template_file, verbose=verbose
-            )
-            if setup_content:
+        status = False
+        if bool(self.config):
+            templates = self.__reader.read(self.config , verbose=verbose)
+            if bool(templates):
                 status = self.__writer.write(
-                    setup_content, pro_name, module, verbose=verbose
+                    templates, pro_name, verbose=verbose
                 )
         return status
 
     def __str__(self):
         '''
-            Dunder method for GenArmpicom.
+            Dunder method for GenArmPicoM.
 
             :return: object in a human-readable format.
             :rtype: <str>
             :exceptions: None
         '''
-        return '{0} ({1}, {2}, {3})'.format(
+        return '{0} ({1}, {2}, {3}, {4}, {5})'.format(
             self.__class__.__name__, FileChecking.__str__(self),
+            ProConfig.__str__(self), ProName.__str__(self),
             str(self.__reader), str(self.__writer)
         )

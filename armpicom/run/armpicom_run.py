@@ -23,20 +23,20 @@
 import sys
 
 try:
-    from armpicom import Armpicom
+    from armpicom import ArmPicoM
 except ImportError as ats_error_message:
     MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2021, Free software to use and distributed it.'
+__copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic']
-__license__ = 'GNU General Public License (GPL)'
+__license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
 __version__ = '1.0.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 if __name__ == '__main__':
-    TOOL = Armpicom(verbose=False)
+    TOOL = ArmPicoM(verbose=False)
     TOOL.process(verbose=False)

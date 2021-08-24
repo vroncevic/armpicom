@@ -1,0 +1,13 @@
+templates:
+  - CMakeLists.template
+  - pico_sdk_import.template
+  - pro_auto_set_url.template
+  - src/main.template
+  - src/CMakeLists.template
+
+modules:
+  - CMakeLists.txt
+  - pico_sdk_import.cmake
+  - pro_auto_set_url.cmake
+  - src/main.c
+  - src/CMakeLists.txt

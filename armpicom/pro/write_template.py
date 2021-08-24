@@ -21,7 +21,9 @@
 '''
 
 import sys
-from os import getcwd, chmod
+from datetime import date
+from os import getcwd, chmod, mkdir
+from os.path import exists
 from string import Template
 
 try:
@@ -52,11 +54,9 @@ class WriteTemplate(FileChecking):
 
             :attributes:
                 | GEN_VERBOSE - console text indicator for process-phase.
-                | __setup - setup file path.
             :methods:
                 | __init__ - initial constructor.
-                | get_setup - getter for setup file object.
-                | write - write a template content to a file generator_test.py.
+                | write - write a templates with parameters.
                 | __str__ - dunder method for WriteTemplate.
     '''
 
@@ -72,57 +72,64 @@ class WriteTemplate(FileChecking):
         '''
         FileChecking.__init__(self, verbose=verbose)
         verbose_message(WriteTemplate.GEN_VERBOSE, verbose, 'init writer')
-        self.__setup = None
 
-    def get_setup(self):
+    def write(self, templates, project_name, verbose=False):
         '''
-            Getter for setup file object.
+            Write a templates with parameters.
 
-            :return: setup file path | None.
-            :rtype: <str> | <NoneType>
-        '''
-        return self.__setup
-
-    def write(self, setup_content, pro_name, module, verbose=False):
-        '''
-            Write setup content to file generator_test.py.
-
-            :param setup_content: template content.
-            :type setup_content: <str>
-            :param pro_name: parameter package name.
-            :type pro_name: <str>
-            :param module: module name.
-            :type module: <str>
+            :param templates: parameter templates.
+            :type templates: <list>
+            :param project_name: parameter project name.
+            :type project_name: <str>
             :param verbose: enable/disable verbose option.
             :type verbose: <bool>
             :return: boolean status, True (success) | False.
             :rtype: <bool>
-            :exception: ATSTypeError | ATSBadCallError
+            :exceptions: ATSTypeError | ATSBadCallError
         '''
         checker, error, status = ATSChecker(), None, False
         error, status = checker.check_params([
-            ('str:setup_content', setup_content),
-            ('str:pro_name', pro_name),
-            ('str:module', module)
+            ('list:templates', templates), ('str:project_name', project_name)
         ])
         if status == ATSChecker.TYPE_ERROR:
             raise ATSTypeError(error)
         if status == ATSChecker.VALUE_ERROR:
             raise ATSBadCallError(error)
-        status, template = False, None
-        self.__setup = '{0}/{1}'.format(getcwd(), module)
-        verbose_message(WriteTemplate.GEN_VERBOSE, verbose, 'write', module)
-        package = {'PRO': '{0}'.format(pro_name)}
-        template = Template(setup_content)
-        if template:
-            with open(self.__setup, 'w') as setup_file:
-                setup_file.write(template.substitute(package))
-                chmod(self.__setup, 0o666)
-                self.check_path(self.__setup, verbose=verbose)
+        statuses = []
+        pro_dir = '{0}/{1}/'.format(getcwd(), project_name)
+        src_dir = '{0}/{1}/src'.format(getcwd(), project_name)
+        build_dir = '{0}/{1}/build'.format(getcwd(), project_name)
+        status, expected_num_of_modules = False, len(templates)
+        if not exists(pro_dir):
+            mkdir(pro_dir)
+            mkdir(src_dir)
+            mkdir(build_dir)
+        for template_content in templates:
+            module_name = template_content.keys()[0]
+            template = Template(template_content[module_name])
+            module_path = '{0}{1}'.format(pro_dir, module_name)
+            with open(module_path, 'w') as module_file:
+                module_content = template.substitute(
+                    {
+                        'PRO': '{0}'.format(project_name),
+                        'DATE': '{0}'.format(str(date.today())),
+                        'YEAR': '{0}'.format(str(date.today().year))
+                    }
+                )
+                module_file.write(module_content)
+                chmod(module_path, 0o666)
+                self.check_path(module_path, verbose=verbose)
                 self.check_mode('w', verbose=verbose)
-                self.check_format(self.__setup, 'py',verbose=verbose)
+                self.check_format(
+                    module_path, module_path.split('.')[1],
+                    verbose=verbose
+                )
                 if self.is_file_ok():
-                    status = True
+                    statuses.append(True)
+                else:
+                    statuses.append(False)
+        if all(statuses) and len(statuses) == expected_num_of_modules:
+            status = True
         return status
 
     def __str__(self):
@@ -133,7 +140,6 @@ class WriteTemplate(FileChecking):
             :rtype: <str>
             :exceptions: None
         '''
-        return '{0} ({1}, {2})'.format(
-            self.__class__.__name__, FileChecking.__str__(self),
-            str(self.__setup)
+        return '{0} ({1})'.format(
+            self.__class__.__name__, FileChecking.__str__(self)
         )

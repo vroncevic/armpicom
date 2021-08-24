@@ -16,7 +16,7 @@
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Defined class Armpicom with attribute(s) and method(s).
+     Defined class ArmPicoM with attribute(s) and method(s).
      Load a base info, create an CLI interface and run operation(s).
 '''
 
@@ -25,7 +25,7 @@ from os.path import exists
 
 try:
     from pathlib import Path
-    from armpicom.pro import GenArmpicom
+    from armpicom.pro import GenArmPicoM
     from ats_utilities.logging import ATSLogger
     from ats_utilities.cli.cfg_cli import CfgCLI
     from ats_utilities.cooperative import CooperativeMeta
@@ -37,18 +37,18 @@ except ImportError as ats_error_message:
     sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2021, Free software to use and distributed it.'
+__copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic']
-__license__ = 'GNU General Public License (GPL)'
+__license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
 __version__ = '1.0.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class Armpicom(CfgCLI):
+class ArmPicoM(CfgCLI):
     '''
-        Defined class Armpicom with attribute(s) and method(s).
+        Defined class ArmPicoM with attribute(s) and method(s).
         Load a base info, create an CLI interface and run operation(s).
         It defines:
 
@@ -62,7 +62,7 @@ class Armpicom(CfgCLI):
             :methods:
                 | __init__ - initial constructor.
                 | process - process and run operation.
-                | __str__ - dunder method for Armpicom.
+                | __str__ - dunder method for ArmPicoM.
     '''
 
     __metaclass__ = CooperativeMeta
@@ -80,26 +80,26 @@ class Armpicom(CfgCLI):
             :exceptions: None
         '''
         current_dir = Path(__file__).resolve().parent
-        base_info = '{0}{1}'.format(current_dir, Armpicom.CONFIG)
+        base_info = '{0}{1}'.format(current_dir, ArmPicoM.CONFIG)
         CfgCLI.__init__(self, base_info, verbose=verbose)
-        verbose_message(Armpicom.GEN_VERBOSE, verbose, 'init tool info')
+        verbose_message(ArmPicoM.GEN_VERBOSE, verbose, 'init tool info')
         self.logger = ATSLogger(
-            Armpicom.GEN_VERBOSE.lower(),
-            '{0}{1}'.format(current_dir, Armpicom.LOG),
+            ArmPicoM.GEN_VERBOSE.lower(),
+            '{0}{1}'.format(current_dir, ArmPicoM.LOG),
             verbose=verbose
         )
         if self.tool_operational:
             self.add_new_option(
-                Armpicom.OPS[0], Armpicom.OPS[1],
-                dest='gen', help='generate option'
+                ArmPicoM.OPS[0], ArmPicoM.OPS[1],
+                dest='gen', help='generate project'
             )
             self.add_new_option(
-                Armpicom.OPS[2], Armpicom.OPS[3],
+                ArmPicoM.OPS[2], ArmPicoM.OPS[3],
                 action='store_true', default=False,
                 help='activate verbose mode for generation'
             )
             self.add_new_option(
-                Armpicom.OPS[4], action='version', version=__version__
+                ArmPicoM.OPS[4], action='version', version=__version__
             )
 
     def process(self, verbose=False):
@@ -117,7 +117,7 @@ class Armpicom(CfgCLI):
             num_of_args_sys = len(sys.argv)
             if num_of_args_sys > 1:
                 operation = sys.argv[1]
-                if operation not in Armpicom.OPS:
+                if operation not in ArmPicoM.OPS:
                     sys.argv.append('-h')
             else:
                 sys.argv.append('-h')
@@ -127,46 +127,45 @@ class Armpicom(CfgCLI):
                 if bool(getattr(args, 'gen')):
                     print(
                         '{0} {1} [{2}]'.format(
-                            '[{0}]'.format(Armpicom.GEN_VERBOSE.lower()),
+                            '[{0}]'.format(ArmPicoM.GEN_VERBOSE.lower()),
                             'generating', getattr(args, 'gen')
                         )
                     )
-                    generator = GenArmpicom(verbose=verbose)
-                    status = generator.gen_setup(
+                    generator = GenArmPicoM(verbose=verbose)
+                    status = generator.gen_project(
                         getattr(args, 'gen'), verbose
                     )
                     if status:
-                        success_message(Armpicom.GEN_VERBOSE, 'done\n')
+                        success_message(ArmPicoM.GEN_VERBOSE, 'done\n')
                         self.logger.write_log(
                             '{0} {1} done'.format(
-                                'generating tool/gen',
-                                getattr(args, 'gen')
+                                'generating project', getattr(args, 'gen')
                             ), ATSLogger.ATS_INFO
                         )
                     else:
                         error_message(
-                            Armpicom.GEN_VERBOSE, 'generation failed'
+                            ArmPicoM.GEN_VERBOSE, 'generation failed'
                         )
                         self.logger.write_log(
                             'generation failed', ATSLogger.ATS_ERROR
                         )
                 else:
                     error_message(
-                        Armpicom.GEN_VERBOSE, 'provide project name'
+                        ArmPicoM.GEN_VERBOSE, 'provide project name'
                     )
                     self.logger.write_log(
                         'provide project name', ATSLogger.ATS_ERROR
                     )
             else:
                 error_message(
-                    Armpicom.GEN_VERBOSE, 'project already exist'
+                    ArmPicoM.GEN_VERBOSE, 'project already exist'
                 )
                 self.logger.write_log(
                     'project already exist', ATSLogger.ATS_ERROR
                 )
         else:
             error_message(
-                Armpicom.GEN_VERBOSE, 'tool is not operational'
+                ArmPicoM.GEN_VERBOSE, 'tool is not operational'
             )
             self.logger.write_log(
                 'tool is not operational', ATSLogger.ATS_ERROR
@@ -175,7 +174,7 @@ class Armpicom(CfgCLI):
 
     def __str__(self):
         '''
-            Dunder method for Armpicom.
+            Dunder method for ArmPicoM.
 
             :return: object in a human-readable format.
             :rtype: <str>
