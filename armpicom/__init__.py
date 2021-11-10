@@ -24,6 +24,7 @@ import sys
 from os.path import exists
 
 try:
+    from six import add_metaclass
     from pathlib import Path
     from armpicom.pro import GenArmPicoM
     from ats_utilities.logging import ATSLogger
@@ -40,12 +41,13 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
+@add_metaclass(CooperativeMeta)
 class ArmPicoM(CfgCLI):
     '''
         Defined class ArmPicoM with attribute(s) and method(s).
@@ -53,7 +55,6 @@ class ArmPicoM(CfgCLI):
         It defines:
 
             :attributes:
-                | __metaclass__ - setting cooperative metaclasses.
                 | GEN_VERBOSE - console text indicator for process-phase.
                 | CONFIG - tool info file path.
                 | LOG - tool log file path.
@@ -65,7 +66,6 @@ class ArmPicoM(CfgCLI):
                 | __str__ - dunder method for ArmPicoM.
     '''
 
-    __metaclass__ = CooperativeMeta
     GEN_VERBOSE = 'ARMPICOM'
     CONFIG = '/conf/armpicom.cfg'
     LOG = '/log/armpicom.log'
