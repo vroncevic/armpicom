@@ -36,7 +36,7 @@ Used next development environment
 
 ![Install Python2 Package](https://github.com/vroncevic/armpicom/workflows/Install%20Python2%20Package%20armpicom/badge.svg?branch=main) ![Install Python3 Package](https://github.com/vroncevic/armpicom/workflows/Install%20Python3%20Package%20armpicom/badge.svg?branch=main)
 
-Currently there are three ways to install tool:
+Currently there are three ways to install tool
 * Install process based on pip
 * Install process based on setup.py (setuptools)
 * Install process based on docker mechanism
@@ -57,7 +57,7 @@ pip3 install armpicom
 
 Navigate to release **[page](https://github.com/vroncevic/armpicom/releases/)** download and extract release archive.
 
-To install **armpicom** type the following:
+To install **armpicom** type the following
 ```
 tar xvzf armpicom-x.y.z.tar.gz
 cd armpicom-x.y.z/
@@ -81,7 +81,7 @@ You can use Dockerfile to create image/container.
 
 ### Dependencies
 
-**armpicom** requires next modules and libraries:
+**armpicom** requires next modules and libraries
 
 * [ats-utilities - Python App/Tool/Script Utilities](https://pypi.org/project/ats-utilities/)
 
@@ -95,7 +95,7 @@ Base flow of generation process:
 
 **armpicom** is based on OOP.
 
-Generator structure:
+Tool structure
 
 ```
 armpicom/
@@ -105,6 +105,7 @@ armpicom/
 │   ├── project.yaml
 │   └── template/
 │       ├── build/
+│       │   └── armpicom.md
 │       ├── CMakeLists.template
 │       ├── pico_sdk_import.template
 │       ├── pro_auto_set_url.template
@@ -130,8 +131,7 @@ armpicom/
 
 [![Documentation Status](https://readthedocs.org/projects/armpicom/badge/?version=latest)](https://armpicom.readthedocs.io/en/latest/?badge=latest)
 
-More documentation and info at:
-
+More documentation and info at
 * [armpicom.readthedocs.io](https://armpicom.readthedocs.io/en/latest/)
 * [www.python.org](https://www.python.org/)
 

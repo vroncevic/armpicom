@@ -1,0 +1,13 @@
+global-exclude *.py[cod]
+global-exclude *.editorconfig
+include armpicom/run/armpicom_run.py
+include armpicom/conf/armpicom.cfg
+include armpicom/conf/armpicom_util.cfg
+include armpicom/conf/project.yaml
+include armpicom/conf/template/CMakeLists.template
+include armpicom/conf/template/pico_sdk_import.template
+include armpicom/conf/template/pro_auto_set_url.template
+include armpicom/conf/template/src/CMakeLists.template
+include armpicom/conf/template/src/main.template
+include armpicom/conf/template/build/armpicom.md
+include armpicom/log/armpicom.log

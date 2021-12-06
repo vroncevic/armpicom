@@ -45,7 +45,7 @@ Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/vroncevic/armpicom/releases
 
-To install **armpicom** type the following:
+To install **armpicom** type the following
 
 .. code-block:: bash
 
@@ -62,7 +62,7 @@ To install **armpicom** type the following:
     python3 setup.py install_data
     python3 setup.py install_egg_info
 
-You can use Docker to create image/container, or You can use pip to install:
+You can use Docker to create image/container, or You can use pip to install
 
 .. code-block:: bash
 
@@ -79,14 +79,14 @@ You can use Docker to create image/container, or You can use pip to install:
 Dependencies
 -------------
 
-**armpicom** requires next modules and libraries:
+**armpicom** requires next modules and libraries
 
 * `ats-utilities - Python App/Tool/Script Utilities <https://pypi.org/project/ats-utilities/>`_
 
 Generation flow of project setup
 ---------------------------------
 
-Base flow of generation process:
+Base flow of generation process
 
 .. image:: https://raw.githubusercontent.com/vroncevic/armpicom/dev/docs/python_setup_flow.png
 
@@ -95,7 +95,7 @@ Tool structure
 
 **armpicom** is based on OOP.
 
-Code structure:
+Tool structure
 
 .. code-block:: bash
 
@@ -106,6 +106,7 @@ Code structure:
     │   ├── project.yaml
     │   └── template/
     │       ├── build/
+    │       │   └── armpicom.md
     │       ├── CMakeLists.template
     │       ├── pico_sdk_import.template
     │       ├── pro_auto_set_url.template

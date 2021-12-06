@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.abspath('../../'))
 project = u'armpicom'
 copyright = u'2021, Vladimir Roncevic <elektron.ronca@gmail.com>'
 author = u'Vladimir Roncevic <elektron.ronca@gmail.com>'
-version = u'1.0.2'
+version = u'1.0.3'
 release = u'https://github.com/vroncevic/armpicom/releases'
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode']
 templates_path = ['_templates']
