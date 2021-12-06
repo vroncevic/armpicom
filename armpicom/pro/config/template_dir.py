@@ -4,7 +4,7 @@
  Module
      template_dir.py
  Copyright
-     Copyright (C) 2020 Vladimir Roncevic <elektron.ronca@gmail.com>
+     Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
      armpicom is free software: you can redistribute it and/or modify
      it under the terms of the GNU General Public License as published by the
      Free Software Foundation, either version 3 of the License, or
@@ -32,10 +32,10 @@ except ImportError as ats_error_message:
     sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2020, https://vroncevic.github.io/armpicom'
+__copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '2.1.7'
+__version__ = '1.0.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'

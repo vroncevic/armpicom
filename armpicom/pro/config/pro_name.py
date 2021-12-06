@@ -32,10 +32,10 @@ except ImportError as ats_error_message:
     sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2020, Free software to use and distributed it.'
+__copyright__ = 'Copyright 2021, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '2.1.7'
+__version__ = '1.0.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
