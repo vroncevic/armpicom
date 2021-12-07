@@ -34,6 +34,7 @@ __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
+
 def install_directory():
     '''
         Return the installation directory, or None.
@@ -72,6 +73,7 @@ def install_directory():
     )
     print(message)
     return None
+
 
 INSTALL_DIR = install_directory()
 TOOL_DIR = 'armpicom/'
@@ -113,9 +115,11 @@ setup(
     keywords='setup, python, install, RPI Pico, CMake',
     platforms='any',
     classifiers=PYP_CLASSIFIERS,
-    packages=['armpicom', 'armpicom.pro', 'armpicom.pro.config'],
+    packages=[
+        'armpicom', 'armpicom.splash', 'armpicom.pro', 'armpicom.pro.config'
+    ],
     install_requires=['ats-utilities'],
-    package_data = {
+    package_data={
         'armpicom': [
             'conf/armpicom.cfg',
             'conf/armpicom_util.cfg',

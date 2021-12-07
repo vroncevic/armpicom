@@ -18,7 +18,7 @@ other information that should be provided before the modules are installed.
 
 - [Installation](#installation)
     - [Install using pip](#install-using-pip)
-    - [Install using setuptools](#install-using-setuptools)
+    - [Install using build](#install-using-build)
     - [Install using docker](#install-using-docker)
 - [Dependencies](#dependencies)
 - [Generation flow of pyp setup](#generation-flow-of-pyp-setup)
@@ -37,8 +37,8 @@ Used next development environment
 ![Install Python2 Package](https://github.com/vroncevic/armpicom/workflows/Install%20Python2%20Package%20armpicom/badge.svg?branch=main) ![Install Python3 Package](https://github.com/vroncevic/armpicom/workflows/Install%20Python3%20Package%20armpicom/badge.svg?branch=main)
 
 Currently there are three ways to install tool
-* Install process based on pip
-* Install process based on setup.py (setuptools)
+* Install process based on pip mechanism
+* Install process based on build mechanism
 * Install process based on docker mechanism
 
 ##### Install using pip
@@ -48,12 +48,12 @@ Python package is located at **[pypi.org](https://pypi.org/project/armpicom/)**.
 You can install by using pip
 ```
 # python2
-pip install armpicom
+pip2 install armpicom
 # python3
 pip3 install armpicom
 ```
 
-##### Install using setuptools
+##### Install using build
 
 Navigate to release **[page](https://github.com/vroncevic/armpicom/releases/)** download and extract release archive.
 
@@ -62,15 +62,25 @@ To install **armpicom** type the following
 tar xvzf armpicom-x.y.z.tar.gz
 cd armpicom-x.y.z/
 # python2
-pip install -r requirements.txt
-python setup.py install_lib
-python setup.py install_data
-python setup.py install_egg_info
+wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+python2 get-pip.py 
+python2 -m pip install --upgrade setuptools
+python2 -m pip install --upgrade pip
+python2 -m pip install --upgrade build
+pip2 install -r requirements.txt
+python2 -m build --no-isolation --wheel
+pip2 install ./dist/armpicom-*-py2-none-any.whl
+rm -f get-pip.py
 # python3
+wget https://bootstrap.pypa.io/get-pip.py
+python3 get-pip.py 
+python3 -m pip install --upgrade setuptools
+python3 -m pip install --upgrade pip
+python3 -m pip install --upgrade build
 pip3 install -r requirements.txt
-python3 setup.py install_lib
-python3 setup.py install_data
-python3 setup.py install_egg_info
+python3 -m build --no-isolation --wheel
+pip3 install ./dist/armpicom-*-py3-none-any.whl
+rm -f get-pip.py
 ```
 
 ##### Install using docker
@@ -87,7 +97,7 @@ You can use Dockerfile to create image/container.
 
 ### Generation flow of pyp setup
 
-Base flow of generation process:
+Base flow of generation process
 
 ![Setup generation flow](https://raw.githubusercontent.com/vroncevic/armpicom/dev/docs/python_setup_flow.png)
 
@@ -96,11 +106,11 @@ Base flow of generation process:
 **armpicom** is based on OOP.
 
 Tool structure
-
 ```
 armpicom/
 ├── conf/
 │   ├── armpicom.cfg
+│   ├── armpicom.logo
 │   ├── armpicom_util.cfg
 │   ├── project.yaml
 │   └── template/
@@ -123,8 +133,11 @@ armpicom/
 │   ├── __init__.py
 │   ├── read_template.py
 │   └── write_template.py
-└── run/
-    └── armpicom_run.py
+├── run/
+│   └── armpicom_run.py
+└── splash/
+    ├── __init__.py
+    └── progress_bar.py
 ```
 
 ### Docs

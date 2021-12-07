@@ -105,7 +105,7 @@ class WriteTemplate(FileChecking):
             mkdir(src_dir)
             mkdir(build_dir)
         for template_content in templates:
-            module_name = template_content.keys()[0]
+            module_name = [module for module in template_content.keys()][0]
             template = Template(template_content[module_name])
             module_path = '{0}{1}'.format(pro_dir, module_name)
             with open(module_path, 'w') as module_file:

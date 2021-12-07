@@ -16,8 +16,8 @@
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Defined class GenArmPicoM with attribute(s) and method(s).
-     Generate module file generator_test.py by template and parameters.
+     Defined class GenArmPICOM with attribute(s) and method(s).
+     Generate project setup for RPI Pico by templates and parameters.
 '''
 
 import sys
@@ -48,10 +48,10 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class GenArmPicoM(FileChecking, ProConfig, ProName):
+class GenArmPICOM(FileChecking, ProConfig, ProName):
     '''
-        Defined class GenArmPicoM with attribute(s) and method(s).
-        Generate module file generator_test.py by template and parameters.
+        Defined class GenArmPICOM with attribute(s) and method(s).
+        Generate project setup for RPI Pico by templates and parameters.
         It defines:
 
             :attributes:
@@ -64,10 +64,10 @@ class GenArmPicoM(FileChecking, ProConfig, ProName):
                 | get_reader - getter for template reader.
                 | get_writer - getter for template writer.
                 | gen_project - generate RPI PI Pico CMake structure.
-                | __str__ - dunder method for GenArmPicoM.
+                | __str__ - dunder method for GenArmPICOM.
     '''
 
-    GEN_VERBOSE = 'ARMPICOM::PRO::GEN_SETUP'
+    GEN_VERBOSE = 'ARMPICOM::PRO::GENARMPICOM'
     PRO_STRUCTURE = '/../conf/project.yaml'
 
     def __init__(self, verbose=False):
@@ -81,11 +81,11 @@ class GenArmPicoM(FileChecking, ProConfig, ProName):
         FileChecking.__init__(self, verbose=verbose)
         ProConfig.__init__(self, verbose=verbose)
         ProName.__init__(self, verbose=verbose)
-        verbose_message(GenArmPicoM.GEN_VERBOSE, verbose, 'init generator')
+        verbose_message(GenArmPICOM.GEN_VERBOSE, verbose, 'init generator')
         self.__reader = ReadTemplate(verbose=verbose)
         self.__writer = WriteTemplate(verbose=verbose)
         project_structure = '{0}{1}'.format(
-            Path(__file__).parent, GenArmPicoM.PRO_STRUCTURE
+            Path(__file__).parent, GenArmPICOM.PRO_STRUCTURE
         )
         self.check_path(file_path=project_structure, verbose=verbose)
         self.check_mode(file_mode='r', verbose=verbose)
@@ -145,14 +145,17 @@ class GenArmPicoM(FileChecking, ProConfig, ProName):
 
     def __str__(self):
         '''
-            Dunder method for GenArmPicoM.
+            Dunder method for GenArmPICOM.
 
             :return: object in a human-readable format.
             :rtype: <str>
             :exceptions: None
         '''
         return '{0} ({1}, {2}, {3}, {4}, {5})'.format(
-            self.__class__.__name__, FileChecking.__str__(self),
-            ProConfig.__str__(self), ProName.__str__(self),
-            str(self.__reader), str(self.__writer)
+            self.__class__.__name__,
+            FileChecking.__str__(self),
+            ProConfig.__str__(self),
+            ProName.__str__(self),
+            str(self.__reader),
+            str(self.__writer),
         )

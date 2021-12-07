@@ -5,13 +5,15 @@ Subpackages
 -----------
 
 .. toctree::
+   :maxdepth: 4
 
-    armpicom.pro.config
+   armpicom.pro.config
 
 Submodules
 ----------
 
 .. toctree::
+   :maxdepth: 4
 
    armpicom.pro.read_template
    armpicom.pro.write_template
@@ -20,6 +22,7 @@ Module contents
 ---------------
 
 .. automodule:: armpicom.pro
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

@@ -5,13 +5,16 @@ Subpackages
 -----------
 
 .. toctree::
+   :maxdepth: 4
 
-    armpicom.pro
+   armpicom.pro
+   armpicom.splash
 
 Module contents
 ---------------
 
 .. automodule:: armpicom
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
