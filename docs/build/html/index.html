@@ -114,6 +114,8 @@ pip2 install -r requirements.txt
 python2 -m build --no-isolation --wheel
 pip2 install ./dist/armpicom-*-py2-none-any.whl
 rm -f get-pip.py
+chmod <span class="m">755</span> /usr/local/lib/python2.7/dist-packages/usr/local/bin/armpicom_run.py
+ln -s /usr/local/lib/python2.7/dist-packages/usr/local/bin/armpicom_run.py /usr/local/bin/armpicom_run.py
 <span class="c1"># python3</span>
 wget https://bootstrap.pypa.io/get-pip.py
 python3 get-pip.py
@@ -124,6 +126,8 @@ pip3 install -r requirements.txt
 python3 -m build --no-isolation --wheel
 pip3 install ./dist/armpicom-*-py3-none-any.whl
 rm -f get-pip.py
+chmod <span class="m">755</span> /usr/local/lib/python3.9/dist-packages/usr/local/bin/armpicom_run.py
+ln -s /usr/local/lib/python3.9/dist-packages/usr/local/bin/armpicom_run.py /usr/local/bin/armpicom_run.py
 </pre></div>
 </div>
 <p>You can use Docker to create image/container, or You can use pip to install</p>
