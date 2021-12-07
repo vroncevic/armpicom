@@ -1,6 +1,7 @@
 global-exclude *.py[cod]
 global-exclude *.editorconfig
 include armpicom/run/armpicom_run.py
+include armpicom/conf/armpicom.logo
 include armpicom/conf/armpicom.cfg
 include armpicom/conf/armpicom_util.cfg
 include armpicom/conf/project.yaml

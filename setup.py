@@ -121,6 +121,7 @@ setup(
     install_requires=['ats-utilities'],
     package_data={
         'armpicom': [
+            'conf/armpicom.logo',
             'conf/armpicom.cfg',
             'conf/armpicom_util.cfg',
             'conf/project.yaml',
