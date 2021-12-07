@@ -23,7 +23,7 @@
 import sys
 
 try:
-    from armpicom import ArmPicoM
+    from armpicom import ArmPICOM
 except ImportError as ats_error_message:
     MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
@@ -38,5 +38,5 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 if __name__ == '__main__':
-    TOOL = ArmPicoM(verbose=False)
+    TOOL = ArmPICOM(verbose=False)
     TOOL.process(verbose=False)

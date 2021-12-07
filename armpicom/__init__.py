@@ -16,7 +16,7 @@
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Defined class ArmPicoM with attribute(s) and method(s).
+     Defined class ArmPICOM with attribute(s) and method(s).
      Load a base info, create an CLI interface and run operation(s).
 '''
 
@@ -26,7 +26,8 @@ from os.path import exists
 try:
     from six import add_metaclass
     from pathlib import Path
-    from armpicom.pro import GenArmPicoM
+    from armpicom.pro import GenArmPICOM
+    from armpicom.splash import Splash
     from ats_utilities.logging import ATSLogger
     from ats_utilities.cli.cfg_cli import CfgCLI
     from ats_utilities.cooperative import CooperativeMeta
@@ -48,9 +49,9 @@ __status__ = 'Updated'
 
 
 @add_metaclass(CooperativeMeta)
-class ArmPicoM(CfgCLI):
+class ArmPICOM(CfgCLI):
     '''
-        Defined class ArmPicoM with attribute(s) and method(s).
+        Defined class ArmPICOM with attribute(s) and method(s).
         Load a base info, create an CLI interface and run operation(s).
         It defines:
 
@@ -63,7 +64,7 @@ class ArmPicoM(CfgCLI):
             :methods:
                 | __init__ - initial constructor.
                 | process - process and run operation.
-                | __str__ - dunder method for ArmPicoM.
+                | __str__ - dunder method for ArmPICOM.
     '''
 
     GEN_VERBOSE = 'ARMPICOM'
@@ -79,27 +80,28 @@ class ArmPicoM(CfgCLI):
             :type verbose: <bool>
             :exceptions: None
         '''
+        splash = Splash()
         current_dir = Path(__file__).resolve().parent
-        base_info = '{0}{1}'.format(current_dir, ArmPicoM.CONFIG)
+        base_info = '{0}{1}'.format(current_dir, ArmPICOM.CONFIG)
         CfgCLI.__init__(self, base_info, verbose=verbose)
-        verbose_message(ArmPicoM.GEN_VERBOSE, verbose, 'init tool info')
+        verbose_message(ArmPICOM.GEN_VERBOSE, verbose, 'init tool info')
         self.logger = ATSLogger(
-            ArmPicoM.GEN_VERBOSE.lower(),
-            '{0}{1}'.format(current_dir, ArmPicoM.LOG),
+            ArmPICOM.GEN_VERBOSE.lower(),
+            '{0}{1}'.format(current_dir, ArmPICOM.LOG),
             verbose=verbose
         )
         if self.tool_operational:
             self.add_new_option(
-                ArmPicoM.OPS[0], ArmPicoM.OPS[1],
+                ArmPICOM.OPS[0], ArmPICOM.OPS[1],
                 dest='gen', help='generate project'
             )
             self.add_new_option(
-                ArmPicoM.OPS[2], ArmPicoM.OPS[3],
+                ArmPICOM.OPS[2], ArmPICOM.OPS[3],
                 action='store_true', default=False,
                 help='activate verbose mode for generation'
             )
             self.add_new_option(
-                ArmPicoM.OPS[4], action='version', version=__version__
+                ArmPICOM.OPS[4], action='version', version=__version__
             )
 
     def process(self, verbose=False):
@@ -117,7 +119,7 @@ class ArmPicoM(CfgCLI):
             num_of_args_sys = len(sys.argv)
             if num_of_args_sys > 1:
                 operation = sys.argv[1]
-                if operation not in ArmPicoM.OPS:
+                if operation not in ArmPICOM.OPS:
                     sys.argv.append('-h')
             else:
                 sys.argv.append('-h')
@@ -127,16 +129,16 @@ class ArmPicoM(CfgCLI):
                 if bool(getattr(args, 'gen')):
                     print(
                         '{0} {1} [{2}]'.format(
-                            '[{0}]'.format(ArmPicoM.GEN_VERBOSE.lower()),
+                            '[{0}]'.format(ArmPICOM.GEN_VERBOSE.lower()),
                             'generating', getattr(args, 'gen')
                         )
                     )
-                    generator = GenArmPicoM(verbose=verbose)
+                    generator = GenArmPICOM(verbose=verbose)
                     status = generator.gen_project(
                         getattr(args, 'gen'), verbose
                     )
                     if status:
-                        success_message(ArmPicoM.GEN_VERBOSE, 'done\n')
+                        success_message(ArmPICOM.GEN_VERBOSE, 'done\n')
                         self.logger.write_log(
                             '{0} {1} done'.format(
                                 'generating project', getattr(args, 'gen')
@@ -144,29 +146,23 @@ class ArmPicoM(CfgCLI):
                         )
                     else:
                         error_message(
-                            ArmPicoM.GEN_VERBOSE, 'generation failed'
+                            ArmPICOM.GEN_VERBOSE, 'generation failed'
                         )
                         self.logger.write_log(
                             'generation failed', ATSLogger.ATS_ERROR
                         )
                 else:
-                    error_message(
-                        ArmPicoM.GEN_VERBOSE, 'provide project name'
-                    )
+                    error_message(ArmPICOM.GEN_VERBOSE, 'provide project name')
                     self.logger.write_log(
                         'provide project name', ATSLogger.ATS_ERROR
                     )
             else:
-                error_message(
-                    ArmPicoM.GEN_VERBOSE, 'project already exist'
-                )
+                error_message(ArmPICOM.GEN_VERBOSE, 'project already exist')
                 self.logger.write_log(
                     'project already exist', ATSLogger.ATS_ERROR
                 )
         else:
-            error_message(
-                ArmPicoM.GEN_VERBOSE, 'tool is not operational'
-            )
+            error_message(ArmPICOM.GEN_VERBOSE, 'tool is not operational')
             self.logger.write_log(
                 'tool is not operational', ATSLogger.ATS_ERROR
             )
@@ -174,7 +170,7 @@ class ArmPicoM(CfgCLI):
 
     def __str__(self):
         '''
-            Dunder method for ArmPicoM.
+            Dunder method for ArmPICOM.
 
             :return: object in a human-readable format.
             :rtype: <str>

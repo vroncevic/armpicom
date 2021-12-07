@@ -3,6 +3,7 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../../'))
+
 project = u'armpicom'
 copyright = u'2021, Vladimir Roncevic <elektron.ronca@gmail.com>'
 author = u'Vladimir Roncevic <elektron.ronca@gmail.com>'
@@ -15,7 +16,7 @@ master_doc = 'index'
 language = None
 exclude_patterns = []
 pygments_style = None
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 htmlhelp_basename = 'armpicomdoc'
 latex_elements = {}

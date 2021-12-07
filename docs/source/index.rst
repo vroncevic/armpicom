@@ -41,6 +41,10 @@ Installation
 .. |Install Python3 Package| image:: https://github.com/vroncevic/armpicom/workflows/Install%20Python3%20Package%20armpicom/badge.svg
    :target: https://github.com/vroncevic/armpicom/workflows/Install%20Python3%20Package%20armpicom/badge.svg?branch=main
 
+|Debian Linux OS|
+
+.. |Debian Linux OS| image:: https://raw.githubusercontent.com/vroncevic/armpicom/dev/docs/debtux.png
+
 Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/vroncevic/armpicom/releases
@@ -52,22 +56,32 @@ To install **armpicom** type the following
     tar xvzf armpicom-x.y.z.tar.gz
     cd armpicom-x.y.z/
     # python2
-    pip install -r requirements.txt
-    python setup.py install_lib
-    python setup.py install_data
-    python setup.py install_egg_info
-    # pyton3
+    wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+    python2 get-pip.py 
+    python2 -m pip install --upgrade setuptools
+    python2 -m pip install --upgrade pip
+    python2 -m pip install --upgrade build
+    pip2 install -r requirements.txt
+    python2 -m build --no-isolation --wheel
+    pip2 install ./dist/armpicom-*-py2-none-any.whl
+    rm -f get-pip.py
+    # python3
+    wget https://bootstrap.pypa.io/get-pip.py
+    python3 get-pip.py 
+    python3 -m pip install --upgrade setuptools
+    python3 -m pip install --upgrade pip
+    python3 -m pip install --upgrade build
     pip3 install -r requirements.txt
-    python3 setup.py install_lib
-    python3 setup.py install_data
-    python3 setup.py install_egg_info
+    python3 -m build --no-isolation --wheel
+    pip3 install ./dist/armpicom-*-py3-none-any.whl
+    rm -f get-pip.py
 
 You can use Docker to create image/container, or You can use pip to install
 
 .. code-block:: bash
 
     # pyton2
-    pip install armpicom
+    pip2 install armpicom
     # pyton3
     pip3 install armpicom
 
@@ -102,6 +116,7 @@ Tool structure
     armpicom/
     ├── conf/
     │   ├── armpicom.cfg
+    │   ├── armpicom.logo
     │   ├── armpicom_util.cfg
     │   ├── project.yaml
     │   └── template/
@@ -124,8 +139,11 @@ Tool structure
     │   ├── __init__.py
     │   ├── read_template.py
     │   └── write_template.py
-    └── run/
-        └── armpicom_run.py
+    ├── run/
+    │   └── armpicom_run.py
+    └── splash/
+        ├── __init__.py
+        └── progress_bar.py
 
 Copyright and licence
 -----------------------
