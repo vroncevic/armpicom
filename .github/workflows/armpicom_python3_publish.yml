@@ -2,8 +2,19 @@ name: Install Python3 Package armpicom
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'armpicom/**'
+      - 'MANIFEST.in'
+      - 'pyproject.toml'
+      - 'setup.cfg'
+      - 'setup.py'
   pull_request:
     branches: [ main ]
+      - 'armpicom/**'
+      - 'MANIFEST.in'
+      - 'pyproject.toml'
+      - 'setup.cfg'
+      - 'setup.py'
 jobs:
   deploy:
     runs-on: ubuntu-latest

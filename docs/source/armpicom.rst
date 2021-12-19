@@ -8,7 +8,6 @@ Subpackages
    :maxdepth: 4
 
    armpicom.pro
-   armpicom.splash
 
 Module contents
 ---------------

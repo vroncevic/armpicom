@@ -143,11 +143,8 @@ Tool structure
     │   ├── __init__.py
     │   ├── read_template.py
     │   └── write_template.py
-    ├── run/
-    │   └── armpicom_run.py
-    └── splash/
-        ├── __init__.py
-        └── progress_bar.py
+    └── run/
+        └── armpicom_run.py
 
 Copyright and licence
 -----------------------
