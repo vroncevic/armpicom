@@ -1,5 +1,10 @@
 name: Python package armpicom
-on: [push]
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'armpicom/**'
+      - 'setup.py'
 jobs:
   build:
     runs-on: ubuntu-latest
