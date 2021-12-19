@@ -27,7 +27,7 @@ try:
     from six import add_metaclass
     from pathlib import Path
     from armpicom.pro import GenArmPICOM
-    from armpicom.splash import Splash
+    from ats_utilities.splash import Splash
     from ats_utilities.logging import ATSLogger
     from ats_utilities.cli.cfg_cli import CfgCLI
     from ats_utilities.cooperative import CooperativeMeta
@@ -42,7 +42,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.0.3'
+__version__ = '1.1.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -59,6 +59,7 @@ class ArmPICOM(CfgCLI):
                 | GEN_VERBOSE - console text indicator for process-phase.
                 | CONFIG - tool info file path.
                 | LOG - tool log file path.
+                | LOGO - logo for splash screen.
                 | OPS - list of tool options.
                 | logger - logger object API.
             :methods:
@@ -70,6 +71,7 @@ class ArmPICOM(CfgCLI):
     GEN_VERBOSE = 'ARMPICOM'
     CONFIG = '/conf/armpicom.cfg'
     LOG = '/log/armpicom.log'
+    LOGO = '/conf/armpicom.logo'
     OPS = ['-g', '--gen', '-v', '--verbose', '--version']
 
     def __init__(self, verbose=False):
@@ -80,8 +82,15 @@ class ArmPICOM(CfgCLI):
             :type verbose: <bool>
             :exceptions: None
         '''
-        splash = Splash()
         current_dir = Path(__file__).resolve().parent
+        armpicom_property = {
+            'ats_organization': 'vroncevic',
+            'ats_repository': 'armpicom',
+            'ats_name': 'armpicom',
+            'ats_logo_path': '{0}{1}'.format(current_dir, ArmPICOM.LOGO),
+            'ats_use_github_infrastructure': True
+        }
+        splash = Splash(armpicom_property, verbose=verbose)
         base_info = '{0}{1}'.format(current_dir, ArmPICOM.CONFIG)
         CfgCLI.__init__(self, base_info, verbose=verbose)
         verbose_message(ArmPICOM.GEN_VERBOSE, verbose, 'init tool info')
