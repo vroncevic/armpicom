@@ -4,7 +4,7 @@
  Module
      pro_name.py
  Copyright
-     Copyright (C) 2020 Vladimir Roncevic <elektron.ronca@gmail.com>
+     Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
      armpicom is free software: you can redistribute it and/or modify
      it under the terms of the GNU General Public License as published by the
      Free Software Foundation, either version 3 of the License, or
@@ -35,7 +35,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.1.3'
+__version__ = '1.2.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
