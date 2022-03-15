@@ -6,6 +6,9 @@
 
 Developed in **[python](https://www.python.org/)** code: **100%**.
 
+[![codecov](https://codecov.io/gh/vroncevic/armpicom/branch/main/graph/badge.svg?token=4VZJXM0YBA)](https://codecov.io/gh/vroncevic/armpicom)
+[![CircleCI](https://circleci.com/gh/vroncevic/armpicom/tree/main.svg?style=svg)](https://circleci.com/gh/vroncevic/armpicom/tree/main)
+
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
