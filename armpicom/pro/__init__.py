@@ -21,9 +21,9 @@
 '''
 
 import sys
+from os.path import dirname, realpath
 
 try:
-    from pathlib import Path
     from armpicom.pro.config import ProConfig
     from armpicom.pro.config.pro_name import ProName
     from armpicom.pro.read_template import ReadTemplate
@@ -42,7 +42,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.1.3'
+__version__ = '1.2.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -85,7 +85,7 @@ class GenArmPICOM(FileChecking, ProConfig, ProName):
         self.__reader = ReadTemplate(verbose=verbose)
         self.__writer = WriteTemplate(verbose=verbose)
         project_structure = '{0}{1}'.format(
-            Path(__file__).parent, GenArmPICOM.PRO_STRUCTURE
+            dirname(realpath(__file__), GenArmPICOM.PRO_STRUCTURE)
         )
         self.check_path(file_path=project_structure, verbose=verbose)
         self.check_mode(file_mode='r', verbose=verbose)

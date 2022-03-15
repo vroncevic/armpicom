@@ -21,10 +21,9 @@
 '''
 
 import sys
-from os.path import isdir
+from os.path import isdir, dirname, realpath
 
 try:
-    from pathlib import Path
     from armpicom.pro.config import ProConfig
     from armpicom.pro.config.template_dir import TemplateDir
     from ats_utilities.checker import ATSChecker
@@ -40,7 +39,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.1.3'
+__version__ = '1.2.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -76,7 +75,7 @@ class ReadTemplate(FileChecking, TemplateDir):
         TemplateDir.__init__(self, verbose=verbose)
         verbose_message(ReadTemplate.GEN_VERBOSE, verbose, 'init reader')
         pro_template_dir = '{0}{1}'.format(
-            Path(__file__).parent, ReadTemplate.TEMPLATE_DIR
+            dirname(realpath(__file__)), ReadTemplate.TEMPLATE_DIR
         )
         if isdir(pro_template_dir):
             self.template_dir = pro_template_dir
