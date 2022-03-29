@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
-"""
+'''
  Module
      setup.py
  Copyright
@@ -18,7 +18,7 @@
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
      Defined setup for tool armpicom.
-"""
+'''
 
 from __future__ import print_function
 import sys
@@ -29,7 +29,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.2.3'
+__version__ = '1.3.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -77,6 +77,8 @@ def install_directory():
 
 INSTALL_DIR = install_directory()
 TOOL_DIR = 'armpicom/'
+CONF, TEMPLATE, LOG = 'conf', 'conf/template', 'log'
+BUILD, SRC = 'conf/template/build', 'conf/template/src'
 if not bool(INSTALL_DIR):
     print('[setup] force exit from install process')
     sys.exit(127)
@@ -104,7 +106,7 @@ APPROVED_LICENSES = [
 PYP_CLASSIFIERS = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 setup(
     name='armpicom',
-    version='1.2.3',
+    version='1.3.3',
     description='Python package for generation of RPI configuration/build',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
@@ -112,26 +114,24 @@ setup(
     license='GPL 2021 Free software to use and distributed it.',
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
-    keywords='setup, python, install, RPI Pico, CMake',
+    keywords='setup, python, install, RPI Pico, CMake, generator',
     platforms='any',
     classifiers=PYP_CLASSIFIERS,
-    packages=[
-        'armpicom', 'armpicom.pro', 'armpicom.pro.config'
-    ],
+    packages=['armpicom', 'armpicom.pro', 'armpicom.pro.config'],
     install_requires=['ats-utilities'],
     package_data={
         'armpicom': [
-            'conf/armpicom.logo',
-            'conf/armpicom.cfg',
-            'conf/armpicom_util.cfg',
-            'conf/project.yaml',
-            'conf/template/CMakeLists.template',
-            'conf/template/pico_sdk_import.template',
-            'conf/template/pro_auto_set_url.template',
-            'conf/template/build/armpicom.md',
-            'conf/template/src/CMakeLists.template',
-            'conf/template/src/main.template',
-            'log/armpicom.log'
+            '{0}/{1}'.format(CONF, 'armpicom.logo'),
+            '{0}/{1}'.format(CONF, 'armpicom.cfg'),
+            '{0}/{1}'.format(CONF, 'armpicom_util.cfg'),
+            '{0}/{1}'.format(CONF, 'project.yaml'),
+            '{0}/{1}'.format(TEMPLATE, 'CMakeLists.template'),
+            '{0}/{1}'.format(TEMPLATE, 'pico_sdk_import.template'),
+            '{0}/{1}'.format(TEMPLATE, 'pro_auto_set_url.template'),
+            '{0}/{1}'.format(BUILD, 'armpicom.md'),
+            '{0}/{1}'.format(SRC, 'CMakeLists.template'),
+            '{0}/{1}'.format(SRC, 'main.template'),
+            '{0}/{1}'.format(LOG, 'armpicom.log')
         ]
     },
     data_files=[(
