@@ -4,7 +4,7 @@
 
 **armpicom** is toolset for generation of RPI project configuration/build setup.
 
-Developed in **[python](https://www.python.org/)** code: **100%**.
+Developed in **[python](https://www.python.org/)** code.
 
 [![codecov](https://codecov.io/gh/vroncevic/armpicom/branch/dev/graph/badge.svg?token=4VZJXM0YBA)](https://codecov.io/gh/vroncevic/armpicom)
 [![CircleCI](https://circleci.com/gh/vroncevic/armpicom/tree/main.svg?style=svg)](https://circleci.com/gh/vroncevic/armpicom/tree/main)
@@ -49,7 +49,8 @@ Currently there are three ways to install tool
 Python package is located at **[pypi.org](https://pypi.org/project/armpicom/)**.
 
 You can install by using pip
-```
+
+```bash
 # python2
 pip2 install armpicom
 # python3
@@ -61,7 +62,8 @@ pip3 install armpicom
 Navigate to release **[page](https://github.com/vroncevic/armpicom/releases/)** download and extract release archive.
 
 To install **armpicom** type the following
-```
+
+```bash
 tar xvzf armpicom-x.y.z.tar.gz
 cd armpicom-x.y.z/
 # python2
@@ -113,7 +115,8 @@ Base flow of generation process
 **armpicom** is based on OOP.
 
 Tool structure
-```
+
+```bash
 armpicom/
 ├── conf/
 │   ├── armpicom.cfg

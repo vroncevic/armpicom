@@ -24,7 +24,6 @@
 
 import sys
 import unittest
-from os.path import dirname, realpath
 
 try:
     from armpicom.pro.config.pro_name import ProName
@@ -36,7 +35,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2022, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.2.3'
+__version__ = '1.3.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'

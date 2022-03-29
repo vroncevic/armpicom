@@ -10,6 +10,7 @@ on:
       - 'setup.py'
   pull_request:
     branches: [ main ]
+    paths:
       - 'armpicom/**'
       - 'MANIFEST.in'
       - 'pyproject.toml'
