@@ -9,6 +9,12 @@ jobs:
       - checkout
       - python/install-packages:
           pkg-manager: pip
+      - run:
+          name: Install pytest
+          command: pip install pytest
+      - run:
+          name: Run tests
+          command: python -m pytest
 workflows:
   sample:
     jobs:
