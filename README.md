@@ -2,18 +2,18 @@
 
 # Generate RPI project configuration/build setup
 
-**armpicom** is toolset for generation of RPI project configuration/build setup.
+☯️ **armpicom** is toolset for generation of RPI project configuration/build setup.
 
-Developed in **[python](https://www.python.org/)** code.
+Developed in 🐍 **[python](https://www.python.org/)** code.
 
 [![codecov](https://codecov.io/gh/vroncevic/armpicom/branch/dev/graph/badge.svg?token=4VZJXM0YBA)](https://codecov.io/gh/vroncevic/armpicom)
-[![CircleCI](https://circleci.com/gh/vroncevic/armpicom/tree/main.svg?style=svg)](https://circleci.com/gh/vroncevic/armpicom/tree/main)
+[![circleci](https://circleci.com/gh/vroncevic/armpicom/tree/main.svg?style=svg)](https://circleci.com/gh/vroncevic/armpicom/tree/main)
 
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
 
-[![Python package armpicom](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_package.yml/badge.svg)](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_package.yml) [![GitHub issues open](https://img.shields.io/github/issues/vroncevic/armpicom.svg)](https://github.com/vroncevic/armpicom/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/armpicom.svg)](https://github.com/vroncevic/armpicom/graphs/contributors)
+[![armpicom py code checker](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_py_checker.yml/badge.svg)](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_py_checker.yml) [![armpicom python package checker](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_package.yml/badge.svg)](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_package.yml) [![GitHub issues open](https://img.shields.io/github/issues/vroncevic/armpicom.svg)](https://github.com/vroncevic/armpicom/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/armpicom.svg)](https://github.com/vroncevic/armpicom/graphs/contributors)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -22,11 +22,13 @@ other information that should be provided before the modules are installed.
 - [Installation](#installation)
     - [Install using pip](#install-using-pip)
     - [Install using build](#install-using-build)
+    - [Install using py setup](#install-using-py-setup)
     - [Install using docker](#install-using-docker)
 - [Dependencies](#dependencies)
 - [Generation flow of pyp setup](#generation-flow-of-pyp-setup)
 - [Tool structure](#tool-structure)
 - [Docs](#docs)
+- [Contributing](#contributing)
 - [Copyright and licence](#copyright-and-licence)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -37,16 +39,17 @@ Used next development environment
 
 ![Development environment](https://raw.githubusercontent.com/vroncevic/armpicom/dev/docs/debtux.png)
 
-![Install Python2 Package](https://github.com/vroncevic/armpicom/workflows/Install%20Python2%20Package%20armpicom/badge.svg?branch=main) ![Install Python3 Package](https://github.com/vroncevic/armpicom/workflows/Install%20Python3%20Package%20armpicom/badge.svg?branch=main)
+[![armpicom build python3 package](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_python3_publish.yml/badge.svg)](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_python2_publish.yml) [![armpicom build python3 package](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_python3_publish.yml/badge.svg)](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_python3_publish.yml)
 
-Currently there are three ways to install tool
-* Install process based on pip mechanism
+Currently there are three ways to install package
+* Install process based on using pip mechanism
 * Install process based on build mechanism
+* Install process based on setup.py mechanism
 * Install process based on docker mechanism
 
 ##### Install using pip
 
-Python package is located at **[pypi.org](https://pypi.org/project/armpicom/)**.
+Python 📦 is located at **[pypi.org](https://pypi.org/project/armpicom/)**.
 
 You can install by using pip
 
@@ -59,7 +62,7 @@ pip3 install armpicom
 
 ##### Install using build
 
-Navigate to release **[page](https://github.com/vroncevic/armpicom/releases/)** download and extract release archive.
+Navigate to release **[page](https://github.com/vroncevic/armpicom/releases/)** download and extract release archive 📦.
 
 To install **armpicom** type the following
 
@@ -92,11 +95,30 @@ chmod 755 /usr/local/lib/python3.9/dist-packages/usr/local/bin/armpicom_run.py
 ln -s /usr/local/lib/python3.9/dist-packages/usr/local/bin/armpicom_run.py /usr/local/bin/armpicom_run.py
 ```
 
+##### Install using py setup
+
+Navigate to **[release page](https://github.com/vroncevic/armpicom/releases)** download and extract release archive 📦.
+
+To install **armpicom**, locate and run setup.py with arguments
+
+```bash
+tar xvzf armpicom-x.y.z.tar.gz
+cd armpicom-x.y.z
+# python2
+pip2 install -r requirements.txt
+python2 setup.py install_lib
+python2 setup.py install_egg_info
+# python3
+pip3 install -r requirements.txt
+python3 setup.py install_lib
+python3 setup.py install_egg_info
+```
+
 ##### Install using docker
 
-You can use Dockerfile to create image/container.
+You can use Dockerfile to create image/container 🚢.
 
-[![armpicom docker checker](https://github.com/vroncevic/armpicom/workflows/armpicom%20docker%20checker/badge.svg)](https://github.com/vroncevic/armpicom/actions?query=workflow%3A%22armpicom+docker+checker%22)
+[![armpicom docker checker](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_docker_checker.yml/badge.svg)](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_docker_checker.yml)
 
 ### Dependencies
 
@@ -152,10 +174,15 @@ armpicom/
 ### Docs
 
 [![Documentation Status](https://readthedocs.org/projects/armpicom/badge/?version=latest)](https://armpicom.readthedocs.io/en/latest/?badge=latest)
+ [![pages-build-deployment](https://github.com/vroncevic/armpicom/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/vroncevic/armpicom/actions/workflows/pages/pages-build-deployment)
 
-More documentation and info at
+📗 More documentation and info at
 * [armpicom.readthedocs.io](https://armpicom.readthedocs.io/en/latest/)
 * [www.python.org](https://www.python.org/)
+
+### Contributing
+
+🌎 🌍 🌏 [Contributing to armpicom](CONTRIBUTING.md)
 
 ### Copyright and licence
 

@@ -1,7 +1,7 @@
 #
 # @brief   simple_test RPI Pico SDK import
 # @version v1.0.3
-# @date    2022-03-29
+# @date    2022-04-13
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 

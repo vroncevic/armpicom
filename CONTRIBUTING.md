@@ -4,4 +4,4 @@ The following is a set of guidelines for contributing to armpicom and its packag
 
 ## Code of Conduct
 
-armpicom project and everyone participating in it is governed by the [armpicom Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [armpicom](mailto:elektron.ronca@gmail.com).
+armpicom project and everyone participating in it is governed by the [armpicom code of conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [armpicom](mailto:elektron.ronca@gmail.com).
