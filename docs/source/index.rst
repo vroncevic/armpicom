@@ -3,7 +3,7 @@ Generate RPI project configuration/build setup
 
 **armpicom** is toolset for generation of of RPI project configuration/build setup.
 
-Developed in `python <https://www.python.org/>`_ code: **100%**.
+Developed in `python <https://www.python.org/>`_ code.
 
 The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
@@ -25,7 +25,7 @@ other information that should be provided before the tool is installed.
 
 .. toctree::
    :maxdepth: 4
-   :caption: Contents:
+   :caption: Contents
 
    modules
    self
