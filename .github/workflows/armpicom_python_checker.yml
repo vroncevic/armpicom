@@ -1,4 +1,4 @@
-name: armpicom py checker
+name: armpicom_python_checker
 on:
   push:
     branches: [ main ]

@@ -13,7 +13,7 @@ The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
 
-[![armpicom py code checker](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_py_checker.yml/badge.svg)](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_py_checker.yml) [![armpicom python package checker](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_package.yml/badge.svg)](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_package.yml) [![GitHub issues open](https://img.shields.io/github/issues/vroncevic/armpicom.svg)](https://github.com/vroncevic/armpicom/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/armpicom.svg)](https://github.com/vroncevic/armpicom/graphs/contributors)
+[![armpicom python checker](https://img.shields.io/github/workflow/status/vroncevic/armpicom/armpicom_python_checker?style=flat&label=armpicom%20python%20checker)](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_python_checker.yml) [![armpicom package checker](https://img.shields.io/github/workflow/status/vroncevic/armpicom/armpicom_package_checker?style=flat&label=armpicom%20package%20checker)](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_package_checker.yml) [![GitHub issues open](https://img.shields.io/github/issues/vroncevic/armpicom.svg)](https://github.com/vroncevic/armpicom/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/armpicom.svg)](https://github.com/vroncevic/armpicom/graphs/contributors)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -39,7 +39,7 @@ Used next development environment
 
 ![Development environment](https://raw.githubusercontent.com/vroncevic/armpicom/dev/docs/debtux.png)
 
-[![armpicom build python3 package](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_python3_publish.yml/badge.svg)](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_python2_publish.yml) [![armpicom build python3 package](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_python3_publish.yml/badge.svg)](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_python3_publish.yml)
+[![armpicom python2 build](https://img.shields.io/github/workflow/status/vroncevic/armpicom/armpicom_python2_build?style=flat&label=armpicom%20python2%20build)](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_python2_build.yml) [![armpicom python3 build](https://img.shields.io/github/workflow/status/vroncevic/armpicom/armpicom_python3_build?style=flat&label=armpicom%20python3%20build)](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_python3_build.yml)
 
 Currently there are three ways to install package
 * Install process based on using pip mechanism
@@ -64,7 +64,7 @@ pip3 install armpicom
 
 Navigate to release **[page](https://github.com/vroncevic/armpicom/releases/)** download and extract release archive 📦.
 
-To install **armpicom** type the following
+To install **armpicom** 📦 type the following
 
 ```bash
 tar xvzf armpicom-x.y.z.tar.gz
@@ -99,7 +99,7 @@ ln -s /usr/local/lib/python3.9/dist-packages/usr/local/bin/armpicom_run.py /usr/
 
 Navigate to **[release page](https://github.com/vroncevic/armpicom/releases)** download and extract release archive 📦.
 
-To install **armpicom**, locate and run setup.py with arguments
+To install **armpicom** 📦 locate and run setup.py with arguments
 
 ```bash
 tar xvzf armpicom-x.y.z.tar.gz
@@ -118,7 +118,7 @@ python3 setup.py install_egg_info
 
 You can use Dockerfile to create image/container 🚢.
 
-[![armpicom docker checker](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_docker_checker.yml/badge.svg)](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_docker_checker.yml)
+[![armpicom docker checker](https://img.shields.io/github/workflow/status/vroncevic/armpicom/armpicom_docker_checker?style=flat&label=armpicom%20docker%20checker)](https://github.com/vroncevic/armpicom/actions/workflows/armpicom_docker_checker.yml)
 
 ### Dependencies
 
@@ -136,7 +136,7 @@ Base flow of generation process
 
 **armpicom** is based on OOP.
 
-Tool structure
+🧰 Tool structure
 
 ```bash
 armpicom/
@@ -174,9 +174,9 @@ armpicom/
 ### Docs
 
 [![Documentation Status](https://readthedocs.org/projects/armpicom/badge/?version=latest)](https://armpicom.readthedocs.io/en/latest/?badge=latest)
- [![pages-build-deployment](https://github.com/vroncevic/armpicom/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/vroncevic/armpicom/actions/workflows/pages/pages-build-deployment)
 
 📗 More documentation and info at
+
 * [armpicom.readthedocs.io](https://armpicom.readthedocs.io/en/latest/)
 * [www.python.org](https://www.python.org/)
 

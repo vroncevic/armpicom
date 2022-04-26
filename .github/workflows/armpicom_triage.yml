@@ -1,14 +1,14 @@
-name: armpicom triage
+name: armpicom_triage
 on:
   issues:
     types: [opened]
 jobs:
   commentOnNewIssues:
-    name: armpicom triage
+    name: armpicom_triage
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: armpicom triage
+      - name: armpicom_triage
         uses: actions/github@v1.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
