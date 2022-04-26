@@ -22,6 +22,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     tree \
     htop \
     wget \
+    curl \
     unzip \
     ca-certificates \
     openssl \
@@ -56,7 +57,6 @@ COPY setup.cfg /
 COPY MANIFEST.in /
 COPY pyproject.toml /
 RUN mkdir /tests/
-RUN find /armpicom/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
 RUN python2 -m build --no-isolation --wheel
 RUN pip2 install ./dist/armpicom-*-py2-none-any.whl
 RUN python3 -m build --no-isolation --wheel
@@ -71,3 +71,4 @@ RUN rm -f pyproject.toml
 RUN rm -rf /build/
 RUN rm -rf /dist/
 RUN rm -rf /tests/
+

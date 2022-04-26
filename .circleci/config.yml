@@ -16,7 +16,7 @@ jobs:
           name: Run tests
           command: python -m pytest
 workflows:
-  sample:
+  armpicom:
     jobs:
       - build-and-test
 

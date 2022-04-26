@@ -1,4 +1,4 @@
-name: armpicom install python3 package
+name: armpicom_python3_build
 on:
   push:
     branches: [ main ]
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: set up Python
+    - name: set up python
       uses: actions/setup-python@v1
       with:
         python-version: '3.9'
