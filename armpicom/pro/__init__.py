@@ -1,46 +1,46 @@
 # -*- coding: UTF-8 -*-
 
 '''
- Module
-     __init__.py
- Copyright
-     Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
-     armpicom is free software: you can redistribute it and/or modify it
-     under the terms of the GNU General Public License as published by the
-     Free Software Foundation, either version 3 of the License, or
-     (at your option) any later version.
-     armpicom is distributed in the hope that it will be useful, but
-     WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-     See the GNU General Public License for more details.
-     You should have received a copy of the GNU General Public License along
-     with this program. If not, see <http://www.gnu.org/licenses/>.
- Info
-     Defined class GenArmPICOM with attribute(s) and method(s).
-     Generate project setup for RPI Pico by templates and parameters.
+Module
+    __init__.py
+Copyright
+    Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
+    armpicom is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    armpicom is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License along
+    with this program. If not, see <http://www.gnu.org/licenses/>.
+Info
+    Defines class GenArmPICOM with attribute(s) and method(s).
+    Generates project setup for RPI Pico by templates and parameters.
 '''
 
 import sys
+from typing import List, Dict
 from os.path import dirname, realpath
 
 try:
+    from ats_utilities.checker import ATSChecker
+    from ats_utilities.config_io.file_check import FileCheck
+    from ats_utilities.console_io.verbose import verbose_message
+    from ats_utilities.config_io.yaml.yaml2object import Yaml2Object
+    from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from armpicom.pro.config import ProConfig
     from armpicom.pro.config.pro_name import ProName
     from armpicom.pro.read_template import ReadTemplate
     from armpicom.pro.write_template import WriteTemplate
-    from ats_utilities.checker import ATSChecker
-    from ats_utilities.config_io.base_check import FileChecking
-    from ats_utilities.console_io.verbose import verbose_message
-    from ats_utilities.config_io.yaml.yaml2object import Yaml2Object
-    from ats_utilities.exceptions.ats_type_error import ATSTypeError
-    from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
 except ImportError as ats_error_message:
-    MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
-    sys.exit(MESSAGE)  # Force close python ATS ##############################
+    # Force close python ATS ##################################################
+    sys.exit(f'\n{__file__}\n{ats_error_message}\n')
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
-__credits__ = ['Vladimir Roncevic']
+__credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
 __version__ = '1.5.3'
 __maintainer__ = 'Vladimir Roncevic'
@@ -48,114 +48,96 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class GenArmPICOM(FileChecking, ProConfig, ProName):
+class GenArmPICOM(FileCheck, ProConfig, ProName):
     '''
-        Defined class GenArmPICOM with attribute(s) and method(s).
-        Generate project setup for RPI Pico by templates and parameters.
+        Defines class GenArmPICOM with attribute(s) and method(s).
+        Generates project setup for RPI Pico by templates and parameters.
+
         It defines:
 
             :attributes:
-                | GEN_VERBOSE - console text indicator for process-phase.
-                | PRO_STRUCTURE - project setup (template, module).
-                | __reader - reader API.
-                | __writer - writer API.
+                | _GEN_VERBOSE - Console text indicator for process-phase.
+                | _PRO_STRUCTURE - Project setup (template, module).
+                | _reader - Reader API.
+                | _writer - Writer API.
             :methods:
-                | __init__ - initial constructor.
-                | get_reader - getter for template reader.
-                | get_writer - getter for template writer.
-                | gen_project - generate RPI PI Pico CMake structure.
-                | __str__ - dunder method for GenArmPICOM.
+                | __init__ - Initial GenArmPICOM constructor.
+                | get_reader - Getter for template reader.
+                | get_writer - Getter for template writer.
+                | gen_project - Generate RPI PI Pico CMake structure.
     '''
 
-    GEN_VERBOSE = 'ARMPICOM::PRO::GENARMPICOM'
-    PRO_STRUCTURE = '/../conf/project.yaml'
+    _GEN_VERBOSE: str = 'ARMPICOM::PRO::GENARMPICOM'
+    _PRO_STRUCTURE: str = '/../conf/project.yaml'
 
-    def __init__(self, verbose=False):
+    def __init__(self, verbose: bool = False) -> None:
         '''
-            Initial constructor.
+            Initial GenArmPICOM constructor.
 
-            :param verbose: enable/disable verbose option.
+            :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
             :exceptions: None
         '''
-        FileChecking.__init__(self, verbose=verbose)
-        ProConfig.__init__(self, verbose=verbose)
-        ProName.__init__(self, verbose=verbose)
-        verbose_message(GenArmPICOM.GEN_VERBOSE, verbose, 'init generator')
-        self.__reader = ReadTemplate(verbose=verbose)
-        self.__writer = WriteTemplate(verbose=verbose)
-        project_structure = '{0}{1}'.format(
-            dirname(realpath(__file__), GenArmPICOM.PRO_STRUCTURE)
-        )
-        self.check_path(file_path=project_structure, verbose=verbose)
-        self.check_mode(file_mode='r', verbose=verbose)
-        self.check_format(
-            file_path=project_structure, file_format='yaml', verbose=verbose
-        )
+        FileCheck.__init__(self, verbose)
+        ProConfig.__init__(self, verbose)
+        ProName.__init__(self, verbose)
+        verbose_message(verbose, [f'{self._GEN_VERBOSE} init generator'])
+        self._reader: ReadTemplate | None = ReadTemplate(verbose)
+        self._writer: WriteTemplate | None = WriteTemplate(verbose)
+        current_dir: str = dirname(realpath(__file__))
+        pro_structure: str = f'{current_dir}{self._PRO_STRUCTURE}'
+        self.check_path(pro_structure, verbose)
+        self.check_mode('r', verbose)
+        self.check_format(pro_structure, 'yaml', verbose)
         if self.is_file_ok():
-            yml2obj = Yaml2Object(project_structure)
+            yml2obj = Yaml2Object(pro_structure)
             self.config = yml2obj.read_configuration()
 
-    def get_reader(self):
+    def get_reader(self) -> ReadTemplate | None:
         '''
             Getter for template reader.
 
-            :return: template reader object.
-            :rtype: <ReadTemplate>
+            :return: Template reader object | None
+            :rtype: <ReadTemplate> | <NoneType>
             :exceptions: None
         '''
-        return self.__reader
+        return self._reader
 
-    def get_writer(self):
+    def get_writer(self) -> WriteTemplate | None:
         '''
             Getter for template writer.
 
-            :return: template writer object.
-            :rtype: <WriteTemplate>
+            :return: Template writer object | none
+            :rtype: <WriteTemplate> | <NoneType
             :exceptions: None
         '''
-        return self.__writer
+        return self._writer
 
-    def gen_project(self, pro_name, verbose=False):
+    def gen_project(self, pro_name: str | None, verbose: bool = False) -> bool:
         '''
             Generate RPI PI Pico CMake structure.
 
-            :param pro_name: project name.
-            :type pro_name: <str>
-            :param verbose: enable/disable verbose option.
+            :param pro_name: Project name | None
+            :type pro_name: <str> | <NoneType>
+            :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
-            :return: boolean status, True (success) | False.
+            :return: True (success operation) | False
             :rtype: <bool>
-            :exceptions: ATSTypeError | ATSBadCallError
+            :exceptions: ATSTypeError
         '''
-        checker, error, status = ATSChecker(), None, False
-        error, status = checker.check_params([('str:pro_name', pro_name)])
-        if status == ATSChecker.TYPE_ERROR:
-            raise ATSTypeError(error)
-        if status == ATSChecker.VALUE_ERROR:
-            raise ATSBadCallError(error)
-        status = False
-        if bool(self.config):
-            templates = self.__reader.read(self.config, verbose=verbose)
-            if bool(templates):
-                status = self.__writer.write(
-                    templates, pro_name, verbose=verbose
-                )
+        checker: ATSChecker = ATSChecker()
+        error_msg: str | None = None
+        error_id: int | None = None
+        error_msg, error_id = checker.check_params([
+            ('str:pro_name', pro_name)
+        ])
+        if error_id == checker.TYPE_ERROR:
+            raise ATSTypeError(error_msg)
+        status: bool = False
+        if self.config and self._reader and self._writer:
+            templates: List[Dict[str, str]] = self._reader.read(
+                self.config, verbose
+            )
+            if templates:
+                status = self._writer.write(templates, pro_name, verbose)
         return status
-
-    def __str__(self):
-        '''
-            Dunder method for GenArmPICOM.
-
-            :return: object in a human-readable format.
-            :rtype: <str>
-            :exceptions: None
-        '''
-        return '{0} ({1}, {2}, {3}, {4}, {5})'.format(
-            self.__class__.__name__,
-            FileChecking.__str__(self),
-            ProConfig.__str__(self),
-            ProName.__str__(self),
-            str(self.__reader),
-            str(self.__writer),
-        )

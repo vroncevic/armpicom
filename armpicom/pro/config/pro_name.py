@@ -1,39 +1,39 @@
 # -*- coding: UTF-8 -*-
 
 '''
- Module
-     pro_name.py
- Copyright
-     Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
-     armpicom is free software: you can redistribute it and/or modify
-     it under the terms of the GNU General Public License as published by the
-     Free Software Foundation, either version 3 of the License, or
-     (at your option) any later version.
-     armpicom is distributed in the hope that it will be useful, but
-     WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-     See the GNU General Public License for more details.
-     You should have received a copy of the GNU General Public License along
-     with this program. If not, see <http://www.gnu.org/licenses/>.
- Info
-     Defined class ProName with attribute(s) and method(s).
-     Defined API for project name with preparations for generation.
+Module
+    pro_name.py
+Copyright
+    Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
+    armpicom is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by the
+    Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    armpicom is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License along
+    with this program. If not, see <http://www.gnu.org/licenses/>.
+Info
+    Defines class ProName with attribute(s) and method(s).
+    Creates an API for project name with preparations for generation.
 '''
 
 import sys
+from typing import List
 
 try:
     from ats_utilities.checker import ATSChecker
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
-    from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
 except ImportError as ats_error_message:
-    MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
-    sys.exit(MESSAGE)  # Force close python ATS ##############################
+    # Force close python ATS ##################################################
+    sys.exit(f'\n{__file__}\n{ats_error_message}\n')
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, Free software to use and distributed it.'
-__credits__ = ['Vladimir Roncevic']
+__credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
 __version__ = '1.5.3'
 __maintainer__ = 'Vladimir Roncevic'
@@ -43,86 +43,71 @@ __status__ = 'Updated'
 
 class ProName:
     '''
-        Defined class ProName with attribute(s) and method(s).
-        Defined API for project name with preparations for generation.
+        Defines class ProName with attribute(s) and method(s).
+        Creates an API for project name with preparations for generation.
+
         It defines:
 
             :attributes:
-                | GEN_VERBOSE - console text indicator for process-phase.
-                | __verbose - enable/disable verbose option.
-                | __pro_name - project name.
+                | _GEN_VERBOSE - Console text indicator for process-phase.
+                | _pro_name - Project name.
             :methods:
-                | __init__ - initial constructor.
-                | pro_name - property methods for set/get operations.
-                | is_pro_name_ok - checking is project name ok.
-                | __str__ - dunder method for ProName.
+                | __init__ - Initials ProName constructor.
+                | pro_name - Property methods for set/get operations.
+                | is_pro_name_ok - Checks is project name ok.
     '''
 
-    GEN_VERBOSE = 'ARMPICOM::PRO::CONFIG::PRO_NAME'
+    _GEN_VERBOSE = 'ARMPICOM::PRO::CONFIG::PRO_NAME'
 
-    def __init__(self, verbose=False):
+    def __init__(self, verbose: bool = False) -> None:
         '''
-            Initial constructor.
+            Initials ProName constructor.
 
-            :param verbose: enable/disable verbose option.
+            :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
             :exceptions: None
         '''
-        self.__verbose = verbose
-        self.__pro_name = None
-        verbose_message(ProName.GEN_VERBOSE, verbose, 'init project name')
+        self._pro_name: str | None = None
+        verbose_message(verbose, [f'{self._GEN_VERBOSE} init project name'])
 
     @property
-    def pro_name(self):
+    def pro_name(self) -> str | None:
         '''
             Property method for getting project name.
 
-            :return: formatted project name | None.
+            :return: Formatted project name | None
             :rtype: <str> | <NoneType>
             :exceptions: None
         '''
-        return self.__pro_name
+        return self._pro_name
 
     @pro_name.setter
-    def pro_name(self, pro_name):
+    def pro_name(self, pro_name: str | None) -> None:
         '''
             Property method for setting project name.
 
-            :param pro_name: set project name.
-            :type pro_name: <str>
-            :exceptions: ATSTypeError | ATSBadCallError
+            :param pro_name: Project name | None
+            :type pro_name: <str> | <NoneType>
+            :exceptions: ATSTypeError
         '''
-        checker, error, status = ATSChecker(), None, False
-        error, status = checker.check_params([('str:pro_name', pro_name)])
-        if status == ATSChecker.TYPE_ERROR:
-            raise ATSTypeError(error)
-        if status == ATSChecker.VALUE_ERROR:
-            raise ATSBadCallError(error)
-        self.__pro_name = pro_name
-        verbose_message(
-            ProName.GEN_VERBOSE, self.__verbose, 'set project name', pro_name
-        )
+        checker: ATSChecker = ATSChecker()
+        error_msg: str | None = None
+        error_id: int | None = None
+        error_msg, error_id = checker.check_params([
+            ('str:pro_name', pro_name)
+        ])
+        if error_id == checker.TYPE_ERROR:
+            raise ATSTypeError(error_msg)
+        self._pro_name = pro_name
 
-    def is_pro_name_ok(self):
+    def is_pro_name_ok(self) -> bool:
         '''
-            Checking is project name ok.
+            Checks is project name ok.
 
-            :return: boolean status, True (not None) | False.
+            :return: True (project name is ok) | False
             :rtype: <bool>
             :exceptions: None
         '''
         return all([
-            self.__pro_name is not None, isinstance(self.__pro_name, str)
+            self._pro_name is not None, isinstance(self._pro_name, str)
         ])
-
-    def __str__(self):
-        '''
-            Dunder method for ProName.
-
-            :return: object in a human-readable format.
-            :rtype: <str>
-            :exceptions: None
-        '''
-        return '{0} ({1}, {2})'.format(
-            self.__class__.__name__, str(self.__verbose), self.__pro_name
-        )

@@ -1,26 +1,27 @@
 # -*- coding: UTF-8 -*-
 
 '''
- Module
-     write_template.py
- Copyright
-     Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
-     armpicom is free software: you can redistribute it and/or modify it
-     under the terms of the GNU General Public License as published by the
-     Free Software Foundation, either version 3 of the License, or
-     (at your option) any later version.
-     armpicom is distributed in the hope that it will be useful, but
-     WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-     See the GNU General Public License for more details.
-     You should have received a copy of the GNU General Public License along
-     with this program. If not, see <http://www.gnu.org/licenses/>.
- Info
-     Defined class WriteTemplate with attribute(s) and method(s).
-     Created API for write operation of template content.
+Module
+    write_template.py
+Copyright
+    Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
+    armpicom is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    armpicom is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License along
+    with this program. If not, see <http://www.gnu.org/licenses/>.
+Info
+    Defines class WriteTemplate with attribute(s) and method(s).
+    Creates an API for writing module.
 '''
 
 import sys
+from typing import List, Dict
 from datetime import date
 from os import getcwd, chmod, mkdir
 from os.path import exists
@@ -28,17 +29,16 @@ from string import Template
 
 try:
     from ats_utilities.checker import ATSChecker
-    from ats_utilities.config_io.base_check import FileChecking
+    from ats_utilities.config_io.file_check import FileCheck
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
-    from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
 except ImportError as ats_error_message:
-    MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
-    sys.exit(MESSAGE)  # Force close python ATS ##############################
+    # Force close python ATS ##################################################
+    sys.exit(f'\n{__file__}\n{ats_error_message}\n')
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
-__credits__ = ['Vladimir Roncevic']
+__credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
 __version__ = '1.5.3'
 __maintainer__ = 'Vladimir Roncevic'
@@ -46,100 +46,92 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class WriteTemplate(FileChecking):
+class WriteTemplate(FileCheck):
     '''
-        Defined class WriteTemplate with attribute(s) and method(s).
-        Created API for write operation of template content.
+        Defines class WriteTemplate with attribute(s) and method(s).
+        Creates an API for writing module.
+
         It defines:
 
             :attributes:
-                | GEN_VERBOSE - console text indicator for process-phase.
+                | _GEN_VERBOSE - Console text indicator for process-phase.
             :methods:
-                | __init__ - initial constructor.
-                | write - write a templates with parameters.
-                | __str__ - dunder method for WriteTemplate.
+                | __init__ - Initials WriteTemplate constructor.
+                | write - Writes a template with parameters.
     '''
 
-    GEN_VERBOSE = 'ARMPICOM::PRO::WRITE_TEMPLATE'
+    _GEN_VERBOSE: str = 'ARMPICOM::PRO::WRITE_TEMPLATE'
 
-    def __init__(self, verbose=False):
+    def __init__(self, verbose: bool = False) -> None:
         '''
-            Initial constructor.
+            Initials WriteTemplate constructor.
 
-            :param verbose: enable/disable verbose option.
+            :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
             :exceptions: None
         '''
-        FileChecking.__init__(self, verbose=verbose)
-        verbose_message(WriteTemplate.GEN_VERBOSE, verbose, 'init writer')
+        super().__init__(verbose)
+        verbose_message(verbose, [f'{self._GEN_VERBOSE} init writer'])
 
-    def write(self, templates, project_name, verbose=False):
+    def write(
+        self,
+        templates: List[Dict[str, str]],
+        pro_name: str | None,
+        verbose: bool = False
+    ) -> bool:
         '''
-            Write a templates with parameters.
+            Writes a template with parameters.
 
-            :param templates: parameter templates.
+            :param templates: Parameter templates
             :type templates: <list>
-            :param project_name: parameter project name.
-            :type project_name: <str>
-            :param verbose: enable/disable verbose option.
+            :param pro_name: Parameter project name | None
+            :type pro_name: <str> | <NoneType>
+            :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
-            :return: boolean status, True (success) | False.
+            :return: True (success operation) | False
             :rtype: <bool>
-            :exceptions: ATSTypeError | ATSBadCallError
+            :exceptions: ATSTypeError
         '''
-        checker, error, status = ATSChecker(), None, False
-        error, status = checker.check_params([
-            ('list:templates', templates), ('str:project_name', project_name)
+        checker: ATSChecker = ATSChecker()
+        error_msg: str | None = None
+        error_id: int | None = None
+        error_msg, error_id = checker.check_params([
+            ('list:templates', templates), ('str:pro_name', pro_name)
         ])
-        if status == ATSChecker.TYPE_ERROR:
-            raise ATSTypeError(error)
-        if status == ATSChecker.VALUE_ERROR:
-            raise ATSBadCallError(error)
-        statuses = []
-        pro_dir = '{0}/{1}/'.format(getcwd(), project_name)
-        src_dir = '{0}/{1}/src'.format(getcwd(), project_name)
-        build_dir = '{0}/{1}/build'.format(getcwd(), project_name)
-        status, expected_num_of_modules = False, len(templates)
+        if error_id == checker.TYPE_ERROR:
+            raise ATSTypeError(error_msg)
+        all_stat: List[bool] = []
+        pro_dir: str = f'{getcwd()}/{pro_name}/'
+        src_dir: str = f'{getcwd()}/{pro_name}/src'
+        build_dir: str = f'{getcwd()}/{pro_name}/build'
+        num_of_modules: int = len(templates)
         if not exists(pro_dir):
             mkdir(pro_dir)
             mkdir(src_dir)
             mkdir(build_dir)
         for template_content in templates:
-            module_name = [module for module in template_content.keys()][0]
-            template = Template(template_content[module_name])
-            module_path = '{0}{1}'.format(pro_dir, module_name)
-            with open(module_path, 'w') as module_file:
-                module_content = template.substitute(
+            module_name: str = list(template_content.keys())[0]
+            template: Template = Template(template_content[module_name])
+            module_path: str = f'{pro_dir}{module_name}'
+            with open(module_path, 'w', encoding='utf-8') as module_file:
+                module_content: str = template.substitute(
                     {
-                        'PRO': '{0}'.format(project_name),
-                        'DATE': '{0}'.format(str(date.today())),
-                        'YEAR': '{0}'.format(str(date.today().year))
+                        'PRO': f'{pro_name}'.format(),
+                        'DATE': f'{str(date.today())}',
+                        'YEAR': f'{str(date.today().year)}'
                     }
                 )
                 module_file.write(module_content)
                 chmod(module_path, 0o666)
-                self.check_path(module_path, verbose=verbose)
-                self.check_mode('w', verbose=verbose)
+                self.check_path(module_path, verbose)
+                self.check_mode('w', verbose)
                 self.check_format(
-                    module_path, module_path.split('.')[1],
-                    verbose=verbose
+                    module_path, module_path.split('.')[1], verbose
                 )
                 if self.is_file_ok():
-                    statuses.append(True)
+                    all_stat.append(True)
                 else:
-                    statuses.append(False)
-        if all(statuses) and len(statuses) == expected_num_of_modules:
-            status = True
-        return status
-
-    def __str__(self):
-        '''
-            Dunder method for WriteTemplate.
-
-            :return: object in a human-readable format.
-            :rtype: <str>
-            :exceptions: None
-        '''
-        return '{0} ({1})'.format(
-            self.__class__.__name__, FileChecking.__str__(self)
-        )
+                    all_stat.append(False)
+        return all([
+            bool(all_stat), all(all_stat), len(all_stat) == num_of_modules
+        ])
