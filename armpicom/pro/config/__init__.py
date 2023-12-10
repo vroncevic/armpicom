@@ -43,8 +43,8 @@ __status__ = 'Updated'
 
 class ProConfig:
     '''
-        Defined class ProConfig with attribute(s) and method(s).
-        Defined project configuration container.
+        Defines class ProConfig with attribute(s) and method(s).
+        Defines project configuration container.
 
         It defines:
 
