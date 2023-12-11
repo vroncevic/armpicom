@@ -7,6 +7,6 @@
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 
-rm -rf simple_test/
-python3 -m coverage run -m --source=../armpicom unittest discover -s ./ -p '*_test.py'
+rm -rf new_simple_test/ full_simple/ latest/
+python3 -m coverage run -m --source=../armpicom unittest discover -s ./ -p '*_test.py' -vvv
 python3 -m coverage html

@@ -27,6 +27,7 @@ from typing import List
 from unittest import TestCase, main
 
 try:
+    from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from armpicom.pro.config import ProConfig
 except ImportError as test_error_message:
     # Force close python test #################################################
@@ -36,7 +37,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2022, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.5.3'
+__version__ = '1.6.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -46,14 +47,19 @@ class ProConfigTestCase(TestCase):
     '''
         Defines class ProConfigTestCase with attribute(s) and method(s).
         Creates test cases for checking functionalities of ProConfig.
+        Project configuration unittests.
+
         It defines:
 
             :attributes:
-                | configuration - Project config object.
+                | None
             :methods:
-                | setUp - call before test case.
-                | tearDown - call after test case.
-                | test_is_config_ok - test project config check.
+                | setUp - Call before test case.
+                | tearDown - Call after test case.
+                | create - Default on create is not None.
+                | create_with_none - Create None config.
+                | create_empty - Create empty config.
+                | test_is_config_ok - Test project config check.
     '''
 
     def setUp(self) -> None:
@@ -62,13 +68,39 @@ class ProConfigTestCase(TestCase):
     def tearDown(self) -> None:
         '''Call after test case.'''
 
-    def test_is_config_ok(self) -> None:
-        '''Test project config check.'''
+    def test_pro_config_default_create(self) -> None:
+        '''Default on create is not None'''
+        configuration = ProConfig()
+        self.assertIsNotNone(configuration)
+
+    def test_pro_config_is_config_ok(self) -> None:
+        '''Is config ok'''
         configuration = ProConfig()
         configuration.config = {
             'base': 'none', 'extended': 'none', 'extra': 'none'
         }
         self.assertTrue(configuration.is_config_ok())
+
+    def test_pro_config_is_config_not_none(self) -> None:
+        '''Is config not None'''
+        configuration = ProConfig()
+        configuration.config = {
+            'base': 'none', 'extended': 'none', 'extra': 'none'
+        }
+        self.assertTrue(bool(configuration.config))
+
+    def test_pro_config_create_empty(self) -> None:
+        '''Create Empty config'''
+        configuration = ProConfig()
+        configuration.config = {}
+        self.assertFalse(bool(configuration.config))
+        self.assertFalse(configuration.is_config_ok())
+
+    def test_pro_config_create_with_none(self) -> None:
+        '''Create None config'''
+        configuration = ProConfig()
+        with self.assertRaises(ATSTypeError):
+            configuration.config = None
 
 
 if __name__ == '__main__':

@@ -24,9 +24,14 @@ Execute
 
 import sys
 from typing import List, Dict
+from os.path import dirname, realpath
 from unittest import TestCase, main
 
 try:
+    from ats_utilities.config_io.yaml.yaml2object import Yaml2Object
+    from ats_utilities.exceptions.ats_type_error import ATSTypeError
+    from ats_utilities.exceptions.ats_value_error import ATSValueError
+    from armpicom.pro.read_template import ReadTemplate
     from armpicom.pro.write_template import WriteTemplate
 except ImportError as test_error_message:
     # Force close python test #################################################
@@ -36,7 +41,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2022, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.5.3'
+__version__ = '1.6.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -46,14 +51,18 @@ class WriteTemplateTestCase(TestCase):
     '''
         Defines class WriteTemplateTestCase with attribute(s) and method(s).
         Creates test cases for checking functionalities of WriteTemplate.
+
         It defines:
 
             :attributes:
-                | template - Write template object.
+                | None
             :methods:
                 | setUp - call before test case.
                 | tearDown - call after test case.
-                | test_write_template - test write template check.
+                | test_write_template_create - Test write template create.
+                | test_write_template_empty - Test write template empty.
+                | test_write_template_none - Test write template None.
+                | test_write_template - Test write template.
     '''
 
     def setUp(self) -> None:
@@ -62,13 +71,39 @@ class WriteTemplateTestCase(TestCase):
     def tearDown(self) -> None:
         '''Call after test case.'''
 
-    def test_write_template(self) -> None:
-        '''Test write template check.'''
+    def test_write_template_create(self) -> None:
+        '''Test write template create'''
+        template = WriteTemplate()
+        self.assertIsNotNone(template)
+
+    def test_write_template_empty(self) -> None:
+        '''Test write template empty'''
         template = WriteTemplate()
         templates: List[Dict[str, str]] = []
-        self.assertFalse(
-            template.write(templates, 'simple_test')
+        with self.assertRaises(ATSValueError):
+            self.assertFalse(
+                template.write(templates, 'empty_simple_test')
+            )
+
+    def test_write_template_none(self) -> None:
+        '''Test write template None'''
+        template = WriteTemplate()
+        with self.assertRaises(ATSTypeError):
+            self.assertFalse(
+                template.write(None, 'none_simple_test')  # type: ignore
+            )
+
+    def test_write_template(self) -> None:
+        '''Test write template'''
+        current_dir: str = dirname(realpath(__file__))
+        pro: str = '/../armpicom/conf/project.yaml'
+        template = ReadTemplate()
+        yml2obj = Yaml2Object(f'{current_dir}{pro}')
+        templates: List[Dict[str, str]] = template.read(
+            yml2obj.read_configuration()
         )
+        template = WriteTemplate()
+        self.assertTrue(template.write(templates, 'new_simple_test'))
 
 
 if __name__ == '__main__':

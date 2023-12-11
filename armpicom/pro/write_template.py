@@ -32,6 +32,7 @@ try:
     from ats_utilities.config_io.file_check import FileCheck
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
+    from ats_utilities.exceptions.ats_value_error import ATSValueError
 except ImportError as ats_error_message:
     # Force close python ATS ##################################################
     sys.exit(f'\n{__file__}\n{ats_error_message}\n')
@@ -40,7 +41,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.5.3'
+__version__ = '1.6.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -90,7 +91,7 @@ class WriteTemplate(FileCheck):
             :type verbose: <bool>
             :return: True (success operation) | False
             :rtype: <bool>
-            :exceptions: ATSTypeError
+            :exceptions: ATSTypeError | ATSValueError
         '''
         checker: ATSChecker = ATSChecker()
         error_msg: str | None = None
@@ -100,6 +101,8 @@ class WriteTemplate(FileCheck):
         ])
         if error_id == checker.TYPE_ERROR:
             raise ATSTypeError(error_msg)
+        if not bool(templates):
+            raise ATSValueError('missing templates')
         all_stat: List[bool] = []
         pro_dir: str = f'{getcwd()}/{pro_name}/'
         src_dir: str = f'{getcwd()}/{pro_name}/src'

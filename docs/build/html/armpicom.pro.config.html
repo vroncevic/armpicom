@@ -102,8 +102,8 @@ Defines project configuration container.</p>
 <dt class="sig sig-object py" id="armpicom.pro.config.ProConfig">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">armpicom.pro.config.</span></span><span class="sig-name descname"><span class="pre">ProConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/armpicom/pro/config.html#ProConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.pro.config.ProConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Defined class ProConfig with attribute(s) and method(s).
-Defined project configuration container.</p>
+<p>Defines class ProConfig with attribute(s) and method(s).
+Defines project configuration container.</p>
 <p>It defines:</p>
 <blockquote>
 <div><dl class="field-list">
@@ -147,14 +147,14 @@ Defined project configuration container.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="armpicom.pro.config.ProConfig.config">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#armpicom.pro.config.ProConfig.config" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#armpicom.pro.config.ProConfig.config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Property method for getting project configuration.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Formatted project configuration</p>
+<dd class="field-odd"><p>Formatted project configuration | None</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>&lt;Dict[Any, Any]&gt;</p>
+<dd class="field-even"><p>&lt;Dict[Any, Any]&gt; | &lt;NoneType&gt;</p>
 </dd>
 <dt class="field-odd">Exceptions<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>

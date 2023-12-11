@@ -30,6 +30,7 @@ try:
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.config_io.yaml.yaml2object import Yaml2Object
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
+    from ats_utilities.exceptions.ats_value_error import ATSValueError
     from armpicom.pro.config import ProConfig
     from armpicom.pro.config.pro_name import ProName
     from armpicom.pro.read_template import ReadTemplate
@@ -42,7 +43,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.5.3'
+__version__ = '1.6.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -123,7 +124,7 @@ class GenArmPICOM(FileCheck, ProConfig, ProName):
             :type verbose: <bool>
             :return: True (success operation) | False
             :rtype: <bool>
-            :exceptions: ATSTypeError
+            :exceptions: ATSTypeError | ATSValueError
         '''
         checker: ATSChecker = ATSChecker()
         error_msg: str | None = None
@@ -133,6 +134,8 @@ class GenArmPICOM(FileCheck, ProConfig, ProName):
         ])
         if error_id == checker.TYPE_ERROR:
             raise ATSTypeError(error_msg)
+        if not bool(pro_name):
+            raise ATSValueError('missing project name')
         status: bool = False
         if self.config and self._reader and self._writer:
             templates: List[Dict[str, str]] = self._reader.read(

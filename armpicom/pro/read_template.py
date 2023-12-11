@@ -28,6 +28,7 @@ try:
     from ats_utilities.checker import ATSChecker
     from ats_utilities.config_io.file_check import FileCheck
     from ats_utilities.console_io.verbose import verbose_message
+    from ats_utilities.exceptions.ats_value_error import ATSValueError
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from armpicom.pro.config import ProConfig
     from armpicom.pro.config.template_dir import TemplateDir
@@ -39,7 +40,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.5.3'
+__version__ = '1.6.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -91,7 +92,7 @@ class ReadTemplate(FileCheck, TemplateDir):
             :type verbose: <bool>
             :return: Template content list
             :rtype: <List[Dict[str, str]]>
-            :exceptions: ATSTypeError
+            :exceptions: ATSTypeError | ATSValueError
         '''
         checker: ATSChecker = ATSChecker()
         error_msg: str | None = None
@@ -99,6 +100,8 @@ class ReadTemplate(FileCheck, TemplateDir):
         error_msg, error_id = checker.check_params([('dict:config', config)])
         if error_id == checker.TYPE_ERROR:
             raise ATSTypeError(error_msg)
+        if not bool(config):
+            raise ATSValueError('missing templates')
         templates: List[str] = config[ProConfig.TEMPLATES]
         modules: List[str] = config[ProConfig.MODULES]
         loaded_templates: List[Dict[str, str]] = []

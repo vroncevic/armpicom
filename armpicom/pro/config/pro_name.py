@@ -35,7 +35,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, Free software to use and distributed it.'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.5.3'
+__version__ = '1.6.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -108,6 +108,4 @@ class ProName:
             :rtype: <bool>
             :exceptions: None
         '''
-        return all([
-            self._pro_name is not None, isinstance(self._pro_name, str)
-        ])
+        return all([bool(self._pro_name), isinstance(self._pro_name, str)])

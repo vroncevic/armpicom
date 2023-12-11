@@ -79,7 +79,7 @@
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright 2021, Free software to use and distributed it.&#39;</span>
 <span class="n">__credits__</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">,</span> <span class="s1">&#39;Python Software Foundation&#39;</span><span class="p">]</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/vroncevic/armpicom/blob/dev/LICENSE&#39;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.5.3&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.6.3&#39;</span>
 <span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
 <span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Updated&#39;</span>
@@ -87,8 +87,8 @@
 
 <div class="viewcode-block" id="ProConfig"><a class="viewcode-back" href="../../../armpicom.pro.config.html#armpicom.pro.config.ProConfig">[docs]</a><span class="k">class</span> <span class="nc">ProConfig</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Defined class ProConfig with attribute(s) and method(s).</span>
-<span class="sd">        Defined project configuration container.</span>
+<span class="sd">        Defines class ProConfig with attribute(s) and method(s).</span>
+<span class="sd">        Defines project configuration container.</span>
 
 <span class="sd">        It defines:</span>
 
@@ -117,38 +117,38 @@
 <span class="sd">            :type verbose: &lt;bool&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
         <span class="n">verbose_message</span><span class="p">(</span>
             <span class="n">verbose</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_GEN_VERBOSE</span><span class="si">}</span><span class="s1"> init project configuration&#39;</span><span class="p">]</span>
         <span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">config</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">config</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Property method for getting project configuration.</span>
 
-<span class="sd">            :return: Formatted project configuration</span>
-<span class="sd">            :rtype: &lt;Dict[Any, Any]&gt;</span>
+<span class="sd">            :return: Formatted project configuration | None</span>
+<span class="sd">            :rtype: &lt;Dict[Any, Any]&gt; | &lt;NoneType&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span>
 
     <span class="nd">@config</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pro</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Property method for setting project configuration.</span>
 
-<span class="sd">            :param config: Project configuration in dict format</span>
-<span class="sd">            :type config: &lt;Dict[Any, Any]&gt;</span>
+<span class="sd">            :param pro: Project configuration in dict format | None</span>
+<span class="sd">            :type pro: &lt;Dict[Any, Any]&gt; | &lt;NoneType&gt;</span>
 <span class="sd">            :exceptions: ATSTypeError</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">checker</span><span class="p">:</span> <span class="n">ATSChecker</span> <span class="o">=</span> <span class="n">ATSChecker</span><span class="p">()</span>
         <span class="n">error_msg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">error_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">error_msg</span><span class="p">,</span> <span class="n">error_id</span> <span class="o">=</span> <span class="n">checker</span><span class="o">.</span><span class="n">check_params</span><span class="p">([(</span><span class="s1">&#39;dict:config&#39;</span><span class="p">,</span> <span class="n">config</span><span class="p">)])</span>
+        <span class="n">error_msg</span><span class="p">,</span> <span class="n">error_id</span> <span class="o">=</span> <span class="n">checker</span><span class="o">.</span><span class="n">check_params</span><span class="p">([(</span><span class="s1">&#39;dict:pro&#39;</span><span class="p">,</span> <span class="n">pro</span><span class="p">)])</span>
         <span class="k">if</span> <span class="n">error_id</span> <span class="o">==</span> <span class="n">checker</span><span class="o">.</span><span class="n">TYPE_ERROR</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ATSTypeError</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="n">pro</span>
 
 <div class="viewcode-block" id="ProConfig.is_config_ok"><a class="viewcode-back" href="../../../armpicom.pro.config.html#armpicom.pro.config.ProConfig.is_config_ok">[docs]</a>    <span class="k">def</span> <span class="nf">is_config_ok</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>

@@ -35,7 +35,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, Free software to use and distributed it.'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.5.3'
+__version__ = '1.6.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -73,38 +73,38 @@ class ProConfig:
             :type verbose: <bool>
             :exceptions: None
         '''
-        self._config: Dict[Any, Any] = {}
+        self._config: Dict[Any, Any] | None
         verbose_message(
             verbose, [f'{self._GEN_VERBOSE} init project configuration']
         )
 
     @property
-    def config(self) -> Dict[Any, Any]:
+    def config(self) -> Dict[Any, Any] | None:
         '''
             Property method for getting project configuration.
 
-            :return: Formatted project configuration
-            :rtype: <Dict[Any, Any]>
+            :return: Formatted project configuration | None
+            :rtype: <Dict[Any, Any]> | <NoneType>
             :exceptions: None
         '''
         return self._config
 
     @config.setter
-    def config(self, config: Dict[Any, Any]) -> None:
+    def config(self, pro: Dict[Any, Any] | None) -> None:
         '''
             Property method for setting project configuration.
 
-            :param config: Project configuration in dict format
-            :type config: <Dict[Any, Any]>
+            :param pro: Project configuration in dict format | None
+            :type pro: <Dict[Any, Any]> | <NoneType>
             :exceptions: ATSTypeError
         '''
         checker: ATSChecker = ATSChecker()
         error_msg: str | None = None
         error_id: int | None = None
-        error_msg, error_id = checker.check_params([('dict:config', config)])
+        error_msg, error_id = checker.check_params([('dict:pro', pro)])
         if error_id == checker.TYPE_ERROR:
             raise ATSTypeError(error_msg)
-        self._config = config
+        self._config = pro
 
     def is_config_ok(self) -> bool:
         '''

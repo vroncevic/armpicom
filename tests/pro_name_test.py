@@ -27,6 +27,7 @@ from typing import List
 from unittest import TestCase, main
 
 try:
+    from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from armpicom.pro.config.pro_name import ProName
 except ImportError as test_error_message:
     # Force close python test #################################################
@@ -36,7 +37,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2022, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.5.3'
+__version__ = '1.6.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -46,14 +47,20 @@ class ProNameTestCase(TestCase):
     '''
         Defines class ProNameTestCase with attribute(s) and method(s).
         Creates test cases for checking functionalities of ProName.
+        Project name unittests.
+
         It defines:
 
             :attributes:
-                | pro - Project name object.
+                | None
             :methods:
-                | setUp - call before test case.
-                | tearDown - call after test case.
-                | test_is_pro_name_ok - test pro name check.
+                | setUp - Call before test case.
+                | tearDown - Call after test case.
+                | test_pro_name_default_create - Default on create is not None.
+                | test_pro_name_is_config_ok - Is config ok.
+                | test_pro_name_is_config_not_none - Is config not None.
+                | test_pro_name_create_empty - Create Empty config.
+                | test_pro_name_create_with_none - Create None config.
     '''
 
     def setUp(self) -> None:
@@ -62,11 +69,35 @@ class ProNameTestCase(TestCase):
     def tearDown(self) -> None:
         '''Call after test case.'''
 
-    def test_is_pro_name_ok(self) -> None:
-        '''Test pro name check.'''
-        pro = ProName()
-        pro.pro_name = 'simple_test'
-        self.assertTrue(pro.is_pro_name_ok())
+    def test_pro_name_default_create(self) -> None:
+        '''Default on create is not None'''
+        configuration = ProName()
+        self.assertIsNotNone(configuration)
+
+    def test_pro_name_is_config_ok(self) -> None:
+        '''Is config ok'''
+        configuration = ProName()
+        configuration.pro_name = 'app_example'
+        self.assertTrue(configuration.is_pro_name_ok())
+
+    def test_pro_name_is_config_not_none(self) -> None:
+        '''Is config not None'''
+        configuration = ProName()
+        configuration.pro_name = 'app_example'
+        self.assertTrue(bool(configuration.pro_name))
+
+    def test_pro_name_create_empty(self) -> None:
+        '''Create Empty config'''
+        configuration = ProName()
+        configuration.pro_name = ""
+        self.assertFalse(bool(configuration.pro_name))
+        self.assertFalse(configuration.is_pro_name_ok())
+
+    def test_pro_name_create_with_none(self) -> None:
+        '''Create None config'''
+        configuration = ProName()
+        with self.assertRaises(ATSTypeError):
+            configuration.pro_name = None
 
 
 if __name__ == '__main__':

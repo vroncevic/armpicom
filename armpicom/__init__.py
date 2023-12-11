@@ -41,7 +41,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.5.3'
+__version__ = '1.6.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -121,8 +121,8 @@ class ArmPICOM(CfgCLI):
         '''
         status: bool = False
         if self.tool_operational:
-            if len(sys.argv) > 1:
-                if sys.argv[1] not in self._OPS:
+            if len(sys.argv) >= 4:
+                if sys.argv[2] not in self._OPS:
                     error_message(
                         [f'{self._GEN_VERBOSE} provide project name']
                     )

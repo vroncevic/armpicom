@@ -28,6 +28,7 @@ from unittest import TestCase, main
 from os.path import dirname, realpath
 
 try:
+    from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from armpicom.pro.config.template_dir import TemplateDir
 except ImportError as test_error_message:
     # Force close python test #################################################
@@ -37,7 +38,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2022, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.5.3'
+__version__ = '1.6.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -50,7 +51,7 @@ class TemplateDirTestCase(TestCase):
         It defines:
 
             :attributes:
-                | template - Template dir object.
+                | None
             :methods:
                 | setUp - call before test case.
                 | tearDown - call after test case.
@@ -63,12 +64,37 @@ class TemplateDirTestCase(TestCase):
     def tearDown(self) -> None:
         '''Call after test case.'''
 
-    def test_is_template_dir_ok(self) -> None:
-        '''Test template dir check.'''
-        template = TemplateDir()
+    def test_template_dir_default_create(self) -> None:
+        '''Default on create is not None'''
+        template: TemplateDir = TemplateDir()
+        self.assertIsNotNone(template)
+
+    def test_template_dir_is_config_ok(self) -> None:
+        '''Is template ok'''
+        template: TemplateDir = TemplateDir()
         current_dir: str = dirname(realpath(__file__))
         template.template_dir = f'{current_dir}/../armpicom/conf/template/'
         self.assertTrue(template.is_template_dir_ok())
+
+    def test_template_dir_is_config_not_none(self) -> None:
+        '''Is template not None'''
+        template: TemplateDir = TemplateDir()
+        current_dir: str = dirname(realpath(__file__))
+        template.template_dir = f'{current_dir}/../armpicom/conf/template/'
+        self.assertTrue(bool(template.template_dir))
+
+    def test_template_dir_create_empty(self) -> None:
+        '''Create Empty template'''
+        template: TemplateDir = TemplateDir()
+        template.template_dir = ""
+        self.assertFalse(bool(template.template_dir))
+        self.assertFalse(template.is_template_dir_ok())
+
+    def test_template_dir_create_with_none(self) -> None:
+        '''Create None template'''
+        template: TemplateDir = TemplateDir()
+        with self.assertRaises(ATSTypeError):
+            template.template_dir = None
 
 
 if __name__ == '__main__':
