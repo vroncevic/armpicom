@@ -1,0 +1,12 @@
+name: armpicom_toc
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**.md'
+jobs:
+  generateTOC:
+    name: armpicom_toc
+    runs-on: ubuntu-latest
+    steps:
+      - uses: technote-space/toc-generator@v4

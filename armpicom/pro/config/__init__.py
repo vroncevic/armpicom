@@ -1,41 +1,41 @@
 # -*- coding: UTF-8 -*-
 
 '''
- Module
-     __init__.py
- Copyright
-     Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
-     armpicom is free software: you can redistribute it and/or modify it
-     under the terms of the GNU General Public License as published by the
-     Free Software Foundation, either version 3 of the License, or
-     (at your option) any later version.
-     armpicom is distributed in the hope that it will be useful, but
-     WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-     See the GNU General Public License for more details.
-     You should have received a copy of the GNU General Public License along
-     with this program. If not, see <http://www.gnu.org/licenses/>.
- Info
-     Defined class ProConfig with attribute(s) and method(s).
-     Defined project configuration container.
+Module
+    __init__.py
+Copyright
+    Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
+    armpicom is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    armpicom is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License along
+    with this program. If not, see <http://www.gnu.org/licenses/>.
+Info
+    Defines class ProConfig with attribute(s) and method(s).
+    Defines project configuration container.
 '''
 
 import sys
+from typing import Any, Dict, List
 
 try:
     from ats_utilities.checker import ATSChecker
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
-    from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
 except ImportError as ats_error_message:
-    MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
-    sys.exit(MESSAGE)  # Force close python ATS ##############################
+    # Force close python ATS ##################################################
+    sys.exit(f'\n{__file__}\n{ats_error_message}\n')
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, Free software to use and distributed it.'
-__credits__ = ['Vladimir Roncevic']
+__credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.5.3'
+__version__ = '1.6.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -43,92 +43,75 @@ __status__ = 'Updated'
 
 class ProConfig:
     '''
-        Defined class ProConfig with attribute(s) and method(s).
-        Defined project configuration container.
+        Defines class ProConfig with attribute(s) and method(s).
+        Defines project configuration container.
+
         It defines:
 
             :attributes:
-                | GEN_VERBOSE - console text indicator for process-phase.
-                | TEMPLATES - templates key.
-                | MODULES - modules key.
-                | FORMAT - format for template file.
-                | __verbose - enable/disable verbose option.
-                | __config - configuration dictionary.
+                | _GEN_VERBOSE - Console text indicator for process-phase.
+                | TEMPLATES - Templates key.
+                | MODULES - Modules key.
+                | FORMAT - Format for template file.
+                | _config - Tool configuration in dictionary format.
             :methods:
-                | __init__ - initial constructor.
-                | pro_name - property methods for set/get operations.
-                | is_config_ok - checking is project configuration ok.
-                | __str__ - dunder method for ProConfig.
+                | __init__ - Initials ProConfig constructor.
+                | pro_name - Property methods for set/get operations.
+                | is_config_ok - Checks is project configuration ok.
     '''
 
-    GEN_VERBOSE = 'ARMPICOM::PRO::CONFIG::PRO_CONFIG'
-    TEMPLATES, MODULES, FORMAT = 'templates', 'modules', 'template'
+    _GEN_VERBOSE: str = 'ARMPICOM::PRO::CONFIG::PRO_CONFIG'
+    TEMPLATES: str = 'templates'
+    MODULES: str = 'modules'
+    FORMAT: str = 'template'
 
-    def __init__(self, verbose=False):
+    def __init__(self, verbose: bool = False) -> None:
         '''
-            Initial constructor.
+            Initials ProConfig constructor.
 
-            :param verbose: enable/disable verbose option.
+            :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
             :exceptions: None
         '''
-        self.__verbose = verbose
-        self.__config = None
+        self._config: Dict[Any, Any] | None
         verbose_message(
-            ProConfig.GEN_VERBOSE, verbose, 'init project configuration'
+            verbose, [f'{self._GEN_VERBOSE} init project configuration']
         )
 
     @property
-    def config(self):
+    def config(self) -> Dict[Any, Any] | None:
         '''
             Property method for getting project configuration.
 
-            :return: formatted project configuration | None.
-            :rtype: <dict> | <NoneType>
+            :return: Formatted project configuration | None
+            :rtype: <Dict[Any, Any]> | <NoneType>
             :exceptions: None
         '''
-        return self.__config
+        return self._config
 
     @config.setter
-    def config(self, config):
+    def config(self, pro: Dict[Any, Any] | None) -> None:
         '''
             Property method for setting project configuration.
 
-            :param config: set project configuration.
-            :type config: <dict>
-            :exceptions: ATSTypeError | ATSBadCallError
+            :param pro: Project configuration in dict format | None
+            :type pro: <Dict[Any, Any]> | <NoneType>
+            :exceptions: ATSTypeError
         '''
-        checker, error, status = ATSChecker(), None, False
-        error, status = checker.check_params([('dict:config', config)])
-        if status == ATSChecker.TYPE_ERROR:
-            raise ATSTypeError(error)
-        if status == ATSChecker.VALUE_ERROR:
-            raise ATSBadCallError(error)
-        self.__config = config
-        verbose_message(
-            ProConfig.GEN_VERBOSE, self.__verbose, 'set config', config
-        )
+        checker: ATSChecker = ATSChecker()
+        error_msg: str | None = None
+        error_id: int | None = None
+        error_msg, error_id = checker.check_params([('dict:pro', pro)])
+        if error_id == checker.TYPE_ERROR:
+            raise ATSTypeError(error_msg)
+        self._config = pro
 
-    def is_config_ok(self):
+    def is_config_ok(self) -> bool:
         '''
-            Checking is project configuration ok.
+            Checks is project configuration ok.
 
-            :return: boolean status, True (ok) | False.
+            :return: True (configuration is ok) | False
             :rtype: <bool>
             :exceptions: None
         '''
-        return all([
-            self.__config is not None, isinstance(self.__config, dict)
-        ])
-
-    def __str__(self):
-        '''
-            Dunder method for ProConfig.
-
-            :return: object in a human-readable format.
-            :rtype: <str>
-            :exceptions: None
-        '''
-        return '{0} ({1}, {2})'.format(
-            self.__class__.__name__, str(self.__verbose), str(self.__config)
-        )
+        return bool(self._config)
