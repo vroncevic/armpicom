@@ -21,6 +21,7 @@ Info
 '''
 
 import sys
+from typing import List
 
 try:
     from armpicom import ArmPICOM
