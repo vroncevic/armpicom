@@ -1,14 +1,6 @@
 armpicom.pro package
 ====================
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   armpicom.pro.config
-
 Submodules
 ----------
 

@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="armpicom.pro.write_template module" href="armpicom.pro.write_template.html" />
-    <link rel="prev" title="armpicom.pro.config.template_dir module" href="armpicom.pro.config.template_dir.html" /> 
+    <link rel="prev" title="armpicom.pro package" href="armpicom.pro.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -35,7 +35,7 @@
           <a href="armpicom.pro.write_template.html" title="armpicom.pro.write_template module"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="armpicom.pro.config.template_dir.html" title="armpicom.pro.config.template_dir module"
+          <a href="armpicom.pro.html" title="armpicom.pro package"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">armpicom https://github.com/vroncevic/armpicom/releases documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="modules.html" >armpicom</a> &#187;</li>
@@ -55,7 +55,7 @@
 <dl class="simple">
 <dt>Module</dt><dd><p>read_template.py</p>
 </dd>
-<dt>Copyright</dt><dd><p>Copyright (C) 2021 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
+<dt>Copyright</dt><dd><p>Copyright (C) 2021-2024 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
 armpicom is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
 Free Software Foundation, either version 3 of the License, or
@@ -74,7 +74,7 @@ Creates an API for reading a template file.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="armpicom.pro.read_template.ReadTemplate">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">armpicom.pro.read_template.</span></span><span class="sig-name descname"><span class="pre">ReadTemplate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/armpicom/pro/read_template.html#ReadTemplate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.pro.read_template.ReadTemplate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">FileCheck</span></code>, <a class="reference internal" href="armpicom.pro.config.template_dir.html#armpicom.pro.config.template_dir.TemplateDir" title="armpicom.pro.config.template_dir.TemplateDir"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemplateDir</span></code></a></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">FileCheck</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TemplateDir</span></code></p>
 <p>Defines class ReadTemplate with attribute(s) and method(s).
 Creates an API for reading a template file.</p>
 <p>It defines:</p>
@@ -89,7 +89,7 @@ Creates an API for reading a template file.</p>
 <dt class="field-even">methods<span class="colon">:</span></dt>
 <dd class="field-even"><div class="line-block">
 <div class="line">__init__ - Initials ReadTemplate constructor.</div>
-<div class="line">read - Reads a template file.</div>
+<div class="line">read - Reads a template files.</div>
 </div>
 </dd>
 </dl>
@@ -107,7 +107,7 @@ Creates an API for reading a template file.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="armpicom.pro.read_template.ReadTemplate.read">
 <span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/armpicom/pro/read_template.html#ReadTemplate.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.pro.read_template.ReadTemplate.read" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reads a template file.</p>
+<dd><p>Reads a template files.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -155,8 +155,8 @@ Creates an API for reading a template file.</p>
   </div>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="armpicom.pro.config.template_dir.html"
-                          title="previous chapter">armpicom.pro.config.template_dir module</a></p>
+    <p class="topless"><a href="armpicom.pro.html"
+                          title="previous chapter">armpicom.pro package</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
@@ -197,7 +197,7 @@ Creates an API for reading a template file.</p>
           <a href="armpicom.pro.write_template.html" title="armpicom.pro.write_template module"
              >next</a> |</li>
         <li class="right" >
-          <a href="armpicom.pro.config.template_dir.html" title="armpicom.pro.config.template_dir module"
+          <a href="armpicom.pro.html" title="armpicom.pro package"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">armpicom https://github.com/vroncevic/armpicom/releases documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="modules.html" >armpicom</a> &#187;</li>
@@ -207,7 +207,7 @@ Creates an API for reading a template file.</p>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2021, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.
+        &#169; Copyright 2024, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   </body>

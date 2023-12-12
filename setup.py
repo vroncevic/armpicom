@@ -5,7 +5,7 @@
 Module
     setup.py
 Copyright
-    Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
+    Copyright (C) 2021-2024 Vladimir Roncevic <elektron.ronca@gmail.com>
     armpicom is free software: you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by the
     Free Software Foundation, either version 3 of the License, or
@@ -26,10 +26,10 @@ from os.path import abspath, dirname, join
 from setuptools import setup
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
+__copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.6.4'
+__version__ = '1.7.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -63,18 +63,18 @@ APPROVED_LICENSES: List[str] = [
 PYP_CLASSIFIERS: List[str] = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 setup(
     name='armpicom',
-    version='1.6.4',
+    version='1.7.4',
     description='Python package for generation of RPI configuration/build',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
     url='https://vroncevic.github.io/armpicom',
-    license='GPL 2021 Free software to use and distributed it.',
+    license='GPL 2021-2024 Free software to use and distributed it.',
     long_description=long_description,
     long_description_content_type='text/markdown',
     keywords='setup, python, install, RPI Pico, CMake, generator',
     platforms='any',
     classifiers=PYP_CLASSIFIERS,
-    packages=['armpicom', 'armpicom.pro', 'armpicom.pro.config'],
+    packages=['armpicom', 'armpicom.pro'],
     install_requires=['ats-utilities'],
     package_data={
         'armpicom': [

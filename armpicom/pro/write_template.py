@@ -4,7 +4,7 @@
 Module
     write_template.py
 Copyright
-    Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
+    Copyright (C) 2021-2024 Vladimir Roncevic <elektron.ronca@gmail.com>
     armpicom is free software: you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by the
     Free Software Foundation, either version 3 of the License, or
@@ -17,7 +17,7 @@ Copyright
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
     Defines class WriteTemplate with attribute(s) and method(s).
-    Creates an API for writing module.
+    Creates an API for writing source and build modules.
 '''
 
 import sys
@@ -38,10 +38,10 @@ except ImportError as ats_error_message:
     sys.exit(f'\n{__file__}\n{ats_error_message}\n')
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
+__copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.6.4'
+__version__ = '1.7.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -50,7 +50,7 @@ __status__ = 'Updated'
 class WriteTemplate(FileCheck):
     '''
         Defines class WriteTemplate with attribute(s) and method(s).
-        Creates an API for writing module.
+        Creates an API for writing source and build modules.
 
         It defines:
 
@@ -83,9 +83,9 @@ class WriteTemplate(FileCheck):
         '''
             Writes a template with parameters.
 
-            :param templates: Parameter templates
+            :param templates: Templates with params
             :type templates: <list>
-            :param pro_name: Parameter project name | None
+            :param pro_name: Project name | None
             :type pro_name: <str> | <NoneType>
             :param verbose: Enable/Disable verbose option
             :type verbose: <bool>

@@ -4,7 +4,7 @@
 Module
     __init__.py
 Copyright
-    Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
+    Copyright (C) 2021-2024 Vladimir Roncevic <elektron.ronca@gmail.com>
     armpicom is free software: you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by the
     Free Software Foundation, either version 3 of the License, or
@@ -31,8 +31,8 @@ try:
     from ats_utilities.config_io.yaml.yaml2object import Yaml2Object
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_value_error import ATSValueError
-    from armpicom.pro.config import ProConfig
-    from armpicom.pro.config.pro_name import ProName
+    from ats_utilities.pro_config import ProConfig
+    from ats_utilities.pro_config.pro_name import ProName
     from armpicom.pro.read_template import ReadTemplate
     from armpicom.pro.write_template import WriteTemplate
 except ImportError as ats_error_message:
@@ -40,10 +40,10 @@ except ImportError as ats_error_message:
     sys.exit(f'\n{__file__}\n{ats_error_message}\n')
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
+__copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.6.4'
+__version__ = '1.7.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -62,10 +62,10 @@ class GenArmPICOM(FileCheck, ProConfig, ProName):
                 | _reader - Reader API.
                 | _writer - Writer API.
             :methods:
-                | __init__ - Initial GenArmPICOM constructor.
-                | get_reader - Getter for template reader.
-                | get_writer - Getter for template writer.
-                | gen_project - Generate RPI PI Pico CMake structure.
+                | __init__ - Initials GenArmPICOM constructor.
+                | get_reader - Gets template reader.
+                | get_writer - Gets template writer.
+                | gen_project - Generates RPI PI Pico project structure.
     '''
 
     _GEN_VERBOSE: str = 'ARMPICOM::PRO::GENARMPICOM'
@@ -73,7 +73,7 @@ class GenArmPICOM(FileCheck, ProConfig, ProName):
 
     def __init__(self, verbose: bool = False) -> None:
         '''
-            Initial GenArmPICOM constructor.
+            Initials GenArmPICOM constructor.
 
             :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
@@ -96,7 +96,7 @@ class GenArmPICOM(FileCheck, ProConfig, ProName):
 
     def get_reader(self) -> ReadTemplate | None:
         '''
-            Getter for template reader.
+            Gets template reader.
 
             :return: Template reader object | None
             :rtype: <ReadTemplate> | <NoneType>
@@ -106,7 +106,7 @@ class GenArmPICOM(FileCheck, ProConfig, ProName):
 
     def get_writer(self) -> WriteTemplate | None:
         '''
-            Getter for template writer.
+            Gets template writer.
 
             :return: Template writer object | none
             :rtype: <WriteTemplate> | <NoneType
@@ -116,7 +116,7 @@ class GenArmPICOM(FileCheck, ProConfig, ProName):
 
     def gen_project(self, pro_name: str | None, verbose: bool = False) -> bool:
         '''
-            Generate RPI PI Pico CMake structure.
+            Generates RPI PI Pico project structure.
 
             :param pro_name: Project name | None
             :type pro_name: <str> | <NoneType>

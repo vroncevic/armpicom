@@ -88,33 +88,31 @@ Tool structure
 .. code-block:: bash
 
     armpicom/
-    ├── conf/
-    │   ├── armpicom.cfg
-    │   ├── armpicom.logo
-    │   ├── armpicom_util.cfg
-    │   ├── project.yaml
-    │   └── template/
-    │       ├── build/
-    │       │   └── armpicom.md
-    │       ├── CMakeLists.template
-    │       ├── pico_sdk_import.template
-    │       ├── pro_auto_set_url.template
-    │       └── src/
-    │           ├── CMakeLists.template
-    │           └── main.template
-    ├── __init__.py
-    ├── log/
-    │   └── armpicom.log
-    ├── pro/
-    │   ├── config/
-    │   │   ├── __init__.py
-    │   │   ├── pro_name.py
-    │   │   └── template_dir.py
-    │   ├── __init__.py
-    │   ├── read_template.py
-    │   └── write_template.py
-    └── run/
-        └── armpicom_run.py
+        ├── conf/
+        │   ├── armpicom.cfg
+        │   ├── armpicom.logo
+        │   ├── armpicom_util.cfg
+        │   ├── project.yaml
+        │   └── template/
+        │       ├── build/
+        │       │   └── armpicom.md
+        │       ├── CMakeLists.template
+        │       ├── pico_sdk_import.template
+        │       ├── pro_auto_set_url.template
+        │       └── src/
+        │           ├── CMakeLists.template
+        │           └── main.template
+        ├── __init__.py
+        ├── log/
+        │   └── armpicom.log
+        ├── pro/
+        │   ├── __init__.py
+        │   ├── read_template.py
+        │   └── write_template.py
+        └── run/
+            └── armpicom_run.py
+
+    8 directories, 16 files
 
 Copyright and licence
 -----------------------
