@@ -4,7 +4,7 @@
 Module
     __init__.py
 Copyright
-    Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
+    Copyright (C) 2021-2024 Vladimir Roncevic <elektron.ronca@gmail.com>
     armpicom is free software: you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by the
     Free Software Foundation, either version 3 of the License, or
@@ -17,7 +17,7 @@ Copyright
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
     Defines class ArmPICOM with attribute(s) and method(s).
-    Loads a base info, create an CLI interface and run operation(s).
+    Loads base information, creates a CLI interface, and runs operations.
 '''
 
 import sys
@@ -38,10 +38,10 @@ except ImportError as ats_error_message:
     sys.exit(f'\n{__file__}\n{ats_error_message}\n')
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
+__copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.6.4'
+__version__ = '1.7.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -50,7 +50,7 @@ __status__ = 'Updated'
 class ArmPICOM(CfgCLI):
     '''
         Defines class ArmPICOM with attribute(s) and method(s).
-        Loads a base info, create an CLI interface and run operation(s).
+        Loads base information, creates a CLI interface, and runs operations.
 
         It defines:
 
@@ -62,8 +62,8 @@ class ArmPICOM(CfgCLI):
                 | _OPS - List of tool options.
                 | _logger - Logger object API.
             :methods:
-                | __init__ - Initial ArmPICOM constructor.
-                | process - Process and run operation.
+                | __init__ - Initials ArmPICOM constructor.
+                | process - Processes and runs operations.
     '''
 
     _GEN_VERBOSE: str = 'ARMPICOM'
@@ -74,7 +74,7 @@ class ArmPICOM(CfgCLI):
 
     def __init__(self, verbose: bool = False) -> None:
         '''
-            Initial ArmPICOM constructor.
+            Initials ArmPICOM constructor.
 
             :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
@@ -111,7 +111,7 @@ class ArmPICOM(CfgCLI):
 
     def process(self, verbose: bool = False) -> bool:
         '''
-            Process and run operation.
+            Processes and runs operations.
 
             :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
@@ -148,7 +148,7 @@ class ArmPICOM(CfgCLI):
                             str(getattr(args, 'gen'))
                         ])
                     )
-                    generator = GenArmPICOM(verbose)
+                    generator: GenArmPICOM = GenArmPICOM(verbose)
                     status = generator.gen_project(
                         getattr(args, 'gen'), verbose
                     )

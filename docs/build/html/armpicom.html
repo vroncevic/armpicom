@@ -55,14 +55,6 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="armpicom.pro.html">armpicom.pro package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="armpicom.pro.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="armpicom.pro.config.html">armpicom.pro.config package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="armpicom.pro.config.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="armpicom.pro.config.html#module-armpicom.pro.config">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="armpicom.pro.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="armpicom.pro.read_template.html">armpicom.pro.read_template module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="armpicom.pro.read_template.html#armpicom.pro.read_template.ReadTemplate"><code class="docutils literal notranslate"><span class="pre">ReadTemplate</span></code></a></li>
@@ -95,7 +87,7 @@
 <dl class="simple">
 <dt>Module</dt><dd><p>__init__.py</p>
 </dd>
-<dt>Copyright</dt><dd><p>Copyright (C) 2021 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
+<dt>Copyright</dt><dd><p>Copyright (C) 2021-2024 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
 armpicom is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
 Free Software Foundation, either version 3 of the License, or
@@ -108,7 +100,7 @@ You should have received a copy of the GNU General Public License along
 with this program. If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
 </dd>
 <dt>Info</dt><dd><p>Defines class ArmPICOM with attribute(s) and method(s).
-Loads a base info, create an CLI interface and run operation(s).</p>
+Loads base information, creates a CLI interface, and runs operations.</p>
 </dd>
 </dl>
 <dl class="py class">
@@ -116,7 +108,7 @@ Loads a base info, create an CLI interface and run operation(s).</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">armpicom.</span></span><span class="sig-name descname"><span class="pre">ArmPICOM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/armpicom.html#ArmPICOM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.ArmPICOM" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CfgCLI</span></code></p>
 <p>Defines class ArmPICOM with attribute(s) and method(s).
-Loads a base info, create an CLI interface and run operation(s).</p>
+Loads base information, creates a CLI interface, and runs operations.</p>
 <p>It defines:</p>
 <blockquote>
 <div><dl class="field-list">
@@ -132,8 +124,8 @@ Loads a base info, create an CLI interface and run operation(s).</p>
 </dd>
 <dt class="field-even">methods<span class="colon">:</span></dt>
 <dd class="field-even"><div class="line-block">
-<div class="line">__init__ - Initial ArmPICOM constructor.</div>
-<div class="line">process - Process and run operation.</div>
+<div class="line">__init__ - Initials ArmPICOM constructor.</div>
+<div class="line">process - Processes and runs operations.</div>
 </div>
 </dd>
 </dl>
@@ -166,7 +158,7 @@ Loads a base info, create an CLI interface and run operation(s).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="armpicom.ArmPICOM.process">
 <span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/armpicom.html#ArmPICOM.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.ArmPICOM.process" title="Permalink to this definition">¶</a></dt>
-<dd><p>Process and run operation.</p>
+<dd><p>Processes and runs operations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/Disable verbose option</p>
@@ -269,7 +261,7 @@ Loads a base info, create an CLI interface and run operation(s).</p>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2021, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.
+        &#169; Copyright 2024, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   </body>

@@ -4,7 +4,7 @@
 Module
     read_template.py
 Copyright
-    Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
+    Copyright (C) 2021-2024 Vladimir Roncevic <elektron.ronca@gmail.com>
     armpicom is free software: you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by the
     Free Software Foundation, either version 3 of the License, or
@@ -30,17 +30,17 @@ try:
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.exceptions.ats_value_error import ATSValueError
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
-    from armpicom.pro.config import ProConfig
-    from armpicom.pro.config.template_dir import TemplateDir
+    from ats_utilities.pro_config import ProConfig
+    from ats_utilities.pro_config.template_dir import TemplateDir
 except ImportError as ats_error_message:
     # Force close python ATS ##################################################
     sys.exit(f'\n{__file__}\n{ats_error_message}\n')
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2021, https://vroncevic.github.io/armpicom'
+__copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.6.4'
+__version__ = '1.7.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -58,7 +58,7 @@ class ReadTemplate(FileCheck, TemplateDir):
                 | _TEMPLATE_DIR - Template dir path.
             :methods:
                 | __init__ - Initials ReadTemplate constructor.
-                | read - Reads a template file.
+                | read - Reads a template files.
     '''
 
     _GEN_VERBOSE: str = 'ARMPICOM::PRO::READ_TEMPLATE'
@@ -84,7 +84,7 @@ class ReadTemplate(FileCheck, TemplateDir):
         self, config: Dict[Any, Any], verbose: bool = False
     ) -> List[Dict[str, str]]:
         '''
-            Reads a template file.
+            Reads a template files.
 
             :param config: Configuration for PICO project
             :type config: <Dict[Any, Any]>
