@@ -40,7 +40,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.7.4'
+__version__ = '1.8.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -50,6 +50,7 @@ class ReadTemplateTestCase(TestCase):
     '''
         Defines class ReadTemplateTestCase with attribute(s) and method(s).
         Creates test cases for checking functionalities of ReadTemplate.
+        ReadTemplate unit tests.
 
         It defines:
 
@@ -58,9 +59,10 @@ class ReadTemplateTestCase(TestCase):
             :methods:
                 | setUp - call before test case.
                 | tearDown - call after test case.
-                | test_read_template_create - Test read template create.
-                | test_read_template_empty - Test read template empty.
-                | test_read_template_none - Test read template None.
+                | test_read_template_create - Test read templates create.
+                | test_read_template_empty - Test read templates empty.
+                | test_read_template_none - Test read templates None.
+                | test_read_template - Test read templates.
     '''
 
     def setUp(self) -> None:
@@ -70,12 +72,12 @@ class ReadTemplateTestCase(TestCase):
         '''Call after test case.'''
 
     def test_read_template_create(self) -> None:
-        '''Test read template create'''
+        '''Test read templates create'''
         template = ReadTemplate()
         self.assertIsNotNone(template)
 
     def test_read_template_empty(self) -> None:
-        '''Test read template empty'''
+        '''Test read templates empty'''
         template = ReadTemplate()
         templates: Dict[Any, Any] = {}
         with self.assertRaises(ATSValueError):
@@ -84,7 +86,7 @@ class ReadTemplateTestCase(TestCase):
             )
 
     def test_read_template_none(self) -> None:
-        '''Test read template None'''
+        '''Test read templates None'''
         template = ReadTemplate()
         with self.assertRaises(ATSTypeError):
             self.assertFalse(
@@ -92,7 +94,7 @@ class ReadTemplateTestCase(TestCase):
             )
 
     def test_read_template(self) -> None:
-        '''Test read template'''
+        '''Test read templates'''
         current_dir: str = dirname(realpath(__file__))
         pro: str = '/../armpicom/conf/project.yaml'
         template = ReadTemplate()

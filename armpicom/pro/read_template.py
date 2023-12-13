@@ -17,7 +17,7 @@ Copyright
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
     Defines class ReadTemplate with attribute(s) and method(s).
-    Creates an API for reading a template file.
+    Creates an API for reading a template files.
 '''
 
 import sys
@@ -25,7 +25,6 @@ from typing import Any, List, Dict
 from os.path import isdir, dirname, realpath
 
 try:
-    from ats_utilities.checker import ATSChecker
     from ats_utilities.config_io.file_check import FileCheck
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.exceptions.ats_value_error import ATSValueError
@@ -40,7 +39,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.7.4'
+__version__ = '1.8.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -49,7 +48,7 @@ __status__ = 'Updated'
 class ReadTemplate(FileCheck, TemplateDir):
     '''
         Defines class ReadTemplate with attribute(s) and method(s).
-        Creates an API for reading a template file.
+        Creates an API for reading a template files.
 
         It defines:
 
@@ -94,11 +93,10 @@ class ReadTemplate(FileCheck, TemplateDir):
             :rtype: <List[Dict[str, str]]>
             :exceptions: ATSTypeError | ATSValueError
         '''
-        checker: ATSChecker = ATSChecker()
         error_msg: str | None = None
         error_id: int | None = None
-        error_msg, error_id = checker.check_params([('dict:config', config)])
-        if error_id == checker.TYPE_ERROR:
+        error_msg, error_id = self.check_params([('dict:config', config)])
+        if error_id == self.TYPE_ERROR:
             raise ATSTypeError(error_msg)
         if not bool(config):
             raise ATSValueError('missing templates')

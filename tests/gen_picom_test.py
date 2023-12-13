@@ -16,7 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class GenPICOMTestCase with attribute(s) and method(s).
+    Defines class GenArmPICOMTestCase with attribute(s) and method(s).
     Creates test cases for checking functionalities of GenArmPICOM.
 Execute
     python3 -m unittest -v gen_picom_test
@@ -38,17 +38,17 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.7.4'
+__version__ = '1.8.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class GenPICOMTestCase(TestCase):
+class GenArmPICOMTestCase(TestCase):
     '''
-        Defines class GenPICOMTestCase with attribute(s) and method(s).
+        Defines class GenArmPICOMTestCase with attribute(s) and method(s).
         Creates test cases for checking functionalities of GenArmPICOM.
-        Project generation unittests.
+        GenArmPICOM unit tests.
 
         It defines:
 

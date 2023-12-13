@@ -16,7 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class GenPICOMTestCase with attribute(s) and method(s).
+    Defines class ArmPICOMTestCase with attribute(s) and method(s).
     Creates test cases for checking functionalities of ArmPICOM.
 Execute
     python3 -m unittest -v arm_picom_test
@@ -37,17 +37,17 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.7.4'
+__version__ = '1.8.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class GenPICOMTestCase(TestCase):
+class ArmPICOMTestCase(TestCase):
     '''
-        Defines class GenPICOMTestCase with attribute(s) and method(s).
+        Defines class ArmPICOMTestCase with attribute(s) and method(s).
         Creates test cases for checking functionalities of ArmPICOM.
-        Project generation unittests.
+        ArmPICOM unit tests.
 
         It defines:
 
@@ -56,9 +56,12 @@ class GenPICOMTestCase(TestCase):
             :methods:
                 | setUp - Call before test case.
                 | tearDown - Call after test case.
-                | test_default_create - Default on create is not None.
-                | test_missing_args - Missing args.
-                | test_process - Generate project.
+                | test_default_create - Default on create (not None).
+                | test_missing_args - Test missing args.
+                | test_wrong_arg - Test wrong arg.
+                | test_process - Generate project structure.
+                | test_tool_not_operational - Test not operational.
+                | test_pro_already_exists - Test pro already exists.
     '''
 
     def setUp(self) -> None:
@@ -68,12 +71,12 @@ class GenPICOMTestCase(TestCase):
         '''Call after test case.'''
 
     def test_default_create(self) -> None:
-        '''Default on create is not None'''
+        '''Default on create (not None)'''
         generator: ArmPICOM = ArmPICOM()
         self.assertIsNotNone(generator)
 
     def test_missing_args(self) -> None:
-        '''Missing args'''
+        '''Test missing args'''
         sys.argv.clear()
         sys.argv.insert(0, 'python3')
         sys.argv.insert(1, 'gen_armpicom_run.py')
@@ -81,7 +84,7 @@ class GenPICOMTestCase(TestCase):
         self.assertFalse(generator.process())
 
     def test_wrong_arg(self) -> None:
-        '''Generate project'''
+        '''Test wrong arg'''
         sys.argv.clear()
         sys.argv.insert(0, 'python3')
         sys.argv.insert(1, 'gen_armpicom_run.py')
@@ -91,7 +94,7 @@ class GenPICOMTestCase(TestCase):
         self.assertFalse(generator.process())
 
     def test_process(self) -> None:
-        '''Generate project'''
+        '''Generate project structure'''
         sys.argv.clear()
         sys.argv.insert(0, 'python3')
         sys.argv.insert(1, 'gen_armpicom_run.py')
@@ -101,7 +104,7 @@ class GenPICOMTestCase(TestCase):
         self.assertTrue(generator.process())
 
     def test_tool_not_operational(self) -> None:
-        '''Generate project'''
+        '''Test not operational'''
         sys.argv.clear()
         sys.argv.insert(0, 'python3')
         sys.argv.insert(1, 'gen_armpicom_run.py')
@@ -112,7 +115,7 @@ class GenPICOMTestCase(TestCase):
         self.assertFalse(generator.process())
 
     def test_pro_already_exists(self) -> None:
-        '''Generate project'''
+        '''Test pro already exists'''
         sys.argv.clear()
         sys.argv.insert(0, 'python3')
         sys.argv.insert(1, 'gen_armpicom_run.py')

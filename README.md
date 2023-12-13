@@ -134,7 +134,7 @@ armpicom/
     └── run/
         └── armpicom_run.py
 
-8 directories, 16 files
+    8 directories, 16 files
 ```
 
 ### Docs

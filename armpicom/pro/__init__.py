@@ -25,7 +25,6 @@ from typing import List, Dict
 from os.path import dirname, realpath
 
 try:
-    from ats_utilities.checker import ATSChecker
     from ats_utilities.config_io.file_check import FileCheck
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.config_io.yaml.yaml2object import Yaml2Object
@@ -43,7 +42,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.7.4'
+__version__ = '1.8.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -126,13 +125,12 @@ class GenArmPICOM(FileCheck, ProConfig, ProName):
             :rtype: <bool>
             :exceptions: ATSTypeError | ATSValueError
         '''
-        checker: ATSChecker = ATSChecker()
         error_msg: str | None = None
         error_id: int | None = None
-        error_msg, error_id = checker.check_params([
+        error_msg, error_id = self.check_params([
             ('str:pro_name', pro_name)
         ])
-        if error_id == checker.TYPE_ERROR:
+        if error_id == self.TYPE_ERROR:
             raise ATSTypeError(error_msg)
         if not bool(pro_name):
             raise ATSValueError('missing project name')
