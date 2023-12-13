@@ -1,7 +1,7 @@
 #
 # @brief   latest setup output files
 # @version v1.3.3
-# @date    2023-12-13
+# @date    2023-12-14
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 

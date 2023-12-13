@@ -41,7 +41,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.7.4'
+__version__ = '1.8.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -51,6 +51,7 @@ class WriteTemplateTestCase(TestCase):
     '''
         Defines class WriteTemplateTestCase with attribute(s) and method(s).
         Creates test cases for checking functionalities of WriteTemplate.
+        WriteTemplate unit tests.
 
         It defines:
 
@@ -59,10 +60,10 @@ class WriteTemplateTestCase(TestCase):
             :methods:
                 | setUp - call before test case.
                 | tearDown - call after test case.
-                | test_write_template_create - Test write template create.
-                | test_write_template_empty - Test write template empty.
-                | test_write_template_none - Test write template None.
-                | test_write_template - Test write template.
+                | test_write_template_create - Test write templates create.
+                | test_write_template_empty - Test write templates empty.
+                | test_write_template_none - Test write templates None.
+                | test_write_template - Test write templates.
     '''
 
     def setUp(self) -> None:
@@ -72,12 +73,12 @@ class WriteTemplateTestCase(TestCase):
         '''Call after test case.'''
 
     def test_write_template_create(self) -> None:
-        '''Test write template create'''
+        '''Test write templates create'''
         template = WriteTemplate()
         self.assertIsNotNone(template)
 
     def test_write_template_empty(self) -> None:
-        '''Test write template empty'''
+        '''Test write templates empty'''
         template = WriteTemplate()
         templates: List[Dict[str, str]] = []
         with self.assertRaises(ATSValueError):
@@ -86,7 +87,7 @@ class WriteTemplateTestCase(TestCase):
             )
 
     def test_write_template_none(self) -> None:
-        '''Test write template None'''
+        '''Test write templates None'''
         template = WriteTemplate()
         with self.assertRaises(ATSTypeError):
             self.assertFalse(
@@ -94,7 +95,7 @@ class WriteTemplateTestCase(TestCase):
             )
 
     def test_write_template(self) -> None:
-        '''Test write template'''
+        '''Test write templates'''
         current_dir: str = dirname(realpath(__file__))
         pro: str = '/../armpicom/conf/project.yaml'
         template = ReadTemplate()
