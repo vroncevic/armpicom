@@ -4,7 +4,7 @@
 Module
     __init__.py
 Copyright
-    Copyright (C) 2021-2024 Vladimir Roncevic <elektron.ronca@gmail.com>
+    Copyright (C) 2021 - 2024 Vladimir Roncevic <elektron.ronca@gmail.com>
     armpicom is free software: you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by the
     Free Software Foundation, either version 3 of the License, or
@@ -42,7 +42,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.8.4'
+__version__ = '1.8.5'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -81,7 +81,9 @@ class GenArmPICOM(FileCheck, ProConfig, ProName):
         FileCheck.__init__(self, verbose)
         ProConfig.__init__(self, verbose)
         ProName.__init__(self, verbose)
-        verbose_message(verbose, [f'{self._GEN_VERBOSE} init generator'])
+        verbose_message(
+            verbose, [f'{self._GEN_VERBOSE.lower()} init generator']
+        )
         self._reader: ReadTemplate | None = ReadTemplate(verbose)
         self._writer: WriteTemplate | None = WriteTemplate(verbose)
         current_dir: str = dirname(realpath(__file__))
