@@ -4,7 +4,7 @@
 Module
     __init__.py
 Copyright
-    Copyright (C) 2021-2024 Vladimir Roncevic <elektron.ronca@gmail.com>
+    Copyright (C) 2021 - 2024 Vladimir Roncevic <elektron.ronca@gmail.com>
     armpicom is free software: you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by the
     Free Software Foundation, either version 3 of the License, or
@@ -41,7 +41,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.8.4'
+__version__ = '1.8.5'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -91,7 +91,9 @@ class ArmPICOM(CfgCLI):
         Splash(armpicom_property, verbose)
         base_info: str = f'{current_dir}{self._CONFIG}'
         super().__init__(base_info, verbose)
-        verbose_message(verbose, [f'{self._GEN_VERBOSE} init tool info'])
+        verbose_message(
+            verbose, [f'{self._GEN_VERBOSE.lower()} init tool info']
+        )
         self._logger: ATSLogger = ATSLogger(
             self._GEN_VERBOSE.lower(), f'{current_dir}{self._LOG}', verbose
         )
@@ -124,7 +126,7 @@ class ArmPICOM(CfgCLI):
             if len(sys.argv) >= 4:
                 if sys.argv[2] not in self._OPS:
                     error_message(
-                        [f'{self._GEN_VERBOSE} provide project name']
+                        [f'{self._GEN_VERBOSE.lower()} provide project name']
                     )
                     self._logger.write_log(
                         'provide project name', self._logger.ATS_ERROR
@@ -132,7 +134,7 @@ class ArmPICOM(CfgCLI):
                     return status
             else:
                 error_message(
-                    [f'{self._GEN_VERBOSE} provide project name']
+                    [f'{self._GEN_VERBOSE.lower()} provide project name']
                 )
                 self._logger.write_log(
                     'provide project name', self._logger.ATS_ERROR
@@ -153,32 +155,38 @@ class ArmPICOM(CfgCLI):
                         getattr(args, 'gen'), verbose
                     )
                     if status:
-                        success_message([f'{self._GEN_VERBOSE} done\n'])
+                        success_message(
+                            [f'{self._GEN_VERBOSE.lower()} done\n']
+                        )
                         self._logger.write_log(
                             f'gen project {getattr(args, "gen")} done',
                             self._logger.ATS_INFO
                         )
                     else:
-                        error_message([
-                            f'{self._GEN_VERBOSE} generation failed'
-                        ])
+                        error_message(
+                            [f'{self._GEN_VERBOSE.lower()} generation failed']
+                        )
                         self._logger.write_log(
                             'generation failed', self._logger.ATS_ERROR
                         )
                 else:
                     error_message(
-                        [f'{self._GEN_VERBOSE} provide project name']
+                        [f'{self._GEN_VERBOSE.lower()} provide project name']
                     )
                     self._logger.write_log(
                         'provide project name', self._logger.ATS_ERROR
                     )
             else:
-                error_message([f'{self._GEN_VERBOSE} project already exist'])
+                error_message(
+                    [f'{self._GEN_VERBOSE.lower()} project already exist']
+                )
                 self._logger.write_log(
                     'project already exist', self._logger.ATS_ERROR
                 )
         else:
-            error_message([f'{self._GEN_VERBOSE} tool is not operational'])
+            error_message(
+                [f'{self._GEN_VERBOSE.lower()} tool is not operational']
+            )
             self._logger.write_log(
                 'tool is not operational', self._logger.ATS_ERROR
             )

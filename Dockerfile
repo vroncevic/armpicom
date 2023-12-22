@@ -1,4 +1,4 @@
-# Copyright 2021-2024 Vladimir Roncevic <elektron.ronca@gmail.com>
+# Copyright 2021 - 2024 Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -48,6 +48,7 @@ COPY setup.cfg /
 COPY MANIFEST.in /
 COPY pyproject.toml /
 RUN mkdir /tests/
+COPY tests /tests/
 RUN python3 -m build --no-isolation --wheel
 RUN pip3 install ./dist/armpicom-*-py3-none-any.whl
 RUN rm -rf /armpicom*
