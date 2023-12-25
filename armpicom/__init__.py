@@ -32,6 +32,8 @@ try:
     from ats_utilities.console_io.error import error_message
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.console_io.success import success_message
+    from ats_utilities.exceptions.ats_type_error import ATSTypeError
+    from ats_utilities.exceptions.ats_value_error import ATSValueError
     from armpicom.pro import GenArmPICOM
 except ImportError as ats_error_message:
     # Force close python ATS ##################################################
@@ -41,7 +43,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.8.5'
+__version__ = '1.8.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -83,8 +85,8 @@ class ArmPICOM(CfgCLI):
         current_dir: str = dirname(realpath(__file__))
         armpicom_property: Dict[str, str | bool] = {
             'ats_organization': 'vroncevic',
-            'ats_repository': 'armpicom',
-            'ats_name': 'armpicom',
+            'ats_repository': f'{self._GEN_VERBOSE.lower()}',
+            'ats_name': f'{self._GEN_VERBOSE.lower()}',
             'ats_logo_path': f'{current_dir}{self._LOGO}',
             'ats_use_github_infrastructure': True
         }
@@ -100,7 +102,7 @@ class ArmPICOM(CfgCLI):
         if self.tool_operational:
             self.add_new_option(
                 self._OPS[0], self._OPS[1],
-                dest='gen', help='generate project'
+                dest='gen', help='generate project (provide name)'
             )
             self.add_new_option(
                 self._OPS[2], self._OPS[3],
@@ -126,18 +128,24 @@ class ArmPICOM(CfgCLI):
             if len(sys.argv) >= 4:
                 if sys.argv[2] not in self._OPS:
                     error_message(
-                        [f'{self._GEN_VERBOSE.lower()} provide project name']
+                        [
+                            f'{self._GEN_VERBOSE.lower()}',
+                            'provide project name (-g app | --gen app)'
+                        ]
                     )
                     self._logger.write_log(
-                        'provide project name', self._logger.ATS_ERROR
+                        'missing project name', self._logger.ATS_ERROR
                     )
                     return status
             else:
                 error_message(
-                    [f'{self._GEN_VERBOSE.lower()} provide project name']
+                    [
+                        f'{self._GEN_VERBOSE.lower()}',
+                        'provide project name (-g app | --gen app)'
+                    ]
                 )
                 self._logger.write_log(
-                    'provide project name', self._logger.ATS_ERROR
+                    'missing project name', self._logger.ATS_ERROR
                 )
                 return status
             args: Any | Namespace = self.parse_args(sys.argv[2:])
@@ -151,9 +159,17 @@ class ArmPICOM(CfgCLI):
                         ])
                     )
                     generator: GenArmPICOM = GenArmPICOM(verbose)
-                    status = generator.gen_project(
-                        getattr(args, 'gen'), verbose
-                    )
+                    try:
+                        status = generator.gen_project(
+                            getattr(args, 'gen'), verbose
+                        )
+                    except (ATSTypeError, ATSValueError) as e:
+                        error_message(
+                            [f'{self._GEN_VERBOSE.lower()} {str(e)}']
+                        )
+                        self._logger.write_log(
+                            f'{str(e)}', self._logger.ATS_ERROR
+                        )
                     if status:
                         success_message(
                             [f'{self._GEN_VERBOSE.lower()} done\n']
@@ -171,17 +187,24 @@ class ArmPICOM(CfgCLI):
                         )
                 else:
                     error_message(
-                        [f'{self._GEN_VERBOSE.lower()} provide project name']
+                        [
+                            f'{self._GEN_VERBOSE.lower()}',
+                            'provide project name (-g app | --gen app)'
+                        ]
                     )
                     self._logger.write_log(
-                        'provide project name', self._logger.ATS_ERROR
+                        'missing project name', self._logger.ATS_ERROR
                     )
             else:
                 error_message(
-                    [f'{self._GEN_VERBOSE.lower()} project already exist']
+                    [
+                        f'{self._GEN_VERBOSE.lower()}',
+                        f'project with name [{getattr(args, "gen")}] exists'
+                    ]
                 )
                 self._logger.write_log(
-                    'project already exist', self._logger.ATS_ERROR
+                    f'project with name [{getattr(args, "gen")}] exists',
+                    self._logger.ATS_ERROR
                 )
         else:
             error_message(

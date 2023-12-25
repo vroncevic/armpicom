@@ -42,7 +42,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.8.5'
+__version__ = '1.8.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -137,10 +137,10 @@ class GenArmPICOM(FileCheck, ProConfig, ProName):
         if not bool(pro_name):
             raise ATSValueError('missing project name')
         status: bool = False
-        if self.config and self._reader and self._writer:
+        if bool(self.config) and self._reader and self._writer:
             templates: List[Dict[str, str]] = self._reader.read(
                 self.config, verbose
             )
-            if templates:
+            if bool(templates):
                 status = self._writer.write(templates, pro_name, verbose)
         return status

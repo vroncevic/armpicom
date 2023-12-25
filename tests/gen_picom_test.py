@@ -38,7 +38,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.8.5'
+__version__ = '1.8.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -101,7 +101,7 @@ class GenArmPICOMTestCase(TestCase):
     def test_gen_project(self) -> None:
         '''Create project'''
         generator: GenArmPICOM = GenArmPICOM()
-        self.assertTrue(generator.gen_project('full_simple'))
+        self.assertTrue(generator.gen_project('full_simple_new'))
 
 
 if __name__ == '__main__':
