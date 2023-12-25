@@ -1,7 +1,7 @@
 #
-# @brief   full_simple main entry point for build process
-# @version v1.3.3
-# @date    2023-12-14
+# @brief   full_simple_new main entry point for build process
+# @version v1.8.6
+# @date    2023-12-25
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 
@@ -10,7 +10,7 @@ cmake_minimum_required(VERSION 3.12)
 include(pico_sdk_import.cmake)
 
 # Setup project info
-project(full_simple C CXX ASM)
+project(full_simple_new C CXX ASM)
 set(CMAKE_PROJECT_VERSION 1.0.0)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)

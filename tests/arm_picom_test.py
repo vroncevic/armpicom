@@ -37,7 +37,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.8.5'
+__version__ = '1.8.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -89,7 +89,7 @@ class ArmPICOMTestCase(TestCase):
         sys.argv.insert(0, 'python3')
         sys.argv.insert(1, 'gen_armpicom_run.py')
         sys.argv.insert(2, '-d')
-        sys.argv.insert(3, 'wrong')
+        sys.argv.insert(3, 'wrong_pro')
         generator: ArmPICOM = ArmPICOM()
         self.assertFalse(generator.process())
 
@@ -99,7 +99,7 @@ class ArmPICOMTestCase(TestCase):
         sys.argv.insert(0, 'python3')
         sys.argv.insert(1, 'gen_armpicom_run.py')
         sys.argv.insert(2, '-g')
-        sys.argv.insert(3, 'latest')
+        sys.argv.insert(3, 'latest_pro')
         generator: ArmPICOM = ArmPICOM()
         self.assertTrue(generator.process())
 

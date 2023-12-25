@@ -39,7 +39,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.8.5'
+__version__ = '1.8.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -99,7 +99,7 @@ class ReadTemplate(FileCheck, TemplateDir):
         if error_id == self.TYPE_ERROR:
             raise ATSTypeError(error_msg)
         if not bool(config):
-            raise ATSValueError('missing templates')
+            raise ATSValueError('missing template configuration')
         templates: List[str] = config[ProConfig.TEMPLATES]
         modules: List[str] = config[ProConfig.MODULES]
         loaded_templates: List[Dict[str, str]] = []

@@ -1,7 +1,7 @@
 #
 # @brief   latest main entry point for build process
-# @version v1.3.3
-# @date    2023-12-14
+# @version v1.8.6
+# @date    2023-12-25
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 

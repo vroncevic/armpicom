@@ -3,12 +3,12 @@
  * main.c
  * Copyright (C) 2023 Vladimir Roncevic <elektron.ronca@gmail.com>
  *
- * new_simple_test is free software: you can redistribute it and/or modify it
+ * full_simple_new is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * new_simple_test is distributed in the hope that it will be useful, but
+ * full_simple_new is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
