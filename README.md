@@ -45,7 +45,7 @@ Currently there are three ways to install package
 
 ##### Install using pip
 
-Python is located at **[pypi.org](https://pypi.org/project/armpicom/)**.
+**armpicom** is located at **[pypi.org](https://pypi.org/project/armpicom/)**.
 
 You can install by using pip
 
@@ -73,8 +73,8 @@ pip3 install -r requirements.txt
 python3 -m build --no-isolation --wheel
 pip3 install ./dist/armpicom-*-py3-none-any.whl
 rm -f get-pip.py
-chmod 755 /usr/local/lib/python3.9/dist-packages/usr/local/bin/armpicom_run.py
-ln -s /usr/local/lib/python3.9/dist-packages/usr/local/bin/armpicom_run.py /usr/local/bin/armpicom_run.py
+chmod 755 /usr/local/lib/python3.10/dist-packages/usr/local/bin/armpicom_run.py
+ln -s /usr/local/lib/python3.10/dist-packages/usr/local/bin/armpicom_run.py /usr/local/bin/armpicom_run.py
 ```
 
 ##### Install using py setup
