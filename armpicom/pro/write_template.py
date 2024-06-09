@@ -40,7 +40,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.8.6'
+__version__ = '1.8.7'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -115,13 +115,11 @@ class WriteTemplate(FileCheck):
             template: Template = Template(template_content[module_name])
             module_path: str = f'{pro_dir}{module_name}'
             with open(module_path, 'w', encoding='utf-8') as module_file:
-                module_content: str = template.substitute(
-                    {
-                        'PRO': f'{pro_name}'.format(),
-                        'DATE': f'{str(date.today())}',
-                        'YEAR': f'{str(date.today().year)}'
-                    }
-                )
+                module_content: str = template.substitute({
+                    'PRO': f'{pro_name}'.format(),
+                    'DATE': f'{str(date.today())}',
+                    'YEAR': f'{str(date.today().year)}'
+                })
                 module_file.write(module_content)
                 chmod(module_path, 0o666)
                 self.check_path(module_path, verbose)

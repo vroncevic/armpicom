@@ -1,0 +1,26 @@
+06/09/2024 10:27:46 PM - ERROR - tool is not operational
+06/09/2024 10:29:02 PM - ERROR - tool is not operational
+06/09/2024 10:31:52 PM - ERROR - tool is not operational
+06/09/2024 10:37:51 PM - ERROR - tool is not operational
+06/09/2024 10:41:40 PM - INFO - generation project latest_pro done
+06/09/2024 10:41:41 PM - ERROR - tool is not operational
+06/09/2024 10:47:35 PM - ERROR - 
+mod: /data/dev/python/3_tools/armpicom/github/armpicom/tests/armpicom/pro/__init__.py
+  def: gen_project() 
+    expected file_path <str> object at 0x77f3c2523db0 wrong type 
+    expected file_mode <str> object at 0xb42490 
+    expected file_path <str> object at 0x77f3c2523db0 
+    expected file_format <str> object at 0x77f3c28773c0 
+    expected pro_name <str> object at 0xa3f8a0 format wrong during checking params
+06/09/2024 10:47:35 PM - ERROR - generation failed
+06/09/2024 10:47:39 PM - INFO - generation project latest_pro done
+06/09/2024 10:47:40 PM - ERROR - tool is not operational
+06/09/2024 11:31:57 PM - INFO - generation project latest_pro done
+06/09/2024 11:31:58 PM - ERROR - tool is not operational
+06/09/2024 11:36:24 PM - ERROR - tool is not operational
+06/09/2024 11:40:15 PM - ERROR - tool is not operational
+06/09/2024 11:45:48 PM - ERROR - tool is not operational
+06/09/2024 11:46:01 PM - INFO - generation project latest_pro done
+06/09/2024 11:46:02 PM - ERROR - tool is not operational
+06/09/2024 11:49:36 PM - INFO - generation project latest_pro done
+06/09/2024 11:49:37 PM - ERROR - tool is not operational

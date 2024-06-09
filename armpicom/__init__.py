@@ -23,6 +23,7 @@ Info
 import sys
 from typing import Any, List, Dict
 from os.path import exists, dirname, realpath
+from os import getcwd
 from argparse import Namespace
 
 try:
@@ -43,7 +44,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.8.6'
+__version__ = '1.8.7'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -72,7 +73,7 @@ class ArmPICOM(CfgCLI):
     _CONFIG: str = '/conf/armpicom.cfg'
     _LOG: str = '/log/armpicom.log'
     _LOGO: str = '/conf/armpicom.logo'
-    _OPS: List[str] = ['-g', '--gen', '-v', '--verbose', '--version']
+    _OPS: List[str] = ['-n', '--name', '-v', '--verbose']
 
     def __init__(self, verbose: bool = False) -> None:
         '''
@@ -101,16 +102,13 @@ class ArmPICOM(CfgCLI):
         )
         if self.tool_operational:
             self.add_new_option(
-                self._OPS[0], self._OPS[1],
-                dest='gen', help='generate project (provide name)'
+                self._OPS[0], self._OPS[1], dest='name',
+                help='generate project (provide name)'
             )
             self.add_new_option(
                 self._OPS[2], self._OPS[3],
                 action='store_true', default=False,
                 help='activate verbose mode for generation'
-            )
-            self.add_new_option(
-                self._OPS[4], action='version', version=__version__
             )
 
     def process(self, verbose: bool = False) -> bool:
@@ -125,87 +123,50 @@ class ArmPICOM(CfgCLI):
         '''
         status: bool = False
         if self.tool_operational:
-            if len(sys.argv) >= 4:
-                if sys.argv[2] not in self._OPS:
+            try:
+                args: Any | Namespace = self.parse_args(sys.argv)
+                if not bool(getattr(args, "name")):
                     error_message(
-                        [
-                            f'{self._GEN_VERBOSE.lower()}',
-                            'provide project name (-g app | --gen app)'
-                        ]
-                    )
-                    self._logger.write_log(
-                        'missing project name', self._logger.ATS_ERROR
+                        [f'{self._GEN_VERBOSE.lower()} missing name argument']
                     )
                     return status
-            else:
-                error_message(
-                    [
+                if exists(f'{getcwd()}/{str(getattr(args, "name"))}'):
+                    error_message([
                         f'{self._GEN_VERBOSE.lower()}',
-                        'provide project name (-g app | --gen app)'
-                    ]
+                        f'project with name [{getattr(args, "name")}] exists'
+                    ])
+                    return status
+                gen: GenArmPICOM = GenArmPICOM(
+                    getattr(args, 'verbose') or verbose
                 )
-                self._logger.write_log(
-                    'missing project name', self._logger.ATS_ERROR
-                )
-                return status
-            args: Any | Namespace = self.parse_args(sys.argv[2:])
-            if not exists(getattr(args, 'gen')):
-                if bool(getattr(args, 'gen')):
+                try:
                     print(
                         " ".join([
                             f'[{self._GEN_VERBOSE.lower()}]',
-                            'gen ARM PICO project skeleton',
-                            str(getattr(args, 'gen'))
+                            'generate ARM PICO project skeleton',
+                            str(getattr(args, 'name'))
                         ])
                     )
-                    generator: GenArmPICOM = GenArmPICOM(verbose)
-                    try:
-                        status = generator.gen_project(
-                            getattr(args, 'gen'), verbose
-                        )
-                    except (ATSTypeError, ATSValueError) as e:
-                        error_message(
-                            [f'{self._GEN_VERBOSE.lower()} {str(e)}']
-                        )
-                        self._logger.write_log(
-                            f'{str(e)}', self._logger.ATS_ERROR
-                        )
-                    if status:
-                        success_message(
-                            [f'{self._GEN_VERBOSE.lower()} done\n']
-                        )
-                        self._logger.write_log(
-                            f'gen project {getattr(args, "gen")} done',
-                            self._logger.ATS_INFO
-                        )
-                    else:
-                        error_message(
-                            [f'{self._GEN_VERBOSE.lower()} generation failed']
-                        )
-                        self._logger.write_log(
-                            'generation failed', self._logger.ATS_ERROR
-                        )
-                else:
-                    error_message(
-                        [
-                            f'{self._GEN_VERBOSE.lower()}',
-                            'provide project name (-g app | --gen app)'
-                        ]
-                    )
+                    status = gen.gen_project(getattr(args, 'name'), verbose)
+                except (ATSTypeError, ATSValueError) as e:
+                    error_message([f'{self._GEN_VERBOSE.lower()} {str(e)}'])
+                    self._logger.write_log(f'{str(e)}', self._logger.ATS_ERROR)
+                if status:
+                    success_message([f'{self._GEN_VERBOSE.lower()} done\n'])
                     self._logger.write_log(
-                        'missing project name', self._logger.ATS_ERROR
+                        f'generation project {getattr(args, "name")} done',
+                        self._logger.ATS_INFO
                     )
-            else:
+                else:
+                    error_message([f'{self._GEN_VERBOSE.lower()} failed'])
+                    self._logger.write_log(
+                        'generation failed', self._logger.ATS_ERROR
+                    )
+            except SystemExit:
                 error_message(
-                    [
-                        f'{self._GEN_VERBOSE.lower()}',
-                        f'project with name [{getattr(args, "gen")}] exists'
-                    ]
+                    [f'{self._GEN_VERBOSE.lower()} expected argument -n']
                 )
-                self._logger.write_log(
-                    f'project with name [{getattr(args, "gen")}] exists',
-                    self._logger.ATS_ERROR
-                )
+                return status
         else:
             error_message(
                 [f'{self._GEN_VERBOSE.lower()} tool is not operational']
