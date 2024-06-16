@@ -1,6 +1,6 @@
-<img align="right" src="https://raw.githubusercontent.com/vroncevic/armpicom/dev/docs/armpicom_logo.png" width="25%">
-
 # Generate RPI project configuration/build setup
+
+<img align="right" src="https://raw.githubusercontent.com/vroncevic/armpicom/dev/docs/armpicom_logo.png" width="25%">
 
 **armpicom** is toolset for generation of RPI PICO project configuration/build setup.
 
