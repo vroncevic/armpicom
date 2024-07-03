@@ -21,7 +21,7 @@ Info
 '''
 
 from __future__ import print_function
-from typing import List
+from typing import List, Optional
 from os.path import abspath, dirname, join
 from setuptools import setup
 
@@ -29,7 +29,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.8.7'
+__version__ = '1.8.8'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -41,7 +41,7 @@ LOG: str = 'log'
 BUILD: str = 'conf/template/build'
 SRC: str = 'conf/template/src'
 THIS_DIR: str = abspath(dirname(__file__))
-long_description: str | None = None
+long_description: Optional[str] = None
 with open(join(THIS_DIR, 'README.md'), encoding='utf-8') as readme:
     long_description = readme.read()
 PROGRAMMING_LANG: str = 'Programming Language :: Python ::'
@@ -63,7 +63,7 @@ APPROVED_LICENSES: List[str] = [
 PYP_CLASSIFIERS: List[str] = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 setup(
     name='armpicom',
-    version='1.8.7',
+    version='1.8.8',
     description='Python package for generation of RPI configuration/build',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
