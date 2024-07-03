@@ -21,7 +21,7 @@ Info
 '''
 
 import sys
-from typing import List, Dict
+from typing import List, Dict, Optional
 from os.path import dirname, realpath
 
 try:
@@ -42,7 +42,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.8.7'
+__version__ = '1.8.8'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -84,8 +84,8 @@ class GenArmPICOM(FileCheck, ProConfig, ProName):
         verbose_message(
             verbose, [f'{self._GEN_VERBOSE.lower()} init generator']
         )
-        self._reader: ReadTemplate | None = ReadTemplate(verbose)
-        self._writer: WriteTemplate | None = WriteTemplate(verbose)
+        self._reader: Optional[ReadTemplate] = ReadTemplate(verbose)
+        self._writer: Optional[WriteTemplate] = WriteTemplate(verbose)
         current_dir: str = dirname(realpath(__file__))
         pro_structure: str = f'{current_dir}{self._PRO_STRUCTURE}'
         self.check_path(pro_structure, verbose)
@@ -115,20 +115,22 @@ class GenArmPICOM(FileCheck, ProConfig, ProName):
         '''
         return self._writer
 
-    def gen_project(self, pro_name: str | None, verbose: bool = False) -> bool:
+    def gen_project(
+        self, pro_name: Optional[str], verbose: bool = False
+    ) -> bool:
         '''
             Generates RPI PI Pico project structure.
 
             :param pro_name: Project name | None
-            :type pro_name: <str> | <NoneType>
+            :type pro_name: <Optional[str]>
             :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
             :return: True (success operation) | False
             :rtype: <bool>
             :exceptions: ATSTypeError | ATSValueError
         '''
-        error_msg: str | None = None
-        error_id: int | None = None
+        error_msg: Optional[str] = None
+        error_id: Optional[int] = None
         error_msg, error_id = self.check_params([
             ('str:pro_name', pro_name)
         ])

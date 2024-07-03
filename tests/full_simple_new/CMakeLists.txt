@@ -1,7 +1,7 @@
 #
 # @brief   full_simple_new main entry point for build process
-# @version v1.8.7
-# @date    2024-06-09
+# @version v1.8.8
+# @date    2024-07-03
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 

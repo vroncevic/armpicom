@@ -109,10 +109,11 @@ Tool structure
         │   ├── __init__.py
         │   ├── read_template.py
         │   └── write_template.py
+        ├── py.typed
         └── run/
             └── armpicom_run.py
-
-    8 directories, 16 files
+    
+    8 directories, 17 files
 
 Copyright and licence
 -----------------------
