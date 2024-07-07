@@ -1,7 +1,7 @@
 #
 # @brief   full_simple_new setup project url
-# @version v1.8.9
-# @date    2024-07-07
+# @version v1.9.0
+# @date    2024-07-08
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 

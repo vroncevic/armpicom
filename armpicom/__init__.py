@@ -44,7 +44,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.8.9'
+__version__ = '1.9.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -98,10 +98,7 @@ class ArmPICOM(ATSCli):
             verbose, [f'{self._GEN_VERBOSE.lower()} init tool info']
         )
         self._logger: ATSLogger = ATSLogger(
-            ats_name=self._GEN_VERBOSE.lower(),
-            ats_log_stdout=True,
-            ats_logger_status=True,
-            verbose=verbose
+            self._GEN_VERBOSE.lower(), True, None, True, verbose
         )
         if self.is_operational():
             self.add_new_option(
