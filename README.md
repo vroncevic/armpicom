@@ -138,6 +138,16 @@ Tool structure
     8 directories, 17 files
 ```
 
+### Code coverage
+
+| Name | Stmts | Miss | Cover |
+|------|-------|------|-------|
+| `armpicom/__init__.py` | 71 | 12 | 83% |
+| `armpicom/pro/__init__.py` | 59 | 2 | 97% |
+| `armpicom/pro/read_template.py` | 53 | 2 | 96% |
+| `armpicom/pro/write_template.py` | 58 | 3 | 95% |
+| **Total** | 241 | 19 | 92% |
+
 ### Docs
 
 [![Documentation Status](https://readthedocs.org/projects/armpicom/badge/?version=latest)](https://armpicom.readthedocs.io/en/latest/?badge=latest)
