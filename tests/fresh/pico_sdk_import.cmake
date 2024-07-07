@@ -1,5 +1,5 @@
 #
-# @brief   latest_pro RPI Pico SDK import
+# @brief   fresh RPI Pico SDK import
 # @version v1.8.9
 # @date    2024-07-07
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>

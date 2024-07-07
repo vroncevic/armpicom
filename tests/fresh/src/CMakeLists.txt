@@ -1,5 +1,5 @@
 #
-# @brief   new_simple_test setup output files
+# @brief   fresh setup output files
 # @version v1.8.9
 # @date    2024-07-07
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>

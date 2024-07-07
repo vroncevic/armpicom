@@ -1,7 +1,7 @@
 #
 # @brief   full_simple_new setup output files
-# @version v1.8.8
-# @date    2024-07-03
+# @version v1.8.9
+# @date    2024-07-07
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 

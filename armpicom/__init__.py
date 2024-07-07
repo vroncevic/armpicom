@@ -21,15 +21,15 @@ Info
 '''
 
 import sys
-from typing import Any, List, Dict
+from typing import List, Dict, Optional
 from os.path import exists, dirname, realpath
 from os import getcwd
 from argparse import Namespace
 
 try:
+    from ats_utilities.cli import ATSCli
     from ats_utilities.splash import Splash
     from ats_utilities.logging import ATSLogger
-    from ats_utilities.cli.cfg_cli import CfgCLI
     from ats_utilities.console_io.error import error_message
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.console_io.success import success_message
@@ -44,13 +44,13 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/armpicom'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.8.8'
+__version__ = '1.8.9'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class ArmPICOM(CfgCLI):
+class ArmPICOM(ATSCli):
     '''
         Defines class ArmPICOM with attribute(s) and method(s).
         Loads base information, creates a CLI interface, and runs operations.
@@ -98,9 +98,12 @@ class ArmPICOM(CfgCLI):
             verbose, [f'{self._GEN_VERBOSE.lower()} init tool info']
         )
         self._logger: ATSLogger = ATSLogger(
-            self._GEN_VERBOSE.lower(), f'{current_dir}{self._LOG}', verbose
+            ats_name=self._GEN_VERBOSE.lower(),
+            ats_log_stdout=True,
+            ats_logger_status=True,
+            verbose=verbose
         )
-        if self.tool_operational:
+        if self.is_operational():
             self.add_new_option(
                 self._OPS[0], self._OPS[1], dest='name',
                 help='generate project (provide name)'
@@ -122,9 +125,9 @@ class ArmPICOM(CfgCLI):
             :exceptions: None
         '''
         status: bool = False
-        if self.tool_operational:
+        if self.is_operational():
             try:
-                args: Any | Namespace = self.parse_args(sys.argv)
+                args: Optional[Namespace] = self.parse_args(sys.argv)
                 if not bool(getattr(args, "name")):
                     error_message(
                         [f'{self._GEN_VERBOSE.lower()} missing name argument']
@@ -164,7 +167,7 @@ class ArmPICOM(CfgCLI):
                     )
             except SystemExit:
                 error_message(
-                    [f'{self._GEN_VERBOSE.lower()} expected argument -n']
+                    [f'{self._GEN_VERBOSE.lower()} expected argument name']
                 )
                 return status
         else:
