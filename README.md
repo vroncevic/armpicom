@@ -23,6 +23,7 @@ other information that should be provided before the modules are installed.
     - [Install using docker](#install-using-docker)
 - [Dependencies](#dependencies)
 - [Tool structure](#tool-structure)
+- [Code coverage](#code-coverage)
 - [Docs](#docs)
 - [Contributing](#contributing)
 - [Copyright and licence](#copyright-and-licence)
@@ -142,11 +143,11 @@ Tool structure
 
 | Name | Stmts | Miss | Cover |
 |------|-------|------|-------|
-| `armpicom/__init__.py` | 71 | 12 | 83% |
-| `armpicom/pro/__init__.py` | 59 | 2 | 97% |
-| `armpicom/pro/read_template.py` | 53 | 2 | 96% |
-| `armpicom/pro/write_template.py` | 58 | 3 | 95% |
-| **Total** | 241 | 19 | 92% |
+| `armpicom/__init__.py` | 69 | 10 | 86%|
+| `armpicom/pro/__init__.py` | 57 | 0 | 100%|
+| `armpicom/pro/read_template.py` | 51 | 0 | 100%|
+| `armpicom/pro/write_template.py` | 56 | 1 | 98%|
+| **Total** | 233 | 11 | 95% |
 
 ### Docs
 
@@ -165,7 +166,7 @@ More documentation and info at
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2021 - 2024 by [vroncevic.github.io/armpicom](https://vroncevic.github.io/armpicom)
+Copyright (C) 2021 - 2025 by [vroncevic.github.io/armpicom](https://vroncevic.github.io/armpicom)
 
 **armpicom** is free software; you can redistribute it and/or modify
 it under the same terms as Python itself, either Python version 3.x or,

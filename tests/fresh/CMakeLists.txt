@@ -1,7 +1,7 @@
 #
 # @brief   fresh main entry point for build process
-# @version v1.9.1
-# @date    2024-07-07
+# @version v1.9.2
+# @date    2025-07-07
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 
