@@ -7,7 +7,18 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   armpicom.pro
+   armpicom.application
+   armpicom.domain
+   armpicom.infrastructure
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   armpicom.armpicom_bundle
+   armpicom.engine
 
 Module contents
 ---------------

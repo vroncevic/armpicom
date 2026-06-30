@@ -54,13 +54,21 @@ other information that should be provided before the tool is installed.</p>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">armpicom</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="armpicom.html">armpicom package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="armpicom.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="armpicom.pro.html">armpicom.pro package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="armpicom.application.html">armpicom.application package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="armpicom.domain.html">armpicom.domain package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="armpicom.infrastructure.html">armpicom.infrastructure package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="armpicom.html#module-armpicom">Module contents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="armpicom.html#armpicom.ArmPICOM"><code class="docutils literal notranslate"><span class="pre">ArmPICOM</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="armpicom.html#submodules">Submodules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="armpicom.armpicom_bundle.html">armpicom.armpicom_bundle module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="armpicom.engine.html">armpicom.engine module</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="armpicom.html#module-armpicom">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main.html#main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -107,32 +115,49 @@ pip3<span class="w"> </span>install<span class="w"> </span>armpicom
 <p><strong>armpicom</strong> is based on OOP.</p>
 <p>Tool structure</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>armpicom/
-<span class="w">    </span>├──<span class="w"> </span>conf/
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>armpicom.cfg
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>armpicom.logo
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>armpicom_util.cfg
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>project.yaml
-<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>template/
-<span class="w">    </span>│<span class="w">       </span>├──<span class="w"> </span>build/
-<span class="w">    </span>│<span class="w">       </span>│<span class="w">   </span>└──<span class="w"> </span>armpicom.md
-<span class="w">    </span>│<span class="w">       </span>├──<span class="w"> </span>CMakeLists.template
-<span class="w">    </span>│<span class="w">       </span>├──<span class="w"> </span>pico_sdk_import.template
-<span class="w">    </span>│<span class="w">       </span>├──<span class="w"> </span>pro_auto_set_url.template
-<span class="w">    </span>│<span class="w">       </span>└──<span class="w"> </span>src/
-<span class="w">    </span>│<span class="w">           </span>├──<span class="w"> </span>CMakeLists.template
-<span class="w">    </span>│<span class="w">           </span>└──<span class="w"> </span>main.template
-<span class="w">    </span>├──<span class="w"> </span>__init__.py
-<span class="w">    </span>├──<span class="w"> </span>log/
-<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>armpicom.log
-<span class="w">    </span>├──<span class="w"> </span>pro/
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>read_template.py
-<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>write_template.py
-<span class="w">    </span>├──<span class="w"> </span>py.typed
-<span class="w">    </span>└──<span class="w"> </span>run/
-<span class="w">        </span>└──<span class="w"> </span>armpicom_run.py
+<span class="w">     </span>├──<span class="w"> </span>application/
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+<span class="w">     </span>│<span class="w">   </span>└──<span class="w"> </span>service.py
+<span class="w">     </span>├──<span class="w"> </span>armpicom_bundle.py
+<span class="w">     </span>├──<span class="w"> </span>domain/
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>models.py
+<span class="w">     </span>│<span class="w">   </span>└──<span class="w"> </span>ports/
+<span class="w">     </span>│<span class="w">       </span>├──<span class="w"> </span>__init__.py
+<span class="w">     </span>│<span class="w">       </span>├──<span class="w"> </span>iservice.py
+<span class="w">     </span>│<span class="w">       </span>└──<span class="w"> </span>isubprocessor.py
+<span class="w">     </span>├──<span class="w"> </span>engine.py
+<span class="w">     </span>├──<span class="w"> </span>infrastructure/
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>cli.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>cli_bundle.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>config/
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>armpicom.cfg
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>armpicom.logo
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>scheme.json
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>templates.tgz
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>gen_picom_command.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>icli.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>icli_command.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+<span class="w">     </span>│<span class="w">   </span>└──<span class="w"> </span>subprocessor.py
+<span class="w">     </span>└──<span class="w"> </span>__init__.py
 
-<span class="m">8</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">17</span><span class="w"> </span>files
+<span class="w"> </span><span class="m">6</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">21</span><span class="w"> </span>files
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h1>
+<p>Install package</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3<span class="w"> </span>install<span class="w"> </span>armpicom
+</pre></div>
+</div>
+<p>Prepare main entry point by downloading <code class="docutils literal notranslate"><span class="pre">main.py</span></code> or create your own.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>-O<span class="w"> </span>main.py<span class="w"> </span>https://raw.githubusercontent.com/vroncevic/armpicom/main/main.py
+</pre></div>
+</div>
+<p>Running tool for creating new ARM Pico M project</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>main.py<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>mytool<span class="w"> </span>--output<span class="w"> </span>./demo/
 </pre></div>
 </div>
 </section>
@@ -170,6 +195,7 @@ at your option, any later version of Python 3 you may have available.</p>
 <li><a class="reference internal" href="#installation">Installation</a></li>
 <li><a class="reference internal" href="#dependencies">Dependencies</a></li>
 <li><a class="reference internal" href="#tool-structure">Tool structure</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#copyright-and-licence">Copyright and licence</a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>

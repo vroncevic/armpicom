@@ -24,6 +24,7 @@ other information that should be provided before the modules are installed.
 - [Dependencies](#dependencies)
 - [Tool structure](#tool-structure)
 - [Code coverage](#code-coverage)
+- [Usage](#usage)
 - [Docs](#docs)
 - [Contributing](#contributing)
 - [Copyright and licence](#copyright-and-licence)
@@ -109,45 +110,90 @@ You can use Dockerfile to create image/container.
 
 Tool structure
 
+<details>
+<summary><b>Click to expand framework structure</b></summary>
+
 ```bash
     armpicom/
-        ├── conf/
-        │   ├── armpicom.cfg
-        │   ├── armpicom.logo
-        │   ├── armpicom_util.cfg
-        │   ├── project.yaml
-        │   └── template/
-        │       ├── build/
-        │       │   └── armpicom.md
-        │       ├── CMakeLists.template
-        │       ├── pico_sdk_import.template
-        │       ├── pro_auto_set_url.template
-        │       └── src/
-        │           ├── CMakeLists.template
-        │           └── main.template
-        ├── __init__.py
-        ├── log/
-        │   └── armpicom.log
-        ├── pro/
-        │   ├── __init__.py
-        │   ├── read_template.py
-        │   └── write_template.py
-        ├── py.typed
-        └── run/
-            └── armpicom_run.py
-    
-    8 directories, 17 files
+         ├── application/
+         │   ├── __init__.py
+         │   └── service.py
+         ├── armpicom_bundle.py
+         ├── domain/
+         │   ├── __init__.py
+         │   ├── models.py
+         │   └── ports/
+         │       ├── __init__.py
+         │       ├── iservice.py
+         │       └── isubprocessor.py
+         ├── engine.py
+         ├── infrastructure/
+         │   ├── cli.py
+         │   ├── cli_bundle.py
+         │   ├── config/
+         │   │   ├── armpicom.cfg
+         │   │   ├── armpicom.logo
+         │   │   ├── scheme.json
+         │   │   └── templates.tgz
+         │   ├── gen_picom_command.py
+         │   ├── icli.py
+         │   ├── icli_command.py
+         │   ├── __init__.py
+         │   └── subprocessor.py
+         └── __init__.py
+
+     6 directories, 21 files
 ```
+</details>
 
 ### Code coverage
 
+<details>
+<summary><b>Click to expand code coverage</b></summary>
+
 | Name | Stmts | Miss | Cover |
 |------|-------|------|-------|
-| `armpicom/__init__.py` | 69 | 10 | 86%|
-| `armpicom/pro/__init__.py` | 57 | 0 | 100%|
-| `armpicom/pro/read_template.py` | 51 | 0 | 100%|
-| `armpicom/pro/write_template.py` | 56 | 1 | 98%|
-| **Total** | 233 | 11 | 95% |
+| `armpicom/__init__.py` | 8 | 0 | 100%|
+| `armpicom/application/__init__.py` | 8 | 0 | 100%|
+| `armpicom/application/service.py` | 27 | 0 | 100%|
+| `armpicom/armpicom_bundle.py` | 39 | 0 | 100%|
+| `armpicom/domain/__init__.py` | 8 | 0 | 100%|
+| `armpicom/domain/models.py` | 18 | 0 | 100%|
+| `armpicom/domain/ports/__init__.py` | 8 | 0 | 100%|
+| `armpicom/domain/ports/iservice.py` | 11 | 0 | 100%|
+| `armpicom/domain/ports/isubprocessor.py` | 11 | 0 | 100%|
+| `armpicom/engine.py` | 61 | 0 | 100%|
+| `armpicom/infrastructure/__init__.py` | 8 | 0 | 100%|
+| `armpicom/infrastructure/cli.py` | 36 | 0 | 100%|
+| `armpicom/infrastructure/cli_bundle.py` | 33 | 0 | 100%|
+| `armpicom/infrastructure/gen_picom_command.py` | 32 | 0 | 100%|
+| `armpicom/infrastructure/icli.py` | 11 | 0 | 100%|
+| `armpicom/infrastructure/icli_command.py` | 14 | 0 | 100%|
+| `armpicom/infrastructure/subprocessor.py` | 53 | 0 | 100%|
+| **Total** | 386 | 0 | 100% |
+
+</details>
+
+### Usage
+
+Install package
+
+```bash
+pip3 install armpicom
+```
+
+Prepare main entry point by downloading [main.py](https://raw.githubusercontent.com/vroncevic/armpicom/main/main.py) or create your own.
+
+
+```bash
+wget -O main.py https://raw.githubusercontent.com/vroncevic/armpicom/main/main.py
+```
+
+Running tool for creating new ARM Pico M project
+
+```bash
+python3 main.py create --name mytool --output ./demo/
+```
 
 ### Docs
 
