@@ -88,32 +88,55 @@ Tool structure
 .. code-block:: bash
 
     armpicom/
-        ├── conf/
-        │   ├── armpicom.cfg
-        │   ├── armpicom.logo
-        │   ├── armpicom_util.cfg
-        │   ├── project.yaml
-        │   └── template/
-        │       ├── build/
-        │       │   └── armpicom.md
-        │       ├── CMakeLists.template
-        │       ├── pico_sdk_import.template
-        │       ├── pro_auto_set_url.template
-        │       └── src/
-        │           ├── CMakeLists.template
-        │           └── main.template
-        ├── __init__.py
-        ├── log/
-        │   └── armpicom.log
-        ├── pro/
-        │   ├── __init__.py
-        │   ├── read_template.py
-        │   └── write_template.py
-        ├── py.typed
-        └── run/
-            └── armpicom_run.py
-    
-    8 directories, 17 files
+         ├── application/
+         │   ├── __init__.py
+         │   └── service.py
+         ├── armpicom_bundle.py
+         ├── domain/
+         │   ├── __init__.py
+         │   ├── models.py
+         │   └── ports/
+         │       ├── __init__.py
+         │       ├── iservice.py
+         │       └── isubprocessor.py
+         ├── engine.py
+         ├── infrastructure/
+         │   ├── cli.py
+         │   ├── cli_bundle.py
+         │   ├── config/
+         │   │   ├── armpicom.cfg
+         │   │   ├── armpicom.logo
+         │   │   ├── scheme.json
+         │   │   └── templates.tgz
+         │   ├── gen_picom_command.py
+         │   ├── icli.py
+         │   ├── icli_command.py
+         │   ├── __init__.py
+         │   └── subprocessor.py
+         └── __init__.py
+
+     6 directories, 21 files
+
+Usage
+------
+
+Install package
+
+.. code-block:: bash
+
+    pip3 install armpicom
+
+Prepare main entry point by downloading ``main.py`` or create your own.
+
+.. code-block:: bash
+
+    wget -O main.py https://raw.githubusercontent.com/vroncevic/armpicom/main/main.py
+
+Running tool for creating new ARM Pico M project
+
+.. code-block:: bash
+
+    python3 main.py create --name mytool --output ./demo/
 
 Copyright and licence
 -----------------------
