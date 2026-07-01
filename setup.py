@@ -28,7 +28,7 @@ __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://vroncevic.github.io/armpicom'
 __credits__: list[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__: str = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__: str = '1.9.4'
+__version__: str = '1.9.5'
 __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
@@ -67,7 +67,7 @@ def find_package_data(pkg: str) -> list[str]:
 
 setup(
     name='armpicom',
-    version='1.9.4',
+    version='1.9.5',
     description='Python package for generation of RPI configuration/build',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',

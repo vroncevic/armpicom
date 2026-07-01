@@ -41,15 +41,15 @@ __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://vroncevic.github.io/armpicom'
 __credits__: list[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__: str = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__: str = '1.9.4'
+__version__: str = '1.9.5'
 __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Development'
 
 
-class Armpicom(Base):
+class ARMPicom(Base):
     '''
-        Engine orchestrating the initialization and execution of Armpicom.
+        Engine orchestrating the initialization and execution of ARMPicom.
 
         It defines:
 
@@ -57,17 +57,17 @@ class Armpicom(Base):
                 | _info_file - Path to the info file.
                 | _cli - Adapter for command line user interface.
             :methods:
-                | __init__ - Initializes the Armpicom engine with adapters and services.
-                | run - Starts the armpicom.
+                | __init__ - Initializes the ARMPicom engine with adapters and services.
+                | process - Starts ARMPicom engine.
     '''
 
     _info_file: str = 'infrastructure/config/armpicom.cfg'
 
     def __init__(self, component_bundle: ARMPicomBundle | None = None) -> None:
         '''
-            Initializes the Armpicom engine with adapters and services.
+            Initializes the ARMPicom engine with adapters and services.
 
-            :param component_bundle: Armpicom bundle containing adapters and services | None.
+            :param component_bundle: ARMPicom bundle containing adapters and services | None.
             :type component_bundle: <ARMPicomBundle | None>
             :exceptions: None.
         '''
@@ -116,7 +116,7 @@ class Armpicom(Base):
             ])
             self._reporter.success(["✅ armpicom: engine initialized successfully."])
 
-        except ATSValueError as exc:
+        except (ATSValueError, ValueError) as exc:
             self._reporter.error([f'❌ armpicom: {exc}'])
         except Exception as exc:
             self._reporter.error([f'❌ armpicom unexpected exception: {exc}'])
@@ -124,22 +124,28 @@ class Armpicom(Base):
     @override
     def process(self) -> None:
         '''
-            Starts the CLI adapter to run the tool command.
+            Starts ARMPicom via CLI adapter.
 
             :exceptions: None.
         '''
         result: dict[str, Any] = {}
 
-        if self.is_initialized():
-            self._reporter.success(["🔥 Starting execution command..."])
-            result = self._cli.run()
-            self._reporter.success(["✅ Execution finished!"])
+        try:
+            if self.is_initialized():
+                self._reporter.success(["🔥 Starting execution command..."])
+                result = self._cli.run()
+                self._reporter.success(["✅ Execution finished!"])
 
-            if result.get("returncode") != 0:
-                self._reporter.error([f'❌ armpicom: {result.get("stderr")}'])
-                self._reporter.error([f'❌ armpicom: exiting with error.'])
+                if result.get("returncode") != 0:
+                    self._reporter.error([f'❌ armpicom: {result.get("stderr")}'])
+                    self._reporter.error([f'❌ armpicom: exiting with error.'])
+                else:
+                    self._reporter.success([f'✅ armpicom: {result.get("stdout") or 'done!'}'])
+                    self._reporter.success([f'✅ armpicom: exiting successfully.'])
             else:
-                self._reporter.success([f'✅ armpicom: {result.get("stdout") or 'done!'}'])
-                self._reporter.success([f'✅ armpicom: exiting successfully.'])
-        else:
-            self._reporter.error([f'❌ armpicom: engine not initialized.'])
+                self._reporter.error([f'❌ armpicom: engine not initialized.'])
+
+        except (ATSValueError, ValueError) as exc:
+            self._reporter.error([f'❌ armpicom: {exc}'])
+        except Exception as exc:
+            self._reporter.error([f'❌ armpicom unexpected exception: {exc}'])

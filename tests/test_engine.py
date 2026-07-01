@@ -16,7 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Unit tests for main engine (Armpicom) and ARMPicomBundle.
+    Unit tests for main engine (ARMPicom) and ARMPicomBundle.
 '''
 
 import unittest
@@ -25,7 +25,7 @@ from ats_utilities.exceptions.ats_value_error import ATSValueError
 from ats_utilities.generator.igenerator import IGenerator
 from ats_utilities.option.ioption_parser import IOptionManager
 
-from armpicom.engine import Armpicom
+from armpicom.engine import ARMPicom
 from armpicom.armpicom_bundle import ARMPicomBundle
 from armpicom.domain.ports.isubprocessor import ISubProcessor
 from armpicom.domain.ports.iservice import IService
@@ -35,7 +35,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2026, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.9.4'
+__version__ = '1.9.5'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Development'
@@ -48,18 +48,18 @@ class TestEngine(unittest.TestCase):
 
     def test_default_init(self) -> None:
         '''
-            Tests default constructor initialization of Armpicom.
+            Tests default constructor initialization of ARMPicom.
         '''
-        engine: Armpicom = Armpicom()
+        engine: ARMPicom = ARMPicom()
         self.assertTrue(engine.is_initialized())
         self.assertIsNotNone(engine._cli)
 
-    @patch.object(Armpicom, "_info_file", "invalid/path/armpicom.cfg")
+    @patch.object(ARMPicom, "_info_file", "invalid/path/armpicom.cfg")
     def test_init_not_initialized(self) -> None:
         '''
             Tests initialization fails when config is invalid.
         '''
-        engine: Armpicom = Armpicom()
+        engine: ARMPicom = ARMPicom()
         self.assertFalse(engine.is_initialized())
 
     @patch('armpicom.engine.CLI', side_effect=Exception("Unexpected error"))
@@ -67,8 +67,38 @@ class TestEngine(unittest.TestCase):
         '''
             Tests initialization catches unexpected exception.
         '''
-        engine: Armpicom = Armpicom()
+        engine: ARMPicom = ARMPicom()
         self.assertFalse(engine.is_initialized())
+
+    def test_process_unexpected_exception(self) -> None:
+        '''
+            Tests engine process catches unexpected exception.
+        '''
+        mock_cli: MagicMock = MagicMock(spec=ICLI)
+        mock_cli.is_initialized.return_value = True
+        mock_cli.run.side_effect = Exception("Unexpected error")
+
+        bundle: ARMPicomBundle = ARMPicomBundle(cli=mock_cli)
+        engine: ARMPicom = ARMPicom(bundle)
+        self.assertTrue(engine.is_initialized())
+
+        engine.process()
+        mock_cli.run.assert_called_once()
+
+    def test_process_expected_exception(self) -> None:
+        '''
+            Tests engine process catches expected exception.
+        '''
+        mock_cli: MagicMock = MagicMock(spec=ICLI)
+        mock_cli.is_initialized.return_value = True
+        mock_cli.run.side_effect = ATSValueError("Expected error")
+
+        bundle: ARMPicomBundle = ARMPicomBundle(cli=mock_cli)
+        engine: ARMPicom = ARMPicom(bundle)
+        self.assertTrue(engine.is_initialized())
+
+        engine.process()
+        mock_cli.run.assert_called_once()
 
     def test_init_component_not_initialized(self) -> None:
         '''
@@ -78,7 +108,7 @@ class TestEngine(unittest.TestCase):
         mock_cli.is_initialized.return_value = False
         
         bundle: ARMPicomBundle = ARMPicomBundle(cli=mock_cli)
-        engine: Armpicom = Armpicom(bundle)
+        engine: ARMPicom = ARMPicom(bundle)
         self.assertFalse(engine.is_initialized())
 
     def test_bundle_validation_failures(self) -> None:
@@ -157,7 +187,7 @@ class TestEngine(unittest.TestCase):
         mock_cli.run.return_value = {"returncode": 0, "stdout": "Success"}
 
         bundle: ARMPicomBundle = ARMPicomBundle(cli=mock_cli)
-        engine: Armpicom = Armpicom(bundle)
+        engine: ARMPicom = ARMPicom(bundle)
         self.assertTrue(engine.is_initialized())
 
         engine.process()
@@ -172,7 +202,7 @@ class TestEngine(unittest.TestCase):
         mock_cli.run.return_value = {"returncode": 0, "stdout": None}
 
         bundle: ARMPicomBundle = ARMPicomBundle(cli=mock_cli)
-        engine: Armpicom = Armpicom(bundle)
+        engine: ARMPicom = ARMPicom(bundle)
         self.assertTrue(engine.is_initialized())
 
         engine.process()
@@ -187,18 +217,18 @@ class TestEngine(unittest.TestCase):
         mock_cli.run.return_value = {"returncode": 1, "stderr": "Failed"}
 
         bundle: ARMPicomBundle = ARMPicomBundle(cli=mock_cli)
-        engine: Armpicom = Armpicom(bundle)
+        engine: ARMPicom = ARMPicom(bundle)
         self.assertTrue(engine.is_initialized())
 
         engine.process()
         mock_cli.run.assert_called_once()
 
-    @patch.object(Armpicom, "_info_file", "invalid/path/armpicom.cfg")
+    @patch.object(ARMPicom, "_info_file", "invalid/path/armpicom.cfg")
     def test_process_not_initialized(self) -> None:
         '''
             Tests processing fails immediately if engine is uninitialized.
         '''
-        engine: Armpicom = Armpicom()
+        engine: ARMPicom = ARMPicom()
         self.assertFalse(engine.is_initialized())
         
         engine.process()
@@ -207,7 +237,7 @@ class TestEngine(unittest.TestCase):
         '''
             Tests engine string representation.
         '''
-        engine: Armpicom = Armpicom()
+        engine: ARMPicom = ARMPicom()
         engine_str: str = str(engine)
         self.assertIsNotNone(engine_str)
         self.assertIsInstance(engine_str, str)

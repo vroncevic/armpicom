@@ -21,7 +21,6 @@ Info
 
 import unittest
 from unittest.mock import MagicMock
-from ats_utilities.exceptions.ats_value_error import ATSValueError
 from armpicom.domain.ports.isubprocessor import ISubProcessor
 from armpicom.application.service import Service
 
@@ -29,7 +28,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2026, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.9.4'
+__version__ = '1.9.5'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Development'
@@ -62,7 +61,7 @@ class TestService(unittest.TestCase):
         '''
             Tests initialization fails when subprocessor is None.
         '''
-        with self.assertRaises(ATSValueError) as ctx:
+        with self.assertRaises(ValueError) as ctx:
             Service(None)
         self.assertEqual(str(ctx.exception), 'subprocessor must be provided.')
 
