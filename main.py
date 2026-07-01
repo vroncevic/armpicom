@@ -19,13 +19,13 @@ Info
     Main entry point for Task Code Generator CLI.
 '''
 
-from armpicom.engine import Armpicom
+from armpicom.engine import ARMPicom
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://vroncevic.github.io/armpicom'
 __credits__: list[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__: str = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__: str = '1.9.4'
+__version__: str = '1.9.5'
 __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Development'
@@ -33,11 +33,11 @@ __status__: str = 'Development'
 
 def main() -> None:
     '''
-        Bootstraps and runs the Armpicom application with required adapters.
+        Bootstraps and runs the ARMPicom application with required adapters.
 
         :exceptions: None
     '''
-    armpicom = Armpicom()
+    armpicom = ARMPicom()
     armpicom.process()
 
 

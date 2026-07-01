@@ -20,8 +20,6 @@ Info
 '''
 
 from typing import Any, override
-from ats_utilities.factory_class import format_instance_to_string
-from ats_utilities.exceptions.ats_value_error import ATSValueError
 from armpicom.domain.ports.iservice import IService
 from armpicom.domain.ports.isubprocessor import ISubProcessor
 
@@ -29,7 +27,7 @@ __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://vroncevic.github.io/armpicom'
 __credits__: list[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__: str = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__: str = '1.9.4'
+__version__: str = '1.9.5'
 __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Development'
@@ -46,7 +44,6 @@ class Service(IService):
             :methods:
                 | execute - Generates and writes user files.
                 | is_initialized - Checks if the service component is initialized.
-                | __str__ - Returns the service as string representation.
     '''
 
     def __init__(self, subprocessor: ISubProcessor) -> None:
@@ -56,10 +53,10 @@ class Service(IService):
             :param subprocessor: Subprocessor adapter.
             :type subprocessor: <ISubProcessor>
             :exceptions:
-                | ATSValueError: Subprocessor must be provided.
+                | ValueError: Subprocessor must be provided.
         '''
         if subprocessor is None:
-            raise ATSValueError('subprocessor must be provided.')
+            raise ValueError('subprocessor must be provided.')
 
         self._subprocessor: ISubProcessor = subprocessor
 
@@ -86,14 +83,3 @@ class Service(IService):
             :exceptions: None.
         '''
         return self._subprocessor.is_initialized()
-
-    @override
-    def __str__(self) -> str:
-        '''
-            Returns the service as string representation.
-
-            :return: The service as string representation.
-            :rtype: <str>
-            :exceptions: None.
-        '''
-        return format_instance_to_string(self)

@@ -140,9 +140,10 @@ Tool structure
          │   ├── icli_command.py
          │   ├── __init__.py
          │   └── subprocessor.py
-         └── __init__.py
+         ├── __init__.py
+         └── py.typed
 
-     6 directories, 21 files
+     6 directories, 22 files
 ```
 </details>
 
@@ -155,14 +156,14 @@ Tool structure
 |------|-------|------|-------|
 | `armpicom/__init__.py` | 8 | 0 | 100%|
 | `armpicom/application/__init__.py` | 8 | 0 | 100%|
-| `armpicom/application/service.py` | 27 | 0 | 100%|
+| `armpicom/application/service.py` | 22 | 0 | 100%|
 | `armpicom/armpicom_bundle.py` | 39 | 0 | 100%|
 | `armpicom/domain/__init__.py` | 8 | 0 | 100%|
 | `armpicom/domain/models.py` | 18 | 0 | 100%|
 | `armpicom/domain/ports/__init__.py` | 8 | 0 | 100%|
 | `armpicom/domain/ports/iservice.py` | 11 | 0 | 100%|
 | `armpicom/domain/ports/isubprocessor.py` | 11 | 0 | 100%|
-| `armpicom/engine.py` | 61 | 0 | 100%|
+| `armpicom/engine.py` | 66 | 0 | 100%|
 | `armpicom/infrastructure/__init__.py` | 8 | 0 | 100%|
 | `armpicom/infrastructure/cli.py` | 36 | 0 | 100%|
 | `armpicom/infrastructure/cli_bundle.py` | 33 | 0 | 100%|
