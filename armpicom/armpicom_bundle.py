@@ -19,25 +19,30 @@ Info
     Defines a ARMPicomBundle bundle for the CLI application.
 '''
 
+from __future__ import annotations
+
 from typing import Any
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
+
 from ats_utilities.generator.igenerator import IGenerator
-from ats_utilities.option.ioption_parser import IOptionManager
-from ats_utilities.exceptions.ats_value_error import ATSValueError
-from armpicom.domain.ports.isubprocessor import ISubProcessor
-from armpicom.domain.ports.iservice import IService
+from ats_utilities.option.ioption_manager import IOptionManager
+from ats_utilities.factory_value import require_not_none
+from ats_utilities.factory_type import check_type
+
+from armpicom.service.isubprocessor import ISubProcessor
+from armpicom.service.iservice import IService
 from armpicom.infrastructure.icli import ICLI
 
-__author__: str = 'Vladimir Roncevic'
-__copyright__: str = '(C) 2026, https://vroncevic.github.io/armpicom'
-__credits__: list[str] = ['Vladimir Roncevic', 'Python Software Foundation']
-__license__: str = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__: str = '1.9.5'
-__maintainer__: str = 'Vladimir Roncevic'
-__email__: str = 'elektron.ronca@gmail.com'
-__status__: str = 'Development'
+__author__ = r'Vladimir Roncevic'
+__copyright__ = r'(C) 2026, https://vroncevic.github.io/armpicom'
+__credits__ = [r'Vladimir Roncevic', r'Python Software Foundation']
+__license__ = r'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
+__version__ = r'1.9.6'
+__maintainer__ = r'Vladimir Roncevic'
+__email__ = r'elektron.ronca@gmail.com'
+__status__ = r'Development'
 
-@dataclass
+@dataclass(slots=True, kw_only=True)
 class ARMPicomBundle:
     '''
         ARMPicomBundle holding all components (adapters and services) of the CLI application.
@@ -45,68 +50,81 @@ class ARMPicomBundle:
         It defines:
 
             :attributes:
-                | subprocessor - Subprocessor adapter for running commands (default None).
                 | service - Service orchestrating command execution (default None).
-                | parser - CLI argument parser adapter (default None).
+                | subprocessor - Subprocessor adapter for running commands (default None).
+                | generator - Generator for generating project structure (default None).
                 | cli - Command line user interface adapter (default None).
+                | parser - CLI argument parser adapter (default None).
             :methods:
-                | validate - Validates that the bundle is valid.
-                | merge - Merges non-None values from another bundle.
-                | to_dict - Converts the bundle attributes to a dictionary.
+                | validate - Validates that ARMPicomBundle is valid.
+                | merge - Merges non-None values from another ARMPicomBundle into this one.
+                | to_dict - Converts the ARMPicomBundle to a dictionary.
     '''
 
-    generator: IGenerator | None = None
-    subprocessor: ISubProcessor | None = None
     service: IService | None = None
-    parser: IOptionManager | None = None
+    subprocessor: ISubProcessor | None = None
+    generator: IGenerator | None = None
     cli: ICLI | None = None
+    parser: IOptionManager | None = None
 
     def validate(self) -> None:
         '''
-            Validates that the bundle is valid.
+            Validates that ARMPicomBundle is valid (can be called after merge).
+            Performs validation of service, subprocessor, generator, cli and parser attributes.
+            Service must be non-None and an instance of IService interface.
+            Subprocessor must be non-None and an instance of ISubProcessor interface.
+            Generator must be non-None and an instance of IGenerator interface.
+            CLI must be non-None and an instance of ICLI interface.
+            Parser must be non-None and an instance of IOptionManager interface.
 
             :exceptions:
-                | ATSValueError: Subprocessor must be provided.
                 | ATSValueError: Service must be provided.
-                | ATSValueError: Parser must be provided.
+                | ATSValueError: Subprocessor must be provided.
+                | ATSValueError: Generator must be provided.
                 | ATSValueError: CLI must be provided.
+                | ATSValueError: Parser must be provided.
+                | ATSTypeError: Service is not an IService.
+                | ATSTypeError: Subprocessor is not an ISubProcessor.
+                | ATSTypeError: Generator is not an IGenerator.
+                | ATSTypeError: CLI is not an ICLI.
+                | ATSTypeError: Parser is not an IOptionManager.
         '''
-        if self.subprocessor is None:
-            raise ATSValueError('subprocessor must be provided.')
+        require_not_none(self.service, r'service must be provided')
+        require_not_none(self.subprocessor, r'subprocessor must be provided')
+        require_not_none(self.generator, r'generator must be provided')
+        require_not_none(self.cli, r'cli must be provided')
+        require_not_none(self.parser, r'parser must be provided')
+        check_type(self.service, IService, r'service must be an IService')
+        check_type(self.subprocessor, ISubProcessor, r'subprocessor must be an ISubProcessor')
+        check_type(self.generator, IGenerator, r'generator must be an IGenerator')
+        check_type(self.cli, ICLI, r'cli must be an ICLI')
+        check_type(self.parser, IOptionManager, r'parser must be an IOptionManager')
 
-        if self.service is None:
-            raise ATSValueError('service must be provided.')
-
-        if self.parser is None:
-            raise ATSValueError('parser must be provided.')
-
-        if self.cli is None:
-            raise ATSValueError('cli must be provided.')
-
-    def merge(self, other: 'ARMPicomBundle') -> None:
+    def merge(self, other: ARMPicomBundle) -> None:
         '''
-            Merges non-None values from another bundle into this one.
+            Merges non-None values from another ARMPicomBundle into this one.
 
-            :param other: Another bundle to merge into this one.
+            :param other: Another ARMPicomBundle to merge into this one.
             :type other: <ARMPicomBundle>
-            :exceptions: None.
+            :exceptions:
+                | ATSTypeError: Other is not an ARMPicomBundle.
         '''
+        check_type(other, ARMPicomBundle, r'other must be an ARMPicomBundle')
+
         for field_name in self.__dataclass_fields__:
-            other_value = getattr(other, field_name)
+            other_value: Any = getattr(other, field_name)
 
             if other_value is not None:
                 setattr(self, field_name, other_value)
 
+        self.validate()
+
     def to_dict(self) -> dict[str, Any]:
         '''
-            Converts the bundle attributes to a dictionary.
+            Converts the ARMPicomBundle to a dictionary.
 
-            :return: Dictionary representation of the bundle.
+            :return: Dictionary representation of the ARMPicomBundle.
             :rtype: <dict[str, Any]>
             :exceptions: None.
         '''
-        return {
-            name: value
-            for name, value in self.__dict__.items()
-            if not name.startswith('_')
-        }
+        return asdict(self)

@@ -57,20 +57,25 @@
 <span class="sd">    Defines GenPicomCommand class implementing ICLICommand strategy.</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">override</span>
-<span class="kn">from</span> <span class="nn">ats_utilities.factory_class</span> <span class="kn">import</span> <span class="n">format_instance_to_string</span>
-<span class="kn">from</span> <span class="nn">ats_utilities.option.command_option</span> <span class="kn">import</span> <span class="n">CommandOption</span>
-<span class="kn">from</span> <span class="nn">armpicom.infrastructure.icli_command</span> <span class="kn">import</span> <span class="n">ICLICommand</span>
-<span class="kn">from</span> <span class="nn">armpicom.domain.ports.iservice</span> <span class="kn">import</span> <span class="n">IService</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="n">__author__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
-<span class="n">__copyright__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;(C) 2026, https://vroncevic.github.io/armpicom&#39;</span>
-<span class="n">__credits__</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">,</span> <span class="s1">&#39;Python Software Foundation&#39;</span><span class="p">]</span>
-<span class="n">__license__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/vroncevic/armpicom/blob/dev/LICENSE&#39;</span>
-<span class="n">__version__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;1.9.5&#39;</span>
-<span class="n">__maintainer__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
-<span class="n">__email__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
-<span class="n">__status__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Development&#39;</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Sequence</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">override</span>
+
+<span class="kn">from</span> <span class="nn">ats_utilities.factory_class</span> <span class="kn">import</span> <span class="n">to_str</span>
+<span class="kn">from</span> <span class="nn">ats_utilities.option.command.command_option</span> <span class="kn">import</span> <span class="n">CommandOption</span>
+
+<span class="kn">from</span> <span class="nn">armpicom.infrastructure.icli_command</span> <span class="kn">import</span> <span class="n">ICLICommand</span>
+<span class="kn">from</span> <span class="nn">armpicom.service.iservice</span> <span class="kn">import</span> <span class="n">IService</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;Vladimir Roncevic&#39;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;(C) 2026, https://vroncevic.github.io/armpicom&#39;</span>
+<span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;Python Software Foundation&#39;</span><span class="p">]</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://github.com/vroncevic/armpicom/blob/dev/LICENSE&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;1.9.6&#39;</span>
+<span class="n">__maintainer__</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;Vladimir Roncevic&#39;</span>
+<span class="n">__email__</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
+<span class="n">__status__</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;Development&#39;</span>
 
 
 <div class="viewcode-block" id="GenPicomCommand">
@@ -83,7 +88,7 @@
 
 <span class="sd">            :attributes: None.</span>
 <span class="sd">            :methods:</span>
-<span class="sd">                | name - Returns the command name key.</span>
+<span class="sd">                | name - Returns the command name.</span>
 <span class="sd">                | help_text - Returns the command help text.</span>
 <span class="sd">                | options - Returns the list of command options.</span>
 <span class="sd">                | execute - Executes the subcommand.</span>
@@ -94,9 +99,9 @@
     <span class="nd">@override</span>
     <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">            Returns the command name key.</span>
+<span class="sd">            Returns the command name.</span>
 
-<span class="sd">            :return: The command name key.</span>
+<span class="sd">            :return: The command name.</span>
 <span class="sd">            :rtype: &lt;str&gt;</span>
 <span class="sd">            :exceptions: None.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -116,12 +121,12 @@
 
     <span class="nd">@property</span>
     <span class="nd">@override</span>
-    <span class="k">def</span> <span class="nf">options</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandOption</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">options</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">CommandOption</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Returns the command options.</span>
 
-<span class="sd">            :return: List of command options.</span>
-<span class="sd">            :rtype: &lt;list[CommandOption]&gt;</span>
+<span class="sd">            :return: Sequence of command options.</span>
+<span class="sd">            :rtype: &lt;Sequence[CommandOption]&gt;</span>
 <span class="sd">            :exceptions: None.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="p">[</span>
@@ -142,19 +147,26 @@
 <div class="viewcode-block" id="GenPicomCommand.execute">
 <a class="viewcode-back" href="../../../armpicom.infrastructure.gen_picom_command.html#armpicom.infrastructure.gen_picom_command.GenPicomCommand.execute">[docs]</a>
     <span class="nd">@override</span>
-    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">service</span><span class="p">:</span> <span class="n">IService</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">service</span><span class="p">:</span> <span class="n">IService</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Executes the subcommand.</span>
 
 <span class="sd">            :param params: Subcommand parameters from CLI parser.</span>
-<span class="sd">            :type params: &lt;dict[str, Any]&gt;</span>
+<span class="sd">            :type params: &lt;Mapping[str, Any]&gt;</span>
 <span class="sd">            :param service: Command orchestrator service instance.</span>
 <span class="sd">            :type service: &lt;IService&gt;</span>
 <span class="sd">            :return: The result of the subcommand execution.</span>
-<span class="sd">            :rtype: &lt;dict[str, Any]&gt;</span>
-<span class="sd">            :exceptions: None.</span>
+<span class="sd">            :rtype: &lt;Mapping[str, Any]&gt;</span>
+<span class="sd">            :exceptions:</span>
+<span class="sd">                | ValueError: Parameters mapping must be provided.</span>
+<span class="sd">                | TypeError: Parameters mapping must be a mapping.</span>
+<span class="sd">                | ATSTypeError: If parameters are of invalid type.</span>
+<span class="sd">                | ATSValueError: If parameter constraints are violated.</span>
+<span class="sd">                | ATSGeneratorError: If archive parsing or template rendering fails.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="k">return</span> <span class="n">service</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">service</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span> <span class="k">if</span> <span class="n">service</span><span class="o">.</span><span class="n">is_initialized</span><span class="p">()</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="s2">&quot;return_code&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;stdout&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;stderr&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Service not initialized&quot;</span><span class="p">]</span>
+        <span class="p">}</span></div>
 
 
     <span class="nd">@override</span>
@@ -166,7 +178,7 @@
 <span class="sd">            :rtype: &lt;str&gt;</span>
 <span class="sd">            :exceptions: None.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="k">return</span> <span class="n">format_instance_to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">to_str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 </pre></div>
 

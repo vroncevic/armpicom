@@ -19,26 +19,31 @@ Info
     Defines sub-processor adapter implementing ISubProcessor.
 '''
 
-from typing import Any, override
+from __future__ import annotations
+
+from collections.abc import Mapping
 from os import walk
 from os.path import dirname, realpath, relpath
-from ats_utilities.generator.igenerator import IGenerator
-from ats_utilities.generator.generator_bundle import GeneratorBundle
-from ats_utilities.exceptions.ats_value_error import ATSValueError
-from ats_utilities.factory_class import format_instance_to_string
-from ats_utilities.checker.ichecker import IChecker
-from ats_utilities.reporter.ireporter import IReporter
-from ats_utilities.factory_context_bundle import factory_context_bundle
-from armpicom.domain.ports.isubprocessor import ISubProcessor
+from typing import Any, override
 
-__author__: str = 'Vladimir Roncevic'
-__copyright__: str = '(C) 2026, https://vroncevic.github.io/armpicom'
-__credits__: list[str] = ['Vladimir Roncevic', 'Python Software Foundation']
-__license__: str = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__: str = '1.9.5'
-__maintainer__: str = 'Vladimir Roncevic'
-__email__: str = 'elektron.ronca@gmail.com'
-__status__: str = 'Development'
+from ats_utilities.checker.ichecker import IChecker
+from ats_utilities.factory_class import to_str
+from ats_utilities.factory_context_bundle import factory_context_bundle
+from ats_utilities.generator.generator_bundle import GeneratorBundle
+from ats_utilities.generator.igenerator import IGenerator
+from ats_utilities.reporter.ireporter import IReporter
+from ats_utilities.factory_value import require_not_none
+
+from armpicom.service.isubprocessor import ISubProcessor
+
+__author__ = r'Vladimir Roncevic'
+__copyright__ = r'(C) 2026, https://vroncevic.github.io/armpicom'
+__credits__ = [r'Vladimir Roncevic', r'Python Software Foundation']
+__license__ = r'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
+__version__ = r'1.9.6'
+__maintainer__ = r'Vladimir Roncevic'
+__email__ = r'elektron.ronca@gmail.com'
+__status__ = r'Development'
 
 
 class SubProcessor(ISubProcessor):
@@ -62,7 +67,7 @@ class SubProcessor(ISubProcessor):
 
     _scheme: str = 'config/scheme.json'
     _templates: str = 'config/templates.tgz'
-
+    _generator: IGenerator
     _checker: IChecker
     _reporter: IReporter
     _verbose: bool
@@ -74,22 +79,25 @@ class SubProcessor(ISubProcessor):
             :param generator: Generator adapter.
             :type generator: <IGenerator>
             :exceptions:
-                | ATSValueError - If the generator is not provided.
+                | ATSValueError - The generator must be provided.
         '''
-        if not generator:
-            raise ATSValueError('generator must be provided.')
-
-        self._generator: IGenerator = generator
+        require_not_none(generator, r'generator must be provided')
+        self._generator = generator
         factory_context_bundle(self, self._generator.get_shared_context())
 
     @override
-    def run(self, params: dict[str, Any]) -> dict[str, Any]:
+    def run(self, *, params: Mapping[str, Any]) -> Mapping[str, Any]:
         '''
-            Executes a sub-process.
+            Executes the generator.
 
-            :param params: The command parameters to execute.
-            :type params: <dict[str, Any]>
-            :exceptions: None.
+            :param params: The command parameters for generator.
+            :type params: <Mapping[str, Any]>
+            :return: Return code, stdout and stderr messages.
+            :rtype: <Mapping[str, Any]>
+            :exceptions:
+                | ATSTypeError: If parameters are of invalid type.
+                | ATSValueError: If parameter constraints are violated.
+                | ATSGeneratorError: If archive parsing or template rendering fails.
         '''
         current_dir: str = dirname(realpath(__file__))
         output_dir: str = params.get('output')
@@ -109,9 +117,11 @@ class SubProcessor(ISubProcessor):
 
         if success:
             self._reporter.success(["    Generated files:"])
+
             for root, dirs, files in walk(output_dir):
                 for file in files:
                     rel_dir = relpath(root, output_dir)
+
                     if rel_dir == '.':
                         self._reporter.success([f"      {file}"])
                     else:
@@ -143,4 +153,4 @@ class SubProcessor(ISubProcessor):
             :rtype: <str>
             :exceptions: None.
         '''
-        return format_instance_to_string(self)
+        return to_str(self)

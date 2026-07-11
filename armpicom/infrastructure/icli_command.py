@@ -19,20 +19,25 @@ Info
     Defines abstract ICLICommand strategy interface and CommandOption.
 '''
 
-from abc import abstractmethod
-from typing import Any
-from ats_utilities.option.ioption_command import IOptionCommand
-from ats_utilities.option.command_option import CommandOption
-from armpicom.domain.ports.iservice import IService
+from __future__ import annotations
 
-__author__: str = 'Vladimir Roncevic'
-__copyright__: str = '(C) 2026, https://vroncevic.github.io/armpicom'
-__credits__: list[str] = ['Vladimir Roncevic', 'Python Software Foundation']
-__license__: str = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__: str = '1.9.5'
-__maintainer__: str = 'Vladimir Roncevic'
-__email__: str = 'elektron.ronca@gmail.com'
-__status__: str = 'Development'
+from abc import abstractmethod
+from collections.abc import Mapping, Sequence
+from typing import Any
+
+from ats_utilities.option.ioption_manager import IOptionCommand
+from ats_utilities.option.command.command_option import CommandOption
+
+from armpicom.service.iservice import IService
+
+__author__ = r'Vladimir Roncevic'
+__copyright__ = r'(C) 2026, https://vroncevic.github.io/armpicom'
+__credits__ = [r'Vladimir Roncevic', r'Python Software Foundation']
+__license__ = r'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
+__version__ = r'1.9.6'
+__maintainer__ = r'Vladimir Roncevic'
+__email__ = r'elektron.ronca@gmail.com'
+__status__ = r'Development'
 
 
 class ICLICommand(IOptionCommand):
@@ -41,11 +46,10 @@ class ICLICommand(IOptionCommand):
 
         It defines:
 
-            :attributes: None.
             :methods:
                 | name - Property returning name of the command.
                 | help_text - Property returning help text of the command.
-                | options - Property returning list of command options.
+                | options - Property returning sequence of command options.
                 | execute - Performs subcommand actions.
                 | __str__ - Returns the string representation of the command.
     '''
@@ -54,9 +58,9 @@ class ICLICommand(IOptionCommand):
     @abstractmethod
     def name(self) -> str:
         '''
-            Returns the command name key.
+            Returns the command name.
 
-            :return: The command name key.
+            :return: The command name.
             :rtype: <str>
             :exceptions: None.
         '''
@@ -76,27 +80,27 @@ class ICLICommand(IOptionCommand):
 
     @property
     @abstractmethod
-    def options(self) -> list[CommandOption]:
+    def options(self) -> Sequence[CommandOption]:
         '''
             Returns the command options.
 
-            :return: List of command options.
-            :rtype: <List[CommandOption]>
+            :return: Sequence of command options.
+            :rtype: <Sequence[CommandOption]>
             :exceptions: None.
         '''
         pass
 
     @abstractmethod
-    def execute(self, params: dict[str, Any], service: IService) -> dict[str, Any]:
+    def execute(self, *, params: Mapping[str, Any], service: IService) -> Mapping[str, Any]:
         '''
             Executes the file generation logic for this command.
 
             :param params: Subcommand parameters from CLI parser.
-            :type params: <dict[str, Any]>
+            :type params: <Mapping[str, Any]>
             :param service: Orchestration service instance.
             :type service: <IService>
             :return: Return code, stdout and stderr messages.
-            :return type: <dict[str, Any]>
+            :return type: <Mapping[str, Any]>
             :exceptions: None.
         '''
         pass

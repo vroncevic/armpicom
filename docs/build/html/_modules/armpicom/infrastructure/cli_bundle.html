@@ -57,26 +57,32 @@
 <span class="sd">    Defines a CLIBundle bundle for the infrastructure adapters.</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">asdict</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">ats_utilities.option.ioption_parser</span> <span class="kn">import</span> <span class="n">IOptionManager</span>
-<span class="kn">from</span> <span class="nn">ats_utilities.exceptions.ats_value_error</span> <span class="kn">import</span> <span class="n">ATSValueError</span>
-<span class="kn">from</span> <span class="nn">armpicom.domain.ports.iservice</span> <span class="kn">import</span> <span class="n">IService</span>
+
+<span class="kn">from</span> <span class="nn">ats_utilities.option.ioption_manager</span> <span class="kn">import</span> <span class="n">IOptionManager</span>
+<span class="kn">from</span> <span class="nn">ats_utilities.factory_value</span> <span class="kn">import</span> <span class="n">require_not_none</span>
+<span class="kn">from</span> <span class="nn">ats_utilities.factory_type</span> <span class="kn">import</span> <span class="n">check_type</span>
+
+<span class="kn">from</span> <span class="nn">armpicom.service.iservice</span> <span class="kn">import</span> <span class="n">IService</span>
 <span class="kn">from</span> <span class="nn">armpicom.infrastructure.icli_command</span> <span class="kn">import</span> <span class="n">ICLICommand</span>
 
-<span class="n">__author__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
-<span class="n">__copyright__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;(C) 2026, https://vroncevic.github.io/armpicom&#39;</span>
-<span class="n">__credits__</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">,</span> <span class="s1">&#39;Python Software Foundation&#39;</span><span class="p">]</span>
-<span class="n">__license__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/vroncevic/armpicom/blob/dev/LICENSE&#39;</span>
-<span class="n">__version__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;1.9.5&#39;</span>
-<span class="n">__maintainer__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
-<span class="n">__email__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
-<span class="n">__status__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Development&#39;</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;Vladimir Roncevic&#39;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;(C) 2026, https://vroncevic.github.io/armpicom&#39;</span>
+<span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;Python Software Foundation&#39;</span><span class="p">]</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://github.com/vroncevic/armpicom/blob/dev/LICENSE&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;1.9.6&#39;</span>
+<span class="n">__maintainer__</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;Vladimir Roncevic&#39;</span>
+<span class="n">__email__</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
+<span class="n">__status__</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;Development&#39;</span>
 
 
 <div class="viewcode-block" id="CLIBundle">
 <a class="viewcode-back" href="../../../armpicom.infrastructure.cli_bundle.html#armpicom.infrastructure.cli_bundle.CLIBundle">[docs]</a>
-<span class="nd">@dataclass</span>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">CLIBundle</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Data class for CLI adapters bundle.</span>
@@ -86,70 +92,76 @@
 <span class="sd">            :attributes:</span>
 <span class="sd">                | service - Service orchestrating generation (default None).</span>
 <span class="sd">                | parser - Argument parser for parsing CLI command args (default None).</span>
-<span class="sd">                | commands - List of CLI command instances (default None).</span>
+<span class="sd">                | commands - Sequence of CLI command instances (default None).</span>
 <span class="sd">            :methods:</span>
-<span class="sd">                | validate - Validates that essential components are set.</span>
-<span class="sd">                | merge - Merges non-None values from another bundle.</span>
-<span class="sd">                | to_dict - Converts the bundle attributes to a dictionary.</span>
+<span class="sd">                | validate - Validates that CLIBundle is valid (can be called after merge).</span>
+<span class="sd">                | merge - Merges non-None values from another CLIBundle.</span>
+<span class="sd">                | to_dict - Converts the CLIBundle to a dictionary.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="n">service</span><span class="p">:</span> <span class="n">IService</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">parser</span><span class="p">:</span> <span class="n">IOptionManager</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ICLICommand</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">commands</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">ICLICommand</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="CLIBundle.validate">
 <a class="viewcode-back" href="../../../armpicom.infrastructure.cli_bundle.html#armpicom.infrastructure.cli_bundle.CLIBundle.validate">[docs]</a>
     <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">            Validates that essential components are set.</span>
+<span class="sd">            Validates that CLIBundle is valid (can be called after merge).</span>
+<span class="sd">            Performs validation of service, parser and commands attributes.</span>
+<span class="sd">            Service must be non-None and an instance of IService interface.</span>
+<span class="sd">            Parser must be non-None and an instance of IOptionManager interface.</span>
+<span class="sd">            Commands sequence must be non-None and an instance of Sequence interface.</span>
 
 <span class="sd">            :exceptions:</span>
 <span class="sd">                | ATSValueError: Service must be provided.</span>
 <span class="sd">                | ATSValueError: Parser must be provided.</span>
-<span class="sd">                | ATSValueError: List of commands must be provided.</span>
+<span class="sd">                | ATSValueError: Commands sequence must be provided.</span>
+<span class="sd">                | ATSTypeError: Service must be of type IService.</span>
+<span class="sd">                | ATSTypeError: Parser must be of type IOptionManager.</span>
+<span class="sd">                | ATSTypeError: Commands sequence must be of type Sequence.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ATSValueError</span><span class="p">(</span><span class="s1">&#39;service must be provided.&#39;</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ATSValueError</span><span class="p">(</span><span class="s1">&#39;parser must be provided.&#39;</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">commands</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ATSValueError</span><span class="p">(</span><span class="s1">&#39;list of commands must be provided.&#39;</span><span class="p">)</span></div>
+        <span class="n">require_not_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;service must be provided&#39;</span><span class="p">)</span>
+        <span class="n">require_not_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;parser must be provided&#39;</span><span class="p">)</span>
+        <span class="n">require_not_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">commands</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;commands sequence must be provided&#39;</span><span class="p">)</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="p">,</span> <span class="n">IService</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;service must be of type IService&#39;</span><span class="p">)</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="p">,</span> <span class="n">IOptionManager</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;parser must be of type IOptionManager&#39;</span><span class="p">)</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">commands</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;commands must be of type Sequence&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="CLIBundle.merge">
 <a class="viewcode-back" href="../../../armpicom.infrastructure.cli_bundle.html#armpicom.infrastructure.cli_bundle.CLIBundle.merge">[docs]</a>
-    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s1">&#39;CLIBundle&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">CLIBundle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">            Merges non-None values from another bundle into this one.</span>
+<span class="sd">            Merges non-None values from another CLIBundle into this one.</span>
 
-<span class="sd">            :param other: Another bundle to merge into this one.</span>
+<span class="sd">            :param other: Another CLIBundle to merge into this one.</span>
 <span class="sd">            :type other: &lt;CLIBundle&gt;</span>
-<span class="sd">            :exceptions: None.</span>
+<span class="sd">            :exceptions:</span>
+<span class="sd">                | ATSTypeError: Other must be of type CLIBundle.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">CLIBundle</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;other must be of type CLIBundle&#39;</span><span class="p">)</span>
+
         <span class="k">for</span> <span class="n">field_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dataclass_fields__</span><span class="p">:</span>
-            <span class="n">other_value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
+            <span class="n">other_value</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">other_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">,</span> <span class="n">other_value</span><span class="p">)</span></div>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">,</span> <span class="n">other_value</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="CLIBundle.to_dict">
 <a class="viewcode-back" href="../../../armpicom.infrastructure.cli_bundle.html#armpicom.infrastructure.cli_bundle.CLIBundle.to_dict">[docs]</a>
     <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">            Converts the bundle attributes to a dictionary.</span>
+<span class="sd">            Converts the CLIBundle to a dictionary.</span>
 
-<span class="sd">            :return: Dictionary representation of the bundle attributes.</span>
+<span class="sd">            :return: Dictionary representation of the CLIBundle.</span>
 <span class="sd">            :rtype: &lt;dict[str, Any]&gt;</span>
 <span class="sd">            :exceptions: None.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="n">name</span><span class="p">:</span> <span class="n">value</span>
-            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
-        <span class="p">}</span></div>
+        <span class="k">return</span> <span class="n">asdict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 </div>
 
 </pre></div>

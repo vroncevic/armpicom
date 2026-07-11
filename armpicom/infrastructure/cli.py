@@ -19,23 +19,28 @@ Info
     Defines CLI class implementing inbound CLI port.
 '''
 
+from __future__ import annotations
+
+from collections.abc import Mapping
 from typing import Any, override
-from ats_utilities.option.ioption_parser import IOptionManager
-from ats_utilities.factory_class import format_instance_to_string
-from ats_utilities.exceptions.ats_value_error import ATSValueError
+
+from ats_utilities.option.ioption_manager import IOptionManager
+from ats_utilities.factory_class import to_str
+from ats_utilities.factory_value import require_not_none
+
 from armpicom.infrastructure.icli import ICLI
 from armpicom.infrastructure.cli_bundle import CLIBundle
-from armpicom.domain.ports.iservice import IService
+from armpicom.service.iservice import IService
 from armpicom.infrastructure.icli_command import ICLICommand
 
-__author__: str = 'Vladimir Roncevic'
-__copyright__: str = '(C) 2026, https://vroncevic.github.io/armpicom'
-__credits__: list[str] = ['Vladimir Roncevic', 'Python Software Foundation']
-__license__: str = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__: str = '1.9.5'
-__maintainer__: str = 'Vladimir Roncevic'
-__email__: str = 'elektron.ronca@gmail.com'
-__status__: str = 'Development'
+__author__ = r'Vladimir Roncevic'
+__copyright__ = r'(C) 2026, https://vroncevic.github.io/armpicom'
+__credits__ = [r'Vladimir Roncevic', r'Python Software Foundation']
+__license__ = r'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
+__version__ = r'1.9.6'
+__maintainer__ = r'Vladimir Roncevic'
+__email__ = r'elektron.ronca@gmail.com'
+__status__ = r'Development'
 
 
 class CLI(ICLI):
@@ -48,6 +53,7 @@ class CLI(ICLI):
                 | _service - File generation orchestrator service.
                 | _parser - CLI argument parser.
                 | _commands - Map of command names to command instances.
+                | _is_initialized - CLI component initialization status.
             :methods:
                 | __init__ - Initializes the CLI with CLI adapters.
                 | run - Parses CLI arguments and executes selected command.
@@ -55,39 +61,47 @@ class CLI(ICLI):
                 | __str__ - Returns CLI instance as string representation.
     '''
 
-    def __init__(self, component_bundle: CLIBundle | None = None):
+    _service: IService
+    _parser: IOptionManager
+    _commands: Mapping[str, ICLICommand]
+    _is_initialized: bool
+
+    def __init__(self, component_bundle: CLIBundle):
         '''
             Initializes the CLI with CLI adapters.
 
-            :param component_bundle: Bundle containing CLI adapters | None.
-            :type component_bundle: <CLIBundle | None>
+            :param component_bundle: Bundle containing CLI adapters.
+            :type component_bundle: <CLIBundle>
             :exceptions:
-                | ATSValueError: Component bundle (CLIBundle) cannot be None or invalid.
+                | ATSValueError: Component bundle (CLIBundle) cannot be None.
+                | ATSTypeError: Component bundle (CLIBundle) cannot be invalid.
         '''
-        if component_bundle is None:
-            raise ATSValueError('component bundle (CLIBundle) must be provided.')
-
+        require_not_none(component_bundle, 'component bundle (CLIBundle) must be provided')
         component_bundle.validate()
-        self._service: IService = component_bundle.service
-        self._parser: IOptionManager = component_bundle.parser
-        self._commands: dict[str, ICLICommand] = {cmd.name: cmd for cmd in component_bundle.commands}
+        self._service = component_bundle.service
+        self._parser = component_bundle.parser
+        self._commands = {cmd.name: cmd for cmd in component_bundle.commands}
         self._parser.register_commands(component_bundle.commands)
+        self._is_initialized = True
 
     @override
-    def run(self) -> dict[str, Any]:
+    def run(self) -> Mapping[str, Any]:
         '''
             Parses CLI arguments and executes selected command.
 
             :return: Return code, stdout and stderr messages.
-            :return type: <dict[str, Any]>
+            :return type: <Mapping[str, Any]>
             :exceptions:
-                | SystemExit: System exit exception.
-                | OSError: I/O error exception.
+                | ValueError: Parameters mapping must be provided.
+                | TypeError: Parameters mapping must be a mapping.
+                | ATSTypeError: If parameters are of invalid type.
+                | ATSValueError: If parameter constraints are violated.
+                | ATSGeneratorError: If archive parsing or template rendering fails.
         '''
         command_name, params = self._parser.parse_command()
         cmd = self._commands.get(command_name)
 
-        return cmd.execute(params, self._service) if cmd else {
+        return cmd.execute(params=params, service=self._service) if cmd else {
             "return_code": -1, "stdout": [], "stderr": ["Unknown command"]
         }
 
@@ -96,11 +110,11 @@ class CLI(ICLI):
         '''
             Checks if the CLI component is initialized.
 
-            :return: True (success) | False (fail).
+            :return: True if the CLI component is initialized, False otherwise.
             :rtype: <bool>
             :exceptions: None.
         '''
-        return True
+        return self._is_initialized
 
     @override
     def __str__(self) -> str:
@@ -111,4 +125,4 @@ class CLI(ICLI):
             :rtype: <str>
             :exceptions: None.
         '''
-        return format_instance_to_string(self)
+        return to_str(self)

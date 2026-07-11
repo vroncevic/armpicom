@@ -74,14 +74,11 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 <p>It defines:</p>
 <blockquote>
 <div><dl class="field-list">
-<dt class="field-odd">attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None.</p>
-</dd>
-<dt class="field-even">methods<span class="colon">:</span></dt>
-<dd class="field-even"><div class="line-block">
+<dt class="field-odd">methods<span class="colon">:</span></dt>
+<dd class="field-odd"><div class="line-block">
 <div class="line">name - Property returning name of the command.</div>
 <div class="line">help_text - Property returning help text of the command.</div>
-<div class="line">options - Property returning list of command options.</div>
+<div class="line">options - Property returning sequence of command options.</div>
 <div class="line">execute - Performs subcommand actions.</div>
 <div class="line">__str__ - Returns the string representation of the command.</div>
 </div>
@@ -95,12 +92,12 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 
 <dl class="py method">
 <dt class="sig sig-object py" id="armpicom.infrastructure.icli_command.ICLICommand.execute">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="armpicom.domain.ports.iservice.html#armpicom.domain.ports.iservice.IService" title="armpicom.domain.ports.iservice.IService"><span class="pre">IService</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/armpicom/infrastructure/icli_command.html#ICLICommand.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.infrastructure.icli_command.ICLICommand.execute" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="armpicom.service.iservice.html#armpicom.service.iservice.IService" title="armpicom.service.iservice.IService"><span class="pre">IService</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/armpicom/infrastructure/icli_command.html#ICLICommand.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.infrastructure.icli_command.ICLICommand.execute" title="Link to this definition">¶</a></dt>
 <dd><p>Executes the file generation logic for this command.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>params</strong> (<em>&lt;dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>&gt;</em>) – Subcommand parameters from CLI parser.</p></li>
+<li><p><strong>params</strong> (<em>&lt;Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>&gt;</em>) – Subcommand parameters from CLI parser.</p></li>
 <li><p><strong>service</strong> (<em>&lt;IService&gt;</em>) – Orchestration service instance.</p></li>
 </ul>
 </dd>
@@ -108,7 +105,7 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 <dd class="field-even"><p>Return code, stdout and stderr messages.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>&lt;dict[str, Any]&gt;</p>
+<dd class="field-odd"><p>&lt;Mapping[str, Any]&gt;</p>
 </dd>
 <dt class="field-even">Exceptions<span class="colon">:</span></dt>
 <dd class="field-even"><p>None.</p>
@@ -136,10 +133,10 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 <dl class="py property">
 <dt class="sig sig-object py" id="armpicom.infrastructure.icli_command.ICLICommand.name">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#armpicom.infrastructure.icli_command.ICLICommand.name" title="Link to this definition">¶</a></dt>
-<dd><p>Returns the command name key.</p>
+<dd><p>Returns the command name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The command name key.</p>
+<dd class="field-odd"><p>The command name.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>&lt;str&gt;</p>
@@ -152,14 +149,14 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 
 <dl class="py property">
 <dt class="sig sig-object py" id="armpicom.infrastructure.icli_command.ICLICommand.options">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">options</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">CommandOption</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#armpicom.infrastructure.icli_command.ICLICommand.options" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">options</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">CommandOption</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#armpicom.infrastructure.icli_command.ICLICommand.options" title="Link to this definition">¶</a></dt>
 <dd><p>Returns the command options.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List of command options.</p>
+<dd class="field-odd"><p>Sequence of command options.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>&lt;List[CommandOption]&gt;</p>
+<dd class="field-even"><p>&lt;Sequence[CommandOption]&gt;</p>
 </dd>
 <dt class="field-odd">Exceptions<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None.</p>

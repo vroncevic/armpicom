@@ -19,17 +19,20 @@ Info
     Defines abstract interface ICLI for the CLI primary adapter.
 '''
 
+from __future__ import annotations
+
+from collections.abc import Mapping
 from abc import ABC, abstractmethod
 from typing import Any
 
-__author__: str = 'Vladimir Roncevic'
-__copyright__: str = '(C) 2026, https://vroncevic.github.io/armpicom'
-__credits__: list[str] = ['Vladimir Roncevic', 'Python Software Foundation']
-__license__: str = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__: str = '1.9.5'
-__maintainer__: str = 'Vladimir Roncevic'
-__email__: str = 'elektron.ronca@gmail.com'
-__status__: str = 'Development'
+__author__ = r'Vladimir Roncevic'
+__copyright__ = r'(C) 2026, https://vroncevic.github.io/armpicom'
+__credits__ = [r'Vladimir Roncevic', r'Python Software Foundation']
+__license__ = r'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
+__version__ = r'1.9.6'
+__maintainer__ = r'Vladimir Roncevic'
+__email__ = r'elektron.ronca@gmail.com'
+__status__ = r'Development'
 
 
 class ICLI(ABC):
@@ -46,12 +49,12 @@ class ICLI(ABC):
     '''
 
     @abstractmethod
-    def run(self) -> dict[str, Any]:
+    def run(self) -> Mapping[str, Any]:
         '''
             Parses command line arguments and runs selected command strategy.
 
             :return: Return code, stdout and stderr messages.
-            :return type: <dict[str, Any]>
+            :return type: <Mapping[str, Any]>
             :exceptions: None.
         '''
         pass
@@ -61,7 +64,7 @@ class ICLI(ABC):
         '''
             Checks if the command line arguments component is initialized.
 
-            :return: True (success) | False (fail).
+            :return: True if the command line arguments component is initialized, False otherwise.
             :rtype: <bool>
             :exceptions: None.
         '''
