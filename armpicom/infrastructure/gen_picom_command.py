@@ -19,20 +19,25 @@ Info
     Defines GenPicomCommand class implementing ICLICommand strategy.
 '''
 
-from typing import Any, override
-from ats_utilities.factory_class import format_instance_to_string
-from ats_utilities.option.command_option import CommandOption
-from armpicom.infrastructure.icli_command import ICLICommand
-from armpicom.domain.ports.iservice import IService
+from __future__ import annotations
 
-__author__: str = 'Vladimir Roncevic'
-__copyright__: str = '(C) 2026, https://vroncevic.github.io/armpicom'
-__credits__: list[str] = ['Vladimir Roncevic', 'Python Software Foundation']
-__license__: str = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__: str = '1.9.5'
-__maintainer__: str = 'Vladimir Roncevic'
-__email__: str = 'elektron.ronca@gmail.com'
-__status__: str = 'Development'
+from collections.abc import Mapping, Sequence
+from typing import Any, override
+
+from ats_utilities.factory_class import to_str
+from ats_utilities.option.command.command_option import CommandOption
+
+from armpicom.infrastructure.icli_command import ICLICommand
+from armpicom.service.iservice import IService
+
+__author__ = r'Vladimir Roncevic'
+__copyright__ = r'(C) 2026, https://vroncevic.github.io/armpicom'
+__credits__ = [r'Vladimir Roncevic', r'Python Software Foundation']
+__license__ = r'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
+__version__ = r'1.9.6'
+__maintainer__ = r'Vladimir Roncevic'
+__email__ = r'elektron.ronca@gmail.com'
+__status__ = r'Development'
 
 
 class GenPicomCommand(ICLICommand):
@@ -43,7 +48,7 @@ class GenPicomCommand(ICLICommand):
 
             :attributes: None.
             :methods:
-                | name - Returns the command name key.
+                | name - Returns the command name.
                 | help_text - Returns the command help text.
                 | options - Returns the list of command options.
                 | execute - Executes the subcommand.
@@ -54,9 +59,9 @@ class GenPicomCommand(ICLICommand):
     @override
     def name(self) -> str:
         '''
-            Returns the command name key.
+            Returns the command name.
 
-            :return: The command name key.
+            :return: The command name.
             :rtype: <str>
             :exceptions: None.
         '''
@@ -76,12 +81,12 @@ class GenPicomCommand(ICLICommand):
 
     @property
     @override
-    def options(self) -> list[CommandOption]:
+    def options(self) -> Sequence[CommandOption]:
         '''
             Returns the command options.
 
-            :return: List of command options.
-            :rtype: <list[CommandOption]>
+            :return: Sequence of command options.
+            :rtype: <Sequence[CommandOption]>
             :exceptions: None.
         '''
         return [
@@ -100,19 +105,26 @@ class GenPicomCommand(ICLICommand):
         ]
 
     @override
-    def execute(self, params: dict[str, Any], service: IService) -> dict[str, Any]:
+    def execute(self, *, params: Mapping[str, Any], service: IService) -> Mapping[str, Any]:
         '''
             Executes the subcommand.
 
             :param params: Subcommand parameters from CLI parser.
-            :type params: <dict[str, Any]>
+            :type params: <Mapping[str, Any]>
             :param service: Command orchestrator service instance.
             :type service: <IService>
             :return: The result of the subcommand execution.
-            :rtype: <dict[str, Any]>
-            :exceptions: None.
+            :rtype: <Mapping[str, Any]>
+            :exceptions:
+                | ValueError: Parameters mapping must be provided.
+                | TypeError: Parameters mapping must be a mapping.
+                | ATSTypeError: If parameters are of invalid type.
+                | ATSValueError: If parameter constraints are violated.
+                | ATSGeneratorError: If archive parsing or template rendering fails.
         '''
-        return service.execute(params=params)
+        return service.execute(params=params) if service.is_initialized() else {
+            "return_code": -1, "stdout": [], "stderr": ["Service not initialized"]
+        }
 
     @override
     def __str__(self) -> str:
@@ -123,4 +135,4 @@ class GenPicomCommand(ICLICommand):
             :rtype: <str>
             :exceptions: None.
         '''
-        return format_instance_to_string(self)
+        return to_str(self)

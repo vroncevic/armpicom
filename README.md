@@ -115,17 +115,7 @@ Tool structure
 
 ```bash
     armpicom/
-         ├── application/
-         │   ├── __init__.py
-         │   └── service.py
          ├── armpicom_bundle.py
-         ├── domain/
-         │   ├── __init__.py
-         │   ├── models.py
-         │   └── ports/
-         │       ├── __init__.py
-         │       ├── iservice.py
-         │       └── isubprocessor.py
          ├── engine.py
          ├── infrastructure/
          │   ├── cli.py
@@ -141,9 +131,17 @@ Tool structure
          │   ├── __init__.py
          │   └── subprocessor.py
          ├── __init__.py
-         └── py.typed
+         ├── model/
+         │   ├── generate_project.py
+         │   └── __init__.py
+         ├── py.typed
+         └── service/
+             ├── engine.py
+             ├── __init__.py
+             ├── iservice.py
+             └── isubprocessor.py
 
-     6 directories, 22 files
+     5 directories, 21 files
 ```
 </details>
 
@@ -154,24 +152,23 @@ Tool structure
 
 | Name | Stmts | Miss | Cover |
 |------|-------|------|-------|
-| `armpicom/__init__.py` | 8 | 0 | 100%|
-| `armpicom/application/__init__.py` | 8 | 0 | 100%|
-| `armpicom/application/service.py` | 22 | 0 | 100%|
-| `armpicom/armpicom_bundle.py` | 39 | 0 | 100%|
-| `armpicom/domain/__init__.py` | 8 | 0 | 100%|
-| `armpicom/domain/models.py` | 18 | 0 | 100%|
-| `armpicom/domain/ports/__init__.py` | 8 | 0 | 100%|
-| `armpicom/domain/ports/iservice.py` | 11 | 0 | 100%|
-| `armpicom/domain/ports/isubprocessor.py` | 11 | 0 | 100%|
-| `armpicom/engine.py` | 66 | 0 | 100%|
+| `armpicom/__init__.py` | 9 | 0 | 100%|
+| `armpicom/armpicom_bundle.py` | 45 | 0 | 100%|
+| `armpicom/engine.py` | 77 | 0 | 100%|
 | `armpicom/infrastructure/__init__.py` | 8 | 0 | 100%|
-| `armpicom/infrastructure/cli.py` | 36 | 0 | 100%|
-| `armpicom/infrastructure/cli_bundle.py` | 33 | 0 | 100%|
-| `armpicom/infrastructure/gen_picom_command.py` | 32 | 0 | 100%|
-| `armpicom/infrastructure/icli.py` | 11 | 0 | 100%|
-| `armpicom/infrastructure/icli_command.py` | 14 | 0 | 100%|
-| `armpicom/infrastructure/subprocessor.py` | 53 | 0 | 100%|
-| **Total** | 386 | 0 | 100% |
+| `armpicom/infrastructure/cli.py` | 42 | 0 | 100%|
+| `armpicom/infrastructure/cli_bundle.py` | 38 | 0 | 100%|
+| `armpicom/infrastructure/gen_picom_command.py` | 34 | 0 | 100%|
+| `armpicom/infrastructure/icli.py` | 13 | 0 | 100%|
+| `armpicom/infrastructure/icli_command.py` | 16 | 0 | 100%|
+| `armpicom/infrastructure/subprocessor.py` | 55 | 0 | 100%|
+| `armpicom/model/__init__.py` | 9 | 0 | 100%|
+| `armpicom/model/generate_project.py` | 22 | 0 | 100%|
+| `armpicom/service/__init__.py` | 9 | 0 | 100%|
+| `armpicom/service/engine.py` | 26 | 0 | 100%|
+| `armpicom/service/iservice.py` | 13 | 0 | 100%|
+| `armpicom/service/isubprocessor.py` | 13 | 0 | 100%|
+| **Total** | 429 | 0 | 100% |
 
 </details>
 

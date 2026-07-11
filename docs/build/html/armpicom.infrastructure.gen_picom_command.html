@@ -79,7 +79,7 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 </dd>
 <dt class="field-even">methods<span class="colon">:</span></dt>
 <dd class="field-even"><div class="line-block">
-<div class="line">name - Returns the command name key.</div>
+<div class="line">name - Returns the command name.</div>
 <div class="line">help_text - Returns the command help text.</div>
 <div class="line">options - Returns the list of command options.</div>
 <div class="line">execute - Executes the subcommand.</div>
@@ -95,12 +95,12 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 
 <dl class="py method">
 <dt class="sig sig-object py" id="armpicom.infrastructure.gen_picom_command.GenPicomCommand.execute">
-<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="armpicom.domain.ports.iservice.html#armpicom.domain.ports.iservice.IService" title="armpicom.domain.ports.iservice.IService"><span class="pre">IService</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/armpicom/infrastructure/gen_picom_command.html#GenPicomCommand.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.infrastructure.gen_picom_command.GenPicomCommand.execute" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="armpicom.service.iservice.html#armpicom.service.iservice.IService" title="armpicom.service.iservice.IService"><span class="pre">IService</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/armpicom/infrastructure/gen_picom_command.html#GenPicomCommand.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.infrastructure.gen_picom_command.GenPicomCommand.execute" title="Link to this definition">¶</a></dt>
 <dd><p>Executes the subcommand.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>params</strong> (<em>&lt;dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>&gt;</em>) – Subcommand parameters from CLI parser.</p></li>
+<li><p><strong>params</strong> (<em>&lt;Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>&gt;</em>) – Subcommand parameters from CLI parser.</p></li>
 <li><p><strong>service</strong> (<em>&lt;IService&gt;</em>) – Command orchestrator service instance.</p></li>
 </ul>
 </dd>
@@ -108,10 +108,16 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 <dd class="field-even"><p>The result of the subcommand execution.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>&lt;dict[str, Any]&gt;</p>
+<dd class="field-odd"><p>&lt;Mapping[str, Any]&gt;</p>
 </dd>
 <dt class="field-even">Exceptions<span class="colon">:</span></dt>
-<dd class="field-even"><p>None.</p>
+<dd class="field-even"><div class="line-block">
+<div class="line">ValueError: Parameters mapping must be provided.</div>
+<div class="line">TypeError: Parameters mapping must be a mapping.</div>
+<div class="line">ATSTypeError: If parameters are of invalid type.</div>
+<div class="line">ATSValueError: If parameter constraints are violated.</div>
+<div class="line">ATSGeneratorError: If archive parsing or template rendering fails.</div>
+</div>
 </dd>
 </dl>
 </dd></dl>
@@ -136,10 +142,10 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 <dl class="py property">
 <dt class="sig sig-object py" id="armpicom.infrastructure.gen_picom_command.GenPicomCommand.name">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#armpicom.infrastructure.gen_picom_command.GenPicomCommand.name" title="Link to this definition">¶</a></dt>
-<dd><p>Returns the command name key.</p>
+<dd><p>Returns the command name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The command name key.</p>
+<dd class="field-odd"><p>The command name.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>&lt;str&gt;</p>
@@ -152,14 +158,14 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 
 <dl class="py property">
 <dt class="sig sig-object py" id="armpicom.infrastructure.gen_picom_command.GenPicomCommand.options">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">options</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">CommandOption</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#armpicom.infrastructure.gen_picom_command.GenPicomCommand.options" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">options</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">CommandOption</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#armpicom.infrastructure.gen_picom_command.GenPicomCommand.options" title="Link to this definition">¶</a></dt>
 <dd><p>Returns the command options.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List of command options.</p>
+<dd class="field-odd"><p>Sequence of command options.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>&lt;list[CommandOption]&gt;</p>
+<dd class="field-even"><p>&lt;Sequence[CommandOption]&gt;</p>
 </dd>
 <dt class="field-odd">Exceptions<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None.</p>

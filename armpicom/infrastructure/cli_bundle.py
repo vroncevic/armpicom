@@ -19,24 +19,30 @@ Info
     Defines a CLIBundle bundle for the infrastructure adapters.
 '''
 
+from __future__ import annotations
+
+from collections.abc import Sequence
+from dataclasses import dataclass, asdict
 from typing import Any
-from dataclasses import dataclass
-from ats_utilities.option.ioption_parser import IOptionManager
-from ats_utilities.exceptions.ats_value_error import ATSValueError
-from armpicom.domain.ports.iservice import IService
+
+from ats_utilities.option.ioption_manager import IOptionManager
+from ats_utilities.factory_value import require_not_none
+from ats_utilities.factory_type import check_type
+
+from armpicom.service.iservice import IService
 from armpicom.infrastructure.icli_command import ICLICommand
 
-__author__: str = 'Vladimir Roncevic'
-__copyright__: str = '(C) 2026, https://vroncevic.github.io/armpicom'
-__credits__: list[str] = ['Vladimir Roncevic', 'Python Software Foundation']
-__license__: str = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__: str = '1.9.5'
-__maintainer__: str = 'Vladimir Roncevic'
-__email__: str = 'elektron.ronca@gmail.com'
-__status__: str = 'Development'
+__author__ = r'Vladimir Roncevic'
+__copyright__ = r'(C) 2026, https://vroncevic.github.io/armpicom'
+__credits__ = [r'Vladimir Roncevic', r'Python Software Foundation']
+__license__ = r'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
+__version__ = r'1.9.6'
+__maintainer__ = r'Vladimir Roncevic'
+__email__ = r'elektron.ronca@gmail.com'
+__status__ = r'Development'
 
 
-@dataclass
+@dataclass(slots=True, kw_only=True)
 class CLIBundle:
     '''
         Data class for CLI adapters bundle.
@@ -46,59 +52,65 @@ class CLIBundle:
             :attributes:
                 | service - Service orchestrating generation (default None).
                 | parser - Argument parser for parsing CLI command args (default None).
-                | commands - List of CLI command instances (default None).
+                | commands - Sequence of CLI command instances (default None).
             :methods:
-                | validate - Validates that essential components are set.
-                | merge - Merges non-None values from another bundle.
-                | to_dict - Converts the bundle attributes to a dictionary.
+                | validate - Validates that CLIBundle is valid (can be called after merge).
+                | merge - Merges non-None values from another CLIBundle.
+                | to_dict - Converts the CLIBundle to a dictionary.
     '''
 
     service: IService | None = None
     parser: IOptionManager | None = None
-    commands: list[ICLICommand] | None = None
+    commands: Sequence[ICLICommand] | None = None
 
     def validate(self) -> None:
         '''
-            Validates that essential components are set.
+            Validates that CLIBundle is valid (can be called after merge).
+            Performs validation of service, parser and commands attributes.
+            Service must be non-None and an instance of IService interface.
+            Parser must be non-None and an instance of IOptionManager interface.
+            Commands sequence must be non-None and an instance of Sequence interface.
 
             :exceptions:
                 | ATSValueError: Service must be provided.
                 | ATSValueError: Parser must be provided.
-                | ATSValueError: List of commands must be provided.
+                | ATSValueError: Commands sequence must be provided.
+                | ATSTypeError: Service must be of type IService.
+                | ATSTypeError: Parser must be of type IOptionManager.
+                | ATSTypeError: Commands sequence must be of type Sequence.
         '''
-        if self.service is None:
-            raise ATSValueError('service must be provided.')
+        require_not_none(self.service, r'service must be provided')
+        require_not_none(self.parser, r'parser must be provided')
+        require_not_none(self.commands, r'commands sequence must be provided')
+        check_type(self.service, IService, r'service must be of type IService')
+        check_type(self.parser, IOptionManager, r'parser must be of type IOptionManager')
+        check_type(self.commands, Sequence, r'commands must be of type Sequence')
 
-        if self.parser is None:
-            raise ATSValueError('parser must be provided.')
-
-        if self.commands is None:
-            raise ATSValueError('list of commands must be provided.')
-
-    def merge(self, other: 'CLIBundle') -> None:
+    def merge(self, other: CLIBundle) -> None:
         '''
-            Merges non-None values from another bundle into this one.
+            Merges non-None values from another CLIBundle into this one.
 
-            :param other: Another bundle to merge into this one.
+            :param other: Another CLIBundle to merge into this one.
             :type other: <CLIBundle>
-            :exceptions: None.
+            :exceptions:
+                | ATSTypeError: Other must be of type CLIBundle.
         '''
+        check_type(other, CLIBundle, r'other must be of type CLIBundle')
+
         for field_name in self.__dataclass_fields__:
-            other_value = getattr(other, field_name)
+            other_value: Any = getattr(other, field_name)
 
             if other_value is not None:
                 setattr(self, field_name, other_value)
 
+        self.validate()
+
     def to_dict(self) -> dict[str, Any]:
         '''
-            Converts the bundle attributes to a dictionary.
+            Converts the CLIBundle to a dictionary.
 
-            :return: Dictionary representation of the bundle attributes.
+            :return: Dictionary representation of the CLIBundle.
             :rtype: <dict[str, Any]>
             :exceptions: None.
         '''
-        return {
-            name: value
-            for name, value in self.__dict__.items()
-            if not name.startswith('_')
-        }
+        return asdict(self)

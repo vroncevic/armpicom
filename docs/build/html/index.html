@@ -54,9 +54,9 @@ other information that should be provided before the tool is installed.</p>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">armpicom</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="armpicom.html">armpicom package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="armpicom.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="armpicom.application.html">armpicom.application package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="armpicom.domain.html">armpicom.domain package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="armpicom.infrastructure.html">armpicom.infrastructure package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="armpicom.model.html">armpicom.model package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="armpicom.service.html">armpicom.service package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="armpicom.html#submodules">Submodules</a><ul>
@@ -115,34 +115,33 @@ pip3<span class="w"> </span>install<span class="w"> </span>armpicom
 <p><strong>armpicom</strong> is based on OOP.</p>
 <p>Tool structure</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>armpicom/
-<span class="w">     </span>├──<span class="w"> </span>application/
-<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
-<span class="w">     </span>│<span class="w">   </span>└──<span class="w"> </span>service.py
 <span class="w">     </span>├──<span class="w"> </span>armpicom_bundle.py
-<span class="w">     </span>├──<span class="w"> </span>domain/
-<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
-<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>models.py
-<span class="w">     </span>│<span class="w">   </span>└──<span class="w"> </span>ports/
-<span class="w">     </span>│<span class="w">       </span>├──<span class="w"> </span>__init__.py
-<span class="w">     </span>│<span class="w">       </span>├──<span class="w"> </span>iservice.py
-<span class="w">     </span>│<span class="w">       </span>└──<span class="w"> </span>isubprocessor.py
 <span class="w">     </span>├──<span class="w"> </span>engine.py
 <span class="w">     </span>├──<span class="w"> </span>infrastructure/
-<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>cli.py
-<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>cli_bundle.py
-<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>config/
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>armpicom.cfg
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>armpicom.logo
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>scheme.json
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>templates.tgz
-<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>gen_picom_command.py
-<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>icli.py
-<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>icli_command.py
-<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
-<span class="w">     </span>│<span class="w">   </span>└──<span class="w"> </span>subprocessor.py
-<span class="w">     </span>└──<span class="w"> </span>__init__.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>cli.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>cli_bundle.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>config/
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>armpicom.cfg
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>armpicom.logo
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>scheme.json
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>templates.tgz
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>gen_picom_command.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>icli.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>icli_command.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+<span class="w">     </span>│<span class="w">   </span>└──<span class="w"> </span>subprocessor.py
+<span class="w">     </span>├──<span class="w"> </span>__init__.py
+<span class="w">     </span>├──<span class="w"> </span>model/
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>generate_project.py
+<span class="w">     </span>│<span class="w">   </span>└──<span class="w"> </span>__init__.py
+<span class="w">     </span>├──<span class="w"> </span>py.typed
+<span class="w">     </span>└──<span class="w"> </span>service/
+<span class="w">         </span>├──<span class="w"> </span>engine.py
+<span class="w">         </span>├──<span class="w"> </span>__init__.py
+<span class="w">         </span>├──<span class="w"> </span>iservice.py
+<span class="w">         </span>└──<span class="w"> </span>isubprocessor.py
 
-<span class="w"> </span><span class="m">6</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">21</span><span class="w"> </span>files
+<span class="w"> </span><span class="m">5</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">21</span><span class="w"> </span>files
 </pre></div>
 </div>
 </section>

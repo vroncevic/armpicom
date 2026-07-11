@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="armpicom.engine module" href="armpicom.engine.html" />
-    <link rel="prev" title="armpicom.infrastructure.subprocessor module" href="armpicom.infrastructure.subprocessor.html" /> 
+    <link rel="prev" title="armpicom.service.isubprocessor module" href="armpicom.service.isubprocessor.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -31,7 +31,7 @@
           <a href="armpicom.engine.html" title="armpicom.engine module"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="armpicom.infrastructure.subprocessor.html" title="armpicom.infrastructure.subprocessor module"
+          <a href="armpicom.service.isubprocessor.html" title="armpicom.service.isubprocessor module"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">armpicom https://github.com/vroncevic/armpicom/releases documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="modules.html" >armpicom</a> &#187;</li>
@@ -67,7 +67,7 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 </dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="armpicom.armpicom_bundle.ARMPicomBundle">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">armpicom.armpicom_bundle.</span></span><span class="sig-name descname"><span class="pre">ARMPicomBundle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">IGenerator</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subprocessor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="armpicom.domain.ports.isubprocessor.html#armpicom.domain.ports.isubprocessor.ISubProcessor" title="armpicom.domain.ports.isubprocessor.ISubProcessor"><span class="pre">ISubProcessor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="armpicom.domain.ports.iservice.html#armpicom.domain.ports.iservice.IService" title="armpicom.domain.ports.iservice.IService"><span class="pre">IService</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parser</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">IOptionManager</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cli</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="armpicom.infrastructure.icli.html#armpicom.infrastructure.icli.ICLI" title="armpicom.infrastructure.icli.ICLI"><span class="pre">ICLI</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/armpicom/armpicom_bundle.html#ARMPicomBundle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.armpicom_bundle.ARMPicomBundle" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">armpicom.armpicom_bundle.</span></span><span class="sig-name descname"><span class="pre">ARMPicomBundle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="armpicom.service.iservice.html#armpicom.service.iservice.IService" title="armpicom.service.iservice.IService"><span class="pre">IService</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subprocessor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="armpicom.service.isubprocessor.html#armpicom.service.isubprocessor.ISubProcessor" title="armpicom.service.isubprocessor.ISubProcessor"><span class="pre">ISubProcessor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">IGenerator</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cli</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="armpicom.infrastructure.icli.html#armpicom.infrastructure.icli.ICLI" title="armpicom.infrastructure.icli.ICLI"><span class="pre">ICLI</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parser</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">IOptionManager</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/armpicom/armpicom_bundle.html#ARMPicomBundle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.armpicom_bundle.ARMPicomBundle" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>ARMPicomBundle holding all components (adapters and services) of the CLI application.</p>
 <p>It defines:</p>
@@ -75,67 +75,70 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 <div><dl class="field-list">
 <dt class="field-odd">attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><div class="line-block">
-<div class="line">subprocessor - Subprocessor adapter for running commands (default None).</div>
 <div class="line">service - Service orchestrating command execution (default None).</div>
-<div class="line">parser - CLI argument parser adapter (default None).</div>
+<div class="line">subprocessor - Subprocessor adapter for running commands (default None).</div>
+<div class="line">generator - Generator for generating project structure (default None).</div>
 <div class="line">cli - Command line user interface adapter (default None).</div>
+<div class="line">parser - CLI argument parser adapter (default None).</div>
 </div>
 </dd>
 <dt class="field-even">methods<span class="colon">:</span></dt>
 <dd class="field-even"><div class="line-block">
-<div class="line">validate - Validates that the bundle is valid.</div>
-<div class="line">merge - Merges non-None values from another bundle.</div>
-<div class="line">to_dict - Converts the bundle attributes to a dictionary.</div>
+<div class="line">validate - Validates that ARMPicomBundle is valid.</div>
+<div class="line">merge - Merges non-None values from another ARMPicomBundle into this one.</div>
+<div class="line">to_dict - Converts the ARMPicomBundle to a dictionary.</div>
 </div>
 </dd>
 </dl>
 </div></blockquote>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="armpicom.armpicom_bundle.ARMPicomBundle.cli">
-<span class="sig-name descname"><span class="pre">cli</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="armpicom.infrastructure.icli.html#armpicom.infrastructure.icli.ICLI" title="armpicom.infrastructure.icli.ICLI"><span class="pre">ICLI</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#armpicom.armpicom_bundle.ARMPicomBundle.cli" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">cli</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="armpicom.infrastructure.icli.html#armpicom.infrastructure.icli.ICLI" title="armpicom.infrastructure.icli.ICLI"><span class="pre">ICLI</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#armpicom.armpicom_bundle.ARMPicomBundle.cli" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="armpicom.armpicom_bundle.ARMPicomBundle.generator">
-<span class="sig-name descname"><span class="pre">generator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">IGenerator</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#armpicom.armpicom_bundle.ARMPicomBundle.generator" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">generator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">IGenerator</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#armpicom.armpicom_bundle.ARMPicomBundle.generator" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="armpicom.armpicom_bundle.ARMPicomBundle.merge">
 <span class="sig-name descname"><span class="pre">merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#armpicom.armpicom_bundle.ARMPicomBundle" title="armpicom.armpicom_bundle.ARMPicomBundle"><span class="pre">ARMPicomBundle</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/armpicom/armpicom_bundle.html#ARMPicomBundle.merge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.armpicom_bundle.ARMPicomBundle.merge" title="Link to this definition">¶</a></dt>
-<dd><p>Merges non-None values from another bundle into this one.</p>
-<dl class="field-list simple">
+<dd><p>Merges non-None values from another ARMPicomBundle into this one.</p>
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>other</strong> (<em>&lt;ARMPicomBundle&gt;</em>) – Another bundle to merge into this one.</p>
+<dd class="field-odd"><p><strong>other</strong> (<em>&lt;ARMPicomBundle&gt;</em>) – Another ARMPicomBundle to merge into this one.</p>
 </dd>
 <dt class="field-even">Exceptions<span class="colon">:</span></dt>
-<dd class="field-even"><p>None.</p>
+<dd class="field-even"><div class="line-block">
+<div class="line">ATSTypeError: Other is not an ARMPicomBundle.</div>
+</div>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="armpicom.armpicom_bundle.ARMPicomBundle.parser">
-<span class="sig-name descname"><span class="pre">parser</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">IOptionManager</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#armpicom.armpicom_bundle.ARMPicomBundle.parser" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">parser</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">IOptionManager</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#armpicom.armpicom_bundle.ARMPicomBundle.parser" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="armpicom.armpicom_bundle.ARMPicomBundle.service">
-<span class="sig-name descname"><span class="pre">service</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="armpicom.domain.ports.iservice.html#armpicom.domain.ports.iservice.IService" title="armpicom.domain.ports.iservice.IService"><span class="pre">IService</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#armpicom.armpicom_bundle.ARMPicomBundle.service" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">service</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="armpicom.service.iservice.html#armpicom.service.iservice.IService" title="armpicom.service.iservice.IService"><span class="pre">IService</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#armpicom.armpicom_bundle.ARMPicomBundle.service" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="armpicom.armpicom_bundle.ARMPicomBundle.subprocessor">
-<span class="sig-name descname"><span class="pre">subprocessor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="armpicom.domain.ports.isubprocessor.html#armpicom.domain.ports.isubprocessor.ISubProcessor" title="armpicom.domain.ports.isubprocessor.ISubProcessor"><span class="pre">ISubProcessor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#armpicom.armpicom_bundle.ARMPicomBundle.subprocessor" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">subprocessor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="armpicom.service.isubprocessor.html#armpicom.service.isubprocessor.ISubProcessor" title="armpicom.service.isubprocessor.ISubProcessor"><span class="pre">ISubProcessor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#armpicom.armpicom_bundle.ARMPicomBundle.subprocessor" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="armpicom.armpicom_bundle.ARMPicomBundle.to_dict">
 <span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/armpicom/armpicom_bundle.html#ARMPicomBundle.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.armpicom_bundle.ARMPicomBundle.to_dict" title="Link to this definition">¶</a></dt>
-<dd><p>Converts the bundle attributes to a dictionary.</p>
+<dd><p>Converts the ARMPicomBundle to a dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Dictionary representation of the bundle.</p>
+<dd class="field-odd"><p>Dictionary representation of the ARMPicomBundle.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>&lt;dict[str, Any]&gt;</p>
@@ -149,14 +152,26 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 <dl class="py method">
 <dt class="sig sig-object py" id="armpicom.armpicom_bundle.ARMPicomBundle.validate">
 <span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/armpicom/armpicom_bundle.html#ARMPicomBundle.validate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.armpicom_bundle.ARMPicomBundle.validate" title="Link to this definition">¶</a></dt>
-<dd><p>Validates that the bundle is valid.</p>
+<dd><p>Validates that ARMPicomBundle is valid (can be called after merge).
+Performs validation of service, subprocessor, generator, cli and parser attributes.
+Service must be non-None and an instance of IService interface.
+Subprocessor must be non-None and an instance of ISubProcessor interface.
+Generator must be non-None and an instance of IGenerator interface.
+CLI must be non-None and an instance of ICLI interface.
+Parser must be non-None and an instance of IOptionManager interface.</p>
 <dl class="field-list">
 <dt class="field-odd">Exceptions<span class="colon">:</span></dt>
 <dd class="field-odd"><div class="line-block">
-<div class="line">ATSValueError: Subprocessor must be provided.</div>
 <div class="line">ATSValueError: Service must be provided.</div>
-<div class="line">ATSValueError: Parser must be provided.</div>
+<div class="line">ATSValueError: Subprocessor must be provided.</div>
+<div class="line">ATSValueError: Generator must be provided.</div>
 <div class="line">ATSValueError: CLI must be provided.</div>
+<div class="line">ATSValueError: Parser must be provided.</div>
+<div class="line">ATSTypeError: Service is not an IService.</div>
+<div class="line">ATSTypeError: Subprocessor is not an ISubProcessor.</div>
+<div class="line">ATSTypeError: Generator is not an IGenerator.</div>
+<div class="line">ATSTypeError: CLI is not an ICLI.</div>
+<div class="line">ATSTypeError: Parser is not an IOptionManager.</div>
 </div>
 </dd>
 </dl>
@@ -195,8 +210,8 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
   </div>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="armpicom.infrastructure.subprocessor.html"
-                          title="previous chapter">armpicom.infrastructure.subprocessor module</a></p>
+    <p class="topless"><a href="armpicom.service.isubprocessor.html"
+                          title="previous chapter">armpicom.service.isubprocessor module</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
@@ -237,7 +252,7 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
           <a href="armpicom.engine.html" title="armpicom.engine module"
              >next</a> |</li>
         <li class="right" >
-          <a href="armpicom.infrastructure.subprocessor.html" title="armpicom.infrastructure.subprocessor module"
+          <a href="armpicom.service.isubprocessor.html" title="armpicom.service.isubprocessor module"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">armpicom https://github.com/vroncevic/armpicom/releases documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="modules.html" >armpicom</a> &#187;</li>

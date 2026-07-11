@@ -88,34 +88,33 @@ Tool structure
 .. code-block:: bash
 
     armpicom/
-         ├── application/
-         │   ├── __init__.py
-         │   └── service.py
          ├── armpicom_bundle.py
-         ├── domain/
-         │   ├── __init__.py
-         │   ├── models.py
-         │   └── ports/
-         │       ├── __init__.py
-         │       ├── iservice.py
-         │       └── isubprocessor.py
          ├── engine.py
          ├── infrastructure/
-         │   ├── cli.py
-         │   ├── cli_bundle.py
-         │   ├── config/
-         │   │   ├── armpicom.cfg
-         │   │   ├── armpicom.logo
-         │   │   ├── scheme.json
-         │   │   └── templates.tgz
-         │   ├── gen_picom_command.py
-         │   ├── icli.py
-         │   ├── icli_command.py
-         │   ├── __init__.py
-         │   └── subprocessor.py
-         └── __init__.py
+         │   ├── cli.py
+         │   ├── cli_bundle.py
+         │   ├── config/
+         │   │   ├── armpicom.cfg
+         │   │   ├── armpicom.logo
+         │   │   ├── scheme.json
+         │   │   └── templates.tgz
+         │   ├── gen_picom_command.py
+         │   ├── icli.py
+         │   ├── icli_command.py
+         │   ├── __init__.py
+         │   └── subprocessor.py
+         ├── __init__.py
+         ├── model/
+         │   ├── generate_project.py
+         │   └── __init__.py
+         ├── py.typed
+         └── service/
+             ├── engine.py
+             ├── __init__.py
+             ├── iservice.py
+             └── isubprocessor.py
 
-     6 directories, 21 files
+     5 directories, 21 files
 
 Usage
 ------

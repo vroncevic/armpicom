@@ -68,7 +68,7 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 </dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="armpicom.infrastructure.cli.CLI">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">armpicom.infrastructure.cli.</span></span><span class="sig-name descname"><span class="pre">CLI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_bundle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="armpicom.infrastructure.cli_bundle.html#armpicom.infrastructure.cli_bundle.CLIBundle" title="armpicom.infrastructure.cli_bundle.CLIBundle"><span class="pre">CLIBundle</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/armpicom/infrastructure/cli.html#CLI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.infrastructure.cli.CLI" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">armpicom.infrastructure.cli.</span></span><span class="sig-name descname"><span class="pre">CLI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_bundle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="armpicom.infrastructure.cli_bundle.html#armpicom.infrastructure.cli_bundle.CLIBundle" title="armpicom.infrastructure.cli_bundle.CLIBundle"><span class="pre">CLIBundle</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/armpicom/infrastructure/cli.html#CLI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.infrastructure.cli.CLI" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="armpicom.infrastructure.icli.html#armpicom.infrastructure.icli.ICLI" title="armpicom.infrastructure.icli.ICLI"><code class="xref py py-class docutils literal notranslate"><span class="pre">ICLI</span></code></a></p>
 <p>Adapter that implements CLI commands for the code generator.</p>
 <p>It defines:</p>
@@ -79,6 +79,7 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 <div class="line">_service - File generation orchestrator service.</div>
 <div class="line">_parser - CLI argument parser.</div>
 <div class="line">_commands - Map of command names to command instances.</div>
+<div class="line">_is_initialized - CLI component initialization status.</div>
 </div>
 </dd>
 <dt class="field-even">methods<span class="colon">:</span></dt>
@@ -96,13 +97,33 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 <span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#armpicom.infrastructure.cli.CLI._abc_impl" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="armpicom.infrastructure.cli.CLI._commands">
+<span class="sig-name descname"><span class="pre">_commands</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="armpicom.infrastructure.icli_command.html#armpicom.infrastructure.icli_command.ICLICommand" title="armpicom.infrastructure.icli_command.ICLICommand"><span class="pre">ICLICommand</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#armpicom.infrastructure.cli.CLI._commands" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="armpicom.infrastructure.cli.CLI._is_initialized">
+<span class="sig-name descname"><span class="pre">_is_initialized</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#armpicom.infrastructure.cli.CLI._is_initialized" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="armpicom.infrastructure.cli.CLI._parser">
+<span class="sig-name descname"><span class="pre">_parser</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">IOptionManager</span></em><a class="headerlink" href="#armpicom.infrastructure.cli.CLI._parser" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="armpicom.infrastructure.cli.CLI._service">
+<span class="sig-name descname"><span class="pre">_service</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="armpicom.service.iservice.html#armpicom.service.iservice.IService" title="armpicom.service.iservice.IService"><span class="pre">IService</span></a></em><a class="headerlink" href="#armpicom.infrastructure.cli.CLI._service" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="armpicom.infrastructure.cli.CLI.is_initialized">
 <span class="sig-name descname"><span class="pre">is_initialized</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/armpicom/infrastructure/cli.html#CLI.is_initialized"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.infrastructure.cli.CLI.is_initialized" title="Link to this definition">¶</a></dt>
 <dd><p>Checks if the CLI component is initialized.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>True (success) | False (fail).</p>
+<dd class="field-odd"><p>True if the CLI component is initialized, False otherwise.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>&lt;bool&gt;</p>
@@ -115,19 +136,22 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 
 <dl class="py method">
 <dt class="sig sig-object py" id="armpicom.infrastructure.cli.CLI.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/armpicom/infrastructure/cli.html#CLI.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.infrastructure.cli.CLI.run" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/armpicom/infrastructure/cli.html#CLI.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.infrastructure.cli.CLI.run" title="Link to this definition">¶</a></dt>
 <dd><p>Parses CLI arguments and executes selected command.</p>
 <dl class="field-list">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Return code, stdout and stderr messages.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>&lt;dict[str, Any]&gt;</p>
+<dd class="field-even"><p>&lt;Mapping[str, Any]&gt;</p>
 </dd>
 <dt class="field-odd">Exceptions<span class="colon">:</span></dt>
 <dd class="field-odd"><div class="line-block">
-<div class="line">SystemExit: System exit exception.</div>
-<div class="line">OSError: I/O error exception.</div>
+<div class="line">ValueError: Parameters mapping must be provided.</div>
+<div class="line">TypeError: Parameters mapping must be a mapping.</div>
+<div class="line">ATSTypeError: If parameters are of invalid type.</div>
+<div class="line">ATSValueError: If parameter constraints are violated.</div>
+<div class="line">ATSGeneratorError: If archive parsing or template rendering fails.</div>
 </div>
 </dd>
 </dl>
@@ -150,6 +174,10 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 <li><a class="reference internal" href="#">armpicom.infrastructure.cli module</a><ul>
 <li><a class="reference internal" href="#armpicom.infrastructure.cli.CLI"><code class="docutils literal notranslate"><span class="pre">CLI</span></code></a><ul>
 <li><a class="reference internal" href="#armpicom.infrastructure.cli.CLI._abc_impl"><code class="docutils literal notranslate"><span class="pre">CLI._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#armpicom.infrastructure.cli.CLI._commands"><code class="docutils literal notranslate"><span class="pre">CLI._commands</span></code></a></li>
+<li><a class="reference internal" href="#armpicom.infrastructure.cli.CLI._is_initialized"><code class="docutils literal notranslate"><span class="pre">CLI._is_initialized</span></code></a></li>
+<li><a class="reference internal" href="#armpicom.infrastructure.cli.CLI._parser"><code class="docutils literal notranslate"><span class="pre">CLI._parser</span></code></a></li>
+<li><a class="reference internal" href="#armpicom.infrastructure.cli.CLI._service"><code class="docutils literal notranslate"><span class="pre">CLI._service</span></code></a></li>
 <li><a class="reference internal" href="#armpicom.infrastructure.cli.CLI.is_initialized"><code class="docutils literal notranslate"><span class="pre">CLI.is_initialized()</span></code></a></li>
 <li><a class="reference internal" href="#armpicom.infrastructure.cli.CLI.run"><code class="docutils literal notranslate"><span class="pre">CLI.run()</span></code></a></li>
 </ul>

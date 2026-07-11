@@ -68,7 +68,7 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 </dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="armpicom.infrastructure.cli_bundle.CLIBundle">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">armpicom.infrastructure.cli_bundle.</span></span><span class="sig-name descname"><span class="pre">CLIBundle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="armpicom.domain.ports.iservice.html#armpicom.domain.ports.iservice.IService" title="armpicom.domain.ports.iservice.IService"><span class="pre">IService</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parser</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">IOptionManager</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commands</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="armpicom.infrastructure.icli_command.html#armpicom.infrastructure.icli_command.ICLICommand" title="armpicom.infrastructure.icli_command.ICLICommand"><span class="pre">ICLICommand</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/armpicom/infrastructure/cli_bundle.html#CLIBundle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.infrastructure.cli_bundle.CLIBundle" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">armpicom.infrastructure.cli_bundle.</span></span><span class="sig-name descname"><span class="pre">CLIBundle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="armpicom.service.iservice.html#armpicom.service.iservice.IService" title="armpicom.service.iservice.IService"><span class="pre">IService</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parser</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">IOptionManager</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commands</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="armpicom.infrastructure.icli_command.html#armpicom.infrastructure.icli_command.ICLICommand" title="armpicom.infrastructure.icli_command.ICLICommand"><span class="pre">ICLICommand</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/armpicom/infrastructure/cli_bundle.html#CLIBundle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.infrastructure.cli_bundle.CLIBundle" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Data class for CLI adapters bundle.</p>
 <p>It defines:</p>
@@ -78,54 +78,56 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 <dd class="field-odd"><div class="line-block">
 <div class="line">service - Service orchestrating generation (default None).</div>
 <div class="line">parser - Argument parser for parsing CLI command args (default None).</div>
-<div class="line">commands - List of CLI command instances (default None).</div>
+<div class="line">commands - Sequence of CLI command instances (default None).</div>
 </div>
 </dd>
 <dt class="field-even">methods<span class="colon">:</span></dt>
 <dd class="field-even"><div class="line-block">
-<div class="line">validate - Validates that essential components are set.</div>
-<div class="line">merge - Merges non-None values from another bundle.</div>
-<div class="line">to_dict - Converts the bundle attributes to a dictionary.</div>
+<div class="line">validate - Validates that CLIBundle is valid (can be called after merge).</div>
+<div class="line">merge - Merges non-None values from another CLIBundle.</div>
+<div class="line">to_dict - Converts the CLIBundle to a dictionary.</div>
 </div>
 </dd>
 </dl>
 </div></blockquote>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="armpicom.infrastructure.cli_bundle.CLIBundle.commands">
-<span class="sig-name descname"><span class="pre">commands</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="armpicom.infrastructure.icli_command.html#armpicom.infrastructure.icli_command.ICLICommand" title="armpicom.infrastructure.icli_command.ICLICommand"><span class="pre">ICLICommand</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#armpicom.infrastructure.cli_bundle.CLIBundle.commands" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">commands</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="armpicom.infrastructure.icli_command.html#armpicom.infrastructure.icli_command.ICLICommand" title="armpicom.infrastructure.icli_command.ICLICommand"><span class="pre">ICLICommand</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#armpicom.infrastructure.cli_bundle.CLIBundle.commands" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="armpicom.infrastructure.cli_bundle.CLIBundle.merge">
 <span class="sig-name descname"><span class="pre">merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#armpicom.infrastructure.cli_bundle.CLIBundle" title="armpicom.infrastructure.cli_bundle.CLIBundle"><span class="pre">CLIBundle</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/armpicom/infrastructure/cli_bundle.html#CLIBundle.merge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.infrastructure.cli_bundle.CLIBundle.merge" title="Link to this definition">¶</a></dt>
-<dd><p>Merges non-None values from another bundle into this one.</p>
-<dl class="field-list simple">
+<dd><p>Merges non-None values from another CLIBundle into this one.</p>
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>other</strong> (<em>&lt;CLIBundle&gt;</em>) – Another bundle to merge into this one.</p>
+<dd class="field-odd"><p><strong>other</strong> (<em>&lt;CLIBundle&gt;</em>) – Another CLIBundle to merge into this one.</p>
 </dd>
 <dt class="field-even">Exceptions<span class="colon">:</span></dt>
-<dd class="field-even"><p>None.</p>
+<dd class="field-even"><div class="line-block">
+<div class="line">ATSTypeError: Other must be of type CLIBundle.</div>
+</div>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="armpicom.infrastructure.cli_bundle.CLIBundle.parser">
-<span class="sig-name descname"><span class="pre">parser</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">IOptionManager</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#armpicom.infrastructure.cli_bundle.CLIBundle.parser" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">parser</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">IOptionManager</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#armpicom.infrastructure.cli_bundle.CLIBundle.parser" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="armpicom.infrastructure.cli_bundle.CLIBundle.service">
-<span class="sig-name descname"><span class="pre">service</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="armpicom.domain.ports.iservice.html#armpicom.domain.ports.iservice.IService" title="armpicom.domain.ports.iservice.IService"><span class="pre">IService</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#armpicom.infrastructure.cli_bundle.CLIBundle.service" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">service</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="armpicom.service.iservice.html#armpicom.service.iservice.IService" title="armpicom.service.iservice.IService"><span class="pre">IService</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#armpicom.infrastructure.cli_bundle.CLIBundle.service" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="armpicom.infrastructure.cli_bundle.CLIBundle.to_dict">
 <span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/armpicom/infrastructure/cli_bundle.html#CLIBundle.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.infrastructure.cli_bundle.CLIBundle.to_dict" title="Link to this definition">¶</a></dt>
-<dd><p>Converts the bundle attributes to a dictionary.</p>
+<dd><p>Converts the CLIBundle to a dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Dictionary representation of the bundle attributes.</p>
+<dd class="field-odd"><p>Dictionary representation of the CLIBundle.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>&lt;dict[str, Any]&gt;</p>
@@ -139,13 +141,20 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 <dl class="py method">
 <dt class="sig sig-object py" id="armpicom.infrastructure.cli_bundle.CLIBundle.validate">
 <span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/armpicom/infrastructure/cli_bundle.html#CLIBundle.validate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.infrastructure.cli_bundle.CLIBundle.validate" title="Link to this definition">¶</a></dt>
-<dd><p>Validates that essential components are set.</p>
+<dd><p>Validates that CLIBundle is valid (can be called after merge).
+Performs validation of service, parser and commands attributes.
+Service must be non-None and an instance of IService interface.
+Parser must be non-None and an instance of IOptionManager interface.
+Commands sequence must be non-None and an instance of Sequence interface.</p>
 <dl class="field-list">
 <dt class="field-odd">Exceptions<span class="colon">:</span></dt>
 <dd class="field-odd"><div class="line-block">
 <div class="line">ATSValueError: Service must be provided.</div>
 <div class="line">ATSValueError: Parser must be provided.</div>
-<div class="line">ATSValueError: List of commands must be provided.</div>
+<div class="line">ATSValueError: Commands sequence must be provided.</div>
+<div class="line">ATSTypeError: Service must be of type IService.</div>
+<div class="line">ATSTypeError: Parser must be of type IOptionManager.</div>
+<div class="line">ATSTypeError: Commands sequence must be of type Sequence.</div>
 </div>
 </dd>
 </dl>

@@ -15,7 +15,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="armpicom.armpicom_bundle module" href="armpicom.armpicom_bundle.html" />
+    <link rel="next" title="armpicom.model package" href="armpicom.model.html" />
     <link rel="prev" title="armpicom.infrastructure.icli_command module" href="armpicom.infrastructure.icli_command.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -28,7 +28,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="armpicom.armpicom_bundle.html" title="armpicom.armpicom_bundle module"
+          <a href="armpicom.model.html" title="armpicom.model package"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="armpicom.infrastructure.icli_command.html" title="armpicom.infrastructure.icli_command module"
@@ -69,7 +69,7 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 <dl class="py class">
 <dt class="sig sig-object py" id="armpicom.infrastructure.subprocessor.SubProcessor">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">armpicom.infrastructure.subprocessor.</span></span><span class="sig-name descname"><span class="pre">SubProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">IGenerator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/armpicom/infrastructure/subprocessor.html#SubProcessor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.infrastructure.subprocessor.SubProcessor" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="armpicom.domain.ports.isubprocessor.html#armpicom.domain.ports.isubprocessor.ISubProcessor" title="armpicom.domain.ports.isubprocessor.ISubProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">ISubProcessor</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="armpicom.service.isubprocessor.html#armpicom.service.isubprocessor.ISubProcessor" title="armpicom.service.isubprocessor.ISubProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">ISubProcessor</span></code></a></p>
 <p>Adapter that executes sub-processes.</p>
 <p>It defines:</p>
 <blockquote>
@@ -101,6 +101,11 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 <dl class="py attribute">
 <dt class="sig sig-object py" id="armpicom.infrastructure.subprocessor.SubProcessor._checker">
 <span class="sig-name descname"><span class="pre">_checker</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">IChecker</span></em><a class="headerlink" href="#armpicom.infrastructure.subprocessor.SubProcessor._checker" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="armpicom.infrastructure.subprocessor.SubProcessor._generator">
+<span class="sig-name descname"><span class="pre">_generator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">IGenerator</span></em><a class="headerlink" href="#armpicom.infrastructure.subprocessor.SubProcessor._generator" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -142,14 +147,24 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 
 <dl class="py method">
 <dt class="sig sig-object py" id="armpicom.infrastructure.subprocessor.SubProcessor.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/armpicom/infrastructure/subprocessor.html#SubProcessor.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.infrastructure.subprocessor.SubProcessor.run" title="Link to this definition">¶</a></dt>
-<dd><p>Executes a sub-process.</p>
-<dl class="field-list simple">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/armpicom/infrastructure/subprocessor.html#SubProcessor.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.infrastructure.subprocessor.SubProcessor.run" title="Link to this definition">¶</a></dt>
+<dd><p>Executes the generator.</p>
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>params</strong> (<em>&lt;dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>&gt;</em>) – The command parameters to execute.</p>
+<dd class="field-odd"><p><strong>params</strong> (<em>&lt;Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>&gt;</em>) – The command parameters for generator.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return code, stdout and stderr messages.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>&lt;Mapping[str, Any]&gt;</p>
 </dd>
 <dt class="field-even">Exceptions<span class="colon">:</span></dt>
-<dd class="field-even"><p>None.</p>
+<dd class="field-even"><div class="line-block">
+<div class="line">ATSTypeError: If parameters are of invalid type.</div>
+<div class="line">ATSValueError: If parameter constraints are violated.</div>
+<div class="line">ATSGeneratorError: If archive parsing or template rendering fails.</div>
+</div>
 </dd>
 </dl>
 </dd></dl>
@@ -172,6 +187,7 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 <li><a class="reference internal" href="#armpicom.infrastructure.subprocessor.SubProcessor"><code class="docutils literal notranslate"><span class="pre">SubProcessor</span></code></a><ul>
 <li><a class="reference internal" href="#armpicom.infrastructure.subprocessor.SubProcessor._abc_impl"><code class="docutils literal notranslate"><span class="pre">SubProcessor._abc_impl</span></code></a></li>
 <li><a class="reference internal" href="#armpicom.infrastructure.subprocessor.SubProcessor._checker"><code class="docutils literal notranslate"><span class="pre">SubProcessor._checker</span></code></a></li>
+<li><a class="reference internal" href="#armpicom.infrastructure.subprocessor.SubProcessor._generator"><code class="docutils literal notranslate"><span class="pre">SubProcessor._generator</span></code></a></li>
 <li><a class="reference internal" href="#armpicom.infrastructure.subprocessor.SubProcessor._reporter"><code class="docutils literal notranslate"><span class="pre">SubProcessor._reporter</span></code></a></li>
 <li><a class="reference internal" href="#armpicom.infrastructure.subprocessor.SubProcessor._scheme"><code class="docutils literal notranslate"><span class="pre">SubProcessor._scheme</span></code></a></li>
 <li><a class="reference internal" href="#armpicom.infrastructure.subprocessor.SubProcessor._templates"><code class="docutils literal notranslate"><span class="pre">SubProcessor._templates</span></code></a></li>
@@ -192,8 +208,8 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="armpicom.armpicom_bundle.html"
-                          title="next chapter">armpicom.armpicom_bundle module</a></p>
+    <p class="topless"><a href="armpicom.model.html"
+                          title="next chapter">armpicom.model package</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -226,7 +242,7 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="armpicom.armpicom_bundle.html" title="armpicom.armpicom_bundle module"
+          <a href="armpicom.model.html" title="armpicom.model package"
              >next</a> |</li>
         <li class="right" >
           <a href="armpicom.infrastructure.icli_command.html" title="armpicom.infrastructure.icli_command module"
