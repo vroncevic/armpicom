@@ -2,7 +2,7 @@
 
 '''
 Module
-    __init__.py
+    iservice.py
 Copyright
     Copyright (C) 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     armpicom is free software: you can redistribute it and/or modify it
@@ -16,8 +16,13 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Initializes the ampicom.infrastructure.
+    Defines the abstract interface for services.
+    Provides an interface for the service factory.
 '''
+
+from __future__ import annotations
+
+from typing import Protocol, runtime_checkable
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2026, https://vroncevic.github.io/armpicom'
@@ -27,3 +32,34 @@ __version__ = '1.9.7'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
+
+
+@runtime_checkable
+class IService[ServiceParamsType, ExecuteResultType](Protocol):
+    '''
+        Defines the abstract interface for services.
+        Provides an interface for the service factory.
+
+        It defines:
+
+            :methods:
+                | execute - Executes the service.
+                | is_initialized - Checks if the service is initialized.
+    '''
+
+    def execute(self, *, params: ServiceParamsType) -> ExecuteResultType:
+        '''
+            Executes the service.
+
+            :param params: The parameters for the service execution.
+            :return: The result of the execution.
+        '''
+        pass
+
+    def is_initialized(self) -> bool:
+        '''
+            Checks if the service is initialized.
+
+            :return: True if the service is initialized, False otherwise.
+        '''
+        pass

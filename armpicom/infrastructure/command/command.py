@@ -2,7 +2,7 @@
 
 '''
 Module
-    __init__.py
+    command.py
 Copyright
     Copyright (C) 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     armpicom is free software: you can redistribute it and/or modify it
@@ -16,8 +16,15 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Initializes the ampicom.infrastructure.
+    Defines command bundle dataclass combining command definition and executor.
 '''
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+
+from armpicom.infrastructure.command.icommand_definition import ICommandDefinition
+from armpicom.infrastructure.command.icommand_executor import ICommandExecutor
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2026, https://vroncevic.github.io/armpicom'
@@ -27,3 +34,19 @@ __version__ = '1.9.7'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
+
+
+@dataclass(slots=True, frozen=True)
+class CommandBundle:
+    '''
+        Command bundle holding command definition and command executor.
+
+        It defines:
+
+            :attributes:
+                | definition - The command CLI metadata definition.
+                | executor - The command execution strategy.
+    '''
+
+    definition: ICommandDefinition
+    executor: ICommandExecutor[object, object, object]

@@ -2,7 +2,7 @@
 
 '''
 Module
-    __init__.py
+    project_setup.py
 Copyright
     Copyright (C) 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     armpicom is free software: you can redistribute it and/or modify it
@@ -16,8 +16,13 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Initializes the ampicom.infrastructure.
+    Defines domain model for a project setup.
 '''
+
+from __future__ import annotations
+
+from collections.abc import Mapping
+from dataclasses import dataclass
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2026, https://vroncevic.github.io/armpicom'
@@ -27,3 +32,19 @@ __version__ = '1.9.7'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
+class ProjectSetup:
+    '''
+        Defines domain model for a project setup.
+
+        It defines:
+
+            :attributes:
+                | chip_config - Mapping with chip configuration.
+                | device - Name of the target device.
+    '''
+
+    chip_config: Mapping[str, object]
+    device: str

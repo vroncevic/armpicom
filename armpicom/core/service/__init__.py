@@ -16,8 +16,10 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Initializes the ampicom.infrastructure.
+    Initializes the armpicom.core.service package.
 '''
+
+from __future__ import annotations
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2026, https://vroncevic.github.io/armpicom'

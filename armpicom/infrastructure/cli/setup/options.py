@@ -2,7 +2,7 @@
 
 '''
 Module
-    __init__.py
+    options.py
 Copyright
     Copyright (C) 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     armpicom is free software: you can redistribute it and/or modify it
@@ -16,8 +16,16 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Initializes the ampicom.infrastructure.
+    Encapsulates core CLI components for simplification of CLI bundle.
 '''
+
+from __future__ import annotations
+
+from typing import TypedDict
+
+from ats_utilities.option.imanager import IOptionManager
+
+from armpicom.core.service.iservice import IService
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2026, https://vroncevic.github.io/armpicom'
@@ -27,3 +35,18 @@ __version__ = '1.9.7'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
+
+
+class CLIBundleOptions(TypedDict):
+    '''
+        Encapsulates core CLI components for simplification of CLI bundle.
+
+        It defines:
+
+            :attributes:
+                | service - The service for gen execution.
+                | parser - The parser for command line options.
+    '''
+
+    service: IService
+    parser: IOptionManager
