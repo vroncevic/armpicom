@@ -9,13 +9,22 @@ The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
 other information that should be provided before the tool is installed.
 
-|armpicom python checker| |armpicom python package| |github issues| |documentation status| |github contributors|
+|armpicom python checker| |armpicom python package| |armpicom interface checker| |armpicom isp checker| |armpicom srp checker| |github issues| |documentation status| |github contributors|
 
 .. |armpicom python checker| image:: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_python_checker.yml/badge.svg
    :target: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_python_checker.yml
 
 .. |armpicom python package| image:: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_package_checker.yml/badge.svg
    :target: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_package.yml
+
+.. |armpicom interface checker| image:: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_interface_checker.yml/badge.svg
+   :target: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_interface_checker.yml
+
+.. |armpicom isp checker| image:: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_isp_checker.yml/badge.svg
+   :target: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_isp_checker.yml
+
+.. |armpicom srp checker| image:: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_srp_checker.yml/badge.svg
+   :target: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_srp_checker.yml
 
 .. |github issues| image:: https://img.shields.io/github/issues/vroncevic/armpicom.svg
    :target: https://github.com/vroncevic/armpicom/issues
