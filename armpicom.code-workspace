@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../../../../ats_utilities/github/ats_utilities"
 		}
 	],
 	"settings": {}

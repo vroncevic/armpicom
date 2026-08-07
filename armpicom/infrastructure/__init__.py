@@ -16,14 +16,14 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Initialization module for the armpicom.infrastructure.
+    Initializes the ampicom.infrastructure.
 '''
 
-__author__ = r'Vladimir Roncevic'
-__copyright__ = r'(C) 2026, https://vroncevic.github.io/armpicom'
-__credits__ = [r'Vladimir Roncevic', r'Python Software Foundation']
-__license__ = r'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = r'1.9.6'
-__maintainer__ = r'Vladimir Roncevic'
-__email__ = r'elektron.ronca@gmail.com'
-__status__ = r'Development'
+__author__ = 'Vladimir Roncevic'
+__copyright__ = '(C) 2026, https://vroncevic.github.io/armpicom'
+__credits__ = ['Vladimir Roncevic', 'Python Software Foundation']
+__license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
+__version__ = '1.9.7'
+__maintainer__ = 'Vladimir Roncevic'
+__email__ = 'elektron.ronca@gmail.com'
+__status__ = 'Updated'

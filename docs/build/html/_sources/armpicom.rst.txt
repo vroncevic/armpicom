@@ -7,9 +7,9 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
+   armpicom.core
    armpicom.infrastructure
-   armpicom.model
-   armpicom.service
+   armpicom.setup
 
 Submodules
 ----------
@@ -17,7 +17,6 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   armpicom.armpicom_bundle
    armpicom.engine
 
 Module contents

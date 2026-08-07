@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="main module" href="main.html" />
-    <link rel="prev" title="armpicom.armpicom_bundle module" href="armpicom.armpicom_bundle.html" /> 
+    <link rel="prev" title="armpicom.setup.validator module" href="armpicom.setup.validator.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -31,7 +31,7 @@
           <a href="main.html" title="main module"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="armpicom.armpicom_bundle.html" title="armpicom.armpicom_bundle module"
+          <a href="armpicom.setup.validator.html" title="armpicom.setup.validator module"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">armpicom https://github.com/vroncevic/armpicom/releases documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="modules.html" >armpicom</a> &#187;</li>
@@ -62,60 +62,35 @@ See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along
 with this program. If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
 </dd>
-<dt>Info</dt><dd><p>Main engine orchestrator class for Task Code Generator CLI.</p>
+<dt>Info</dt><dd><p>Engine orchestrating the initialization and execution of armpicom.</p>
 </dd>
 </dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="armpicom.engine.ARMPicom">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">armpicom.engine.</span></span><span class="sig-name descname"><span class="pre">ARMPicom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_bundle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="armpicom.armpicom_bundle.html#armpicom.armpicom_bundle.ARMPicomBundle" title="armpicom.armpicom_bundle.ARMPicomBundle"><span class="pre">ARMPicomBundle</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/armpicom/engine.html#ARMPicom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.engine.ARMPicom" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">armpicom.engine.</span></span><span class="sig-name descname"><span class="pre">ARMPicom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bundle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="armpicom.setup.bundle.html#armpicom.setup.bundle.ARMPicomBundle" title="armpicom.setup.bundle.ARMPicomBundle"><span class="pre">ARMPicomBundle</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/armpicom/engine.html#ARMPicom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.engine.ARMPicom" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
-<p>Engine orchestrating the initialization and execution of ARMPicom.</p>
+<p>Engine orchestrating the initialization and execution of armpicom.</p>
 <p>It defines:</p>
 <blockquote>
 <div><dl class="field-list">
 <dt class="field-odd">attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><div class="line-block">
-<div class="line">_info_file - Path to the info file.</div>
-<div class="line">_is_initialized - Flag indicating if the engine is initialized.</div>
-<div class="line">_checker - Interface for checking component validity.</div>
-<div class="line">_reporter - Interface for reporting component results.</div>
-<div class="line">_verbose - Flag indicating if the engine is verbose.</div>
-<div class="line">_generator - Interface for generating components.</div>
-<div class="line">_option_parser - Interface for parsing options.</div>
-<div class="line">_cli - Adapter for command line user interface.</div>
+<div class="line">_is_initialized - The flag indicating whether the armpicom engine is initialized.</div>
+<div class="line">_logger - The logger for logging messages during initialization and execution.</div>
+<div class="line">_cli - The adapter for the command line interface.</div>
 </div>
 </dd>
 <dt class="field-even">methods<span class="colon">:</span></dt>
 <dd class="field-even"><div class="line-block">
-<div class="line">__init__ - Initializes the ARMPicom engine with adapters and services.</div>
-<div class="line">process - Starts ARMPicom engine.</div>
+<div class="line">__init__ - Initializes the armpicom engine with adapters and services.</div>
+<div class="line">process - Processes the armpicom commands.</div>
 </div>
 </dd>
 </dl>
 </div></blockquote>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="armpicom.engine.ARMPicom._abc_impl">
-<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#armpicom.engine.ARMPicom._abc_impl" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="armpicom.engine.ARMPicom._checker">
-<span class="sig-name descname"><span class="pre">_checker</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">IChecker</span></em><a class="headerlink" href="#armpicom.engine.ARMPicom._checker" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
 <dt class="sig sig-object py" id="armpicom.engine.ARMPicom._cli">
-<span class="sig-name descname"><span class="pre">_cli</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="armpicom.infrastructure.icli.html#armpicom.infrastructure.icli.ICLI" title="armpicom.infrastructure.icli.ICLI"><span class="pre">ICLI</span></a></em><a class="headerlink" href="#armpicom.engine.ARMPicom._cli" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="armpicom.engine.ARMPicom._generator">
-<span class="sig-name descname"><span class="pre">_generator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">IGenerator</span></em><a class="headerlink" href="#armpicom.engine.ARMPicom._generator" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="armpicom.engine.ARMPicom._info_file">
-<span class="sig-name descname"><span class="pre">_info_file</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'infrastructure/config/armpicom.cfg'</span></em><a class="headerlink" href="#armpicom.engine.ARMPicom._info_file" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">_cli</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="armpicom.infrastructure.cli.icli.html#armpicom.infrastructure.cli.icli.ICLI" title="armpicom.infrastructure.cli.icli.ICLI"><span class="pre">ICLI</span></a></em><a class="headerlink" href="#armpicom.engine.ARMPicom._cli" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -124,27 +99,20 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="armpicom.engine.ARMPicom._option_parser">
-<span class="sig-name descname"><span class="pre">_option_parser</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">IOptionManager</span></em><a class="headerlink" href="#armpicom.engine.ARMPicom._option_parser" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="armpicom.engine.ARMPicom._reporter">
-<span class="sig-name descname"><span class="pre">_reporter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">IReporter</span></em><a class="headerlink" href="#armpicom.engine.ARMPicom._reporter" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="armpicom.engine.ARMPicom._verbose">
-<span class="sig-name descname"><span class="pre">_verbose</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#armpicom.engine.ARMPicom._verbose" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="armpicom.engine.ARMPicom._logger">
+<span class="sig-name descname"><span class="pre">_logger</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ILogger</span></em><a class="headerlink" href="#armpicom.engine.ARMPicom._logger" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="armpicom.engine.ARMPicom.process">
-<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/armpicom/engine.html#ARMPicom.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.engine.ARMPicom.process" title="Link to this definition">¶</a></dt>
-<dd><p>Starts ARMPicom via CLI adapter.</p>
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/armpicom/engine.html#ARMPicom.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.engine.ARMPicom.process" title="Link to this definition">¶</a></dt>
+<dd><p>Processes the armpicom commands.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Exceptions<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if successful, False otherwise.</p>
+</dd>
+<dt class="field-even">Exceptions<span class="colon">:</span></dt>
+<dd class="field-even"><p>None.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -165,15 +133,9 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
     <ul>
 <li><a class="reference internal" href="#">armpicom.engine module</a><ul>
 <li><a class="reference internal" href="#armpicom.engine.ARMPicom"><code class="docutils literal notranslate"><span class="pre">ARMPicom</span></code></a><ul>
-<li><a class="reference internal" href="#armpicom.engine.ARMPicom._abc_impl"><code class="docutils literal notranslate"><span class="pre">ARMPicom._abc_impl</span></code></a></li>
-<li><a class="reference internal" href="#armpicom.engine.ARMPicom._checker"><code class="docutils literal notranslate"><span class="pre">ARMPicom._checker</span></code></a></li>
 <li><a class="reference internal" href="#armpicom.engine.ARMPicom._cli"><code class="docutils literal notranslate"><span class="pre">ARMPicom._cli</span></code></a></li>
-<li><a class="reference internal" href="#armpicom.engine.ARMPicom._generator"><code class="docutils literal notranslate"><span class="pre">ARMPicom._generator</span></code></a></li>
-<li><a class="reference internal" href="#armpicom.engine.ARMPicom._info_file"><code class="docutils literal notranslate"><span class="pre">ARMPicom._info_file</span></code></a></li>
 <li><a class="reference internal" href="#armpicom.engine.ARMPicom._is_initialized"><code class="docutils literal notranslate"><span class="pre">ARMPicom._is_initialized</span></code></a></li>
-<li><a class="reference internal" href="#armpicom.engine.ARMPicom._option_parser"><code class="docutils literal notranslate"><span class="pre">ARMPicom._option_parser</span></code></a></li>
-<li><a class="reference internal" href="#armpicom.engine.ARMPicom._reporter"><code class="docutils literal notranslate"><span class="pre">ARMPicom._reporter</span></code></a></li>
-<li><a class="reference internal" href="#armpicom.engine.ARMPicom._verbose"><code class="docutils literal notranslate"><span class="pre">ARMPicom._verbose</span></code></a></li>
+<li><a class="reference internal" href="#armpicom.engine.ARMPicom._logger"><code class="docutils literal notranslate"><span class="pre">ARMPicom._logger</span></code></a></li>
 <li><a class="reference internal" href="#armpicom.engine.ARMPicom.process"><code class="docutils literal notranslate"><span class="pre">ARMPicom.process()</span></code></a></li>
 </ul>
 </li>
@@ -184,8 +146,8 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
   </div>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="armpicom.armpicom_bundle.html"
-                          title="previous chapter">armpicom.armpicom_bundle module</a></p>
+    <p class="topless"><a href="armpicom.setup.validator.html"
+                          title="previous chapter">armpicom.setup.validator module</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
@@ -226,7 +188,7 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
           <a href="main.html" title="main module"
              >next</a> |</li>
         <li class="right" >
-          <a href="armpicom.armpicom_bundle.html" title="armpicom.armpicom_bundle module"
+          <a href="armpicom.setup.validator.html" title="armpicom.setup.validator module"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">armpicom https://github.com/vroncevic/armpicom/releases documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="modules.html" >armpicom</a> &#187;</li>

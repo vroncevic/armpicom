@@ -21,27 +21,38 @@ Info
 
 from __future__ import annotations
 
+from sys import exit
+
 from armpicom.engine import ARMPicom
+from armpicom.setup.factory import ARMPicomBundleFactory
 
-__author__ = r'Vladimir Roncevic'
-__copyright__ = r'(C) 2026, https://vroncevic.github.io/armpicom'
-__credits__ = [r'Vladimir Roncevic', r'Python Software Foundation']
-__license__ = r'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = r'1.9.6'
-__maintainer__ = r'Vladimir Roncevic'
-__email__ = r'elektron.ronca@gmail.com'
-__status__ = r'Development'
+__author__ = 'Vladimir Roncevic'
+__copyright__ = '(C) 2026, https://vroncevic.github.io/armpicom'
+__credits__ = ['Vladimir Roncevic', 'Python Software Foundation']
+__license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
+__version__ = '1.9.7'
+__maintainer__ = 'Vladimir Roncevic'
+__email__ = 'elektron.ronca@gmail.com'
+__status__ = 'Updated'
 
 
-def main() -> None:
+def main() -> bool:
     '''
-        Bootstraps and runs the ARMPicom application with required adapters.
+        Bootstraps and runs the armpicom with required adapters.
 
+        :return: True if successful, False otherwise.
         :exceptions: None
     '''
-    armpicom: ARMPicom = ARMPicom()
-    armpicom.process()
+    armpicom: ARMPicom = ARMPicom(ARMPicomBundleFactory.create_bundle())
+
+    return armpicom.process()
 
 
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    '''
+        Entry point for armpicom execution.
+
+        :exit code: 0 if successful, 1 otherwise.
+        :exceptions: None
+    '''
+    exit(0 if main() else 1)

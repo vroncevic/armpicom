@@ -1,7 +1,7 @@
 Generate RPI PICO project configuration/build setup
 ----------------------------------------------------
 
-**armpicom** is toolset for generation of of RPI PICO project configuration/build setup.
+**armpicom** is toolset for generation of RPI PICO project configuration/build setup.
 
 Developed in `python <https://www.python.org/>`_ code.
 
@@ -9,13 +9,22 @@ The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
 other information that should be provided before the tool is installed.
 
-|armpicom python checker| |armpicom python package| |github issues| |documentation status| |github contributors|
+|armpicom python checker| |armpicom python package| |armpicom interface checker| |armpicom isp checker| |armpicom srp checker| |github issues| |documentation status| |github contributors|
 
 .. |armpicom python checker| image:: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_python_checker.yml/badge.svg
    :target: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_python_checker.yml
 
 .. |armpicom python package| image:: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_package_checker.yml/badge.svg
    :target: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_package.yml
+
+.. |armpicom interface checker| image:: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_interface_checker.yml/badge.svg
+   :target: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_interface_checker.yml
+
+.. |armpicom isp checker| image:: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_isp_checker.yml/badge.svg
+   :target: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_isp_checker.yml
+
+.. |armpicom srp checker| image:: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_srp_checker.yml/badge.svg
+   :target: https://github.com/vroncevic/armpicom/actions/workflows/armpicom_srp_checker.yml
 
 .. |github issues| image:: https://img.shields.io/github/issues/vroncevic/armpicom.svg
    :target: https://github.com/vroncevic/armpicom/issues
@@ -33,8 +42,8 @@ other information that should be provided before the tool is installed.
    self
    modules
 
-Installation
--------------
+🚀 Installation
+---------------
 
 |armpicom python3 build|
 
@@ -71,15 +80,15 @@ You can use Docker to create image/container, or You can use pip to install
     # pyton3
     pip3 install armpicom
 
-Dependencies
--------------
+📦 Dependencies
+---------------
 
 **armpicom** requires next modules and libraries
 
 * `ats-utilities - Python App/Tool/Script Utilities <https://pypi.org/project/ats-utilities/>`_
 
-Tool structure
----------------
+📁 Tool structure
+-----------------
 
 **armpicom** is based on OOP.
 
@@ -88,36 +97,83 @@ Tool structure
 .. code-block:: bash
 
     armpicom/
-         ├── armpicom_bundle.py
+         ├── core/
+         │   ├── __init__.py
+         │   ├── model/
+         │   │   ├── __init__.py
+         │   │   └── project_setup.py
+         │   └── service/
+         │       ├── engine.py
+         │       ├── __init__.py
+         │       ├── iservice.py
+         │       └── isubprocessor.py
          ├── engine.py
          ├── infrastructure/
-         │   ├── cli.py
-         │   ├── cli_bundle.py
-         │   ├── config/
-         │   │   ├── armpicom.cfg
-         │   │   ├── armpicom.logo
-         │   │   ├── scheme.json
-         │   │   └── templates.tgz
-         │   ├── gen_picom_command.py
-         │   ├── icli.py
-         │   ├── icli_command.py
-         │   ├── __init__.py
-         │   └── subprocessor.py
+         │   ├── cli/
+         │   │   ├── engine.py
+         │   │   ├── icli.py
+         │   │   ├── __init__.py
+         │   │   └── setup/
+         │   │       ├── bundle.py
+         │   │       ├── dep_validator.py
+         │   │       ├── dependencies.py
+         │   │       ├── factory.py
+         │   │       ├── __init__.py
+         │   │       ├── keys.py
+         │   │       ├── opt_validator.py
+         │   │       ├── options.py
+         │   │       ├── registry.py
+         │   │       └── validator.py
+         │   ├── command/
+         │   │   ├── command.py
+         │   │   ├── gen_picom_command_definition.py
+         │   │   ├── gen_picom_command_executor.py
+         │   │   ├── icommand_definition.py
+         │   │   ├── icommand_executor.py
+         │   │   └── __init__.py
+         │   ├── config/
+         │   │   ├── armpicom.cfg
+         │   │   ├── armpicom.logo
+         │   │   ├── scheme.json
+         │   │   └── templates.tgz
+         │   ├── __init__.py
+         │   └── subprocessor.py
          ├── __init__.py
-         ├── model/
-         │   ├── generate_project.py
-         │   └── __init__.py
          ├── py.typed
-         └── service/
-             ├── engine.py
+         └── setup/
+             ├── bundle.py
+             ├── dep_validator.py
+             ├── dependencies.py
+             ├── factory.py
              ├── __init__.py
-             ├── iservice.py
-             └── isubprocessor.py
+             ├── keys.py
+             ├── opt_validator.py
+             ├── options.py
+             ├── registry.py
+             └── validator.py
 
-     5 directories, 21 files
+     10 directories, 45 files
 
-Usage
-------
+✨ Features
+-----------
+
+* Automatically scaffolds Raspberry Pi Pico projects with proper configuration and build setups.
+* Provides a modular and extensible architecture based on OOP and SOLID principles.
+* Includes command line interface (CLI) support via a command/executor structure.
+* Robust validation of project bundles, dependencies, and options.
+* Comes with configurable templates and JSON schema definitions.
+* High code quality with full type checking and 100% unit test coverage.
+
+📊 Code coverage
+----------------
+
+.. csv-table:: Code coverage
+   :file: coverage_table.csv
+   :widths: 60, 10, 10, 20
+   :header-rows: 1
+
+🛠 Usage
+--------
 
 Install package
 
@@ -125,7 +181,7 @@ Install package
 
     pip3 install armpicom
 
-Prepare main entry point by downloading ``main.py`` or create your own.
+Prepare main entry point by downloading `main.py` or create your own.
 
 .. code-block:: bash
 
@@ -137,16 +193,21 @@ Running tool for creating new ARM Pico M project
 
     python3 main.py create --name mytool --output ./demo/
 
-Copyright and licence
------------------------
+📚 Docs
+-------
 
-|license: gpl v3| |license: apache 2.0|
+More documentation and info at
 
-.. |license: gpl v3| image:: https://img.shields.io/badge/license-gplv3-blue.svg
-   :target: https://www.gnu.org/licenses/gpl-3.0
+* `armpicom.readthedocs.io <https://armpicom.readthedocs.io>`_
+* `www.python.org <https://www.python.org/>`_
 
-.. |license: apache 2.0| image:: https://img.shields.io/badge/license-apache%202.0-blue.svg
-   :target: https://opensource.org/licenses/apache-2.0
+👥 Contributing
+---------------
+
+`Contributing to armpicom <https://github.com/vroncevic/armpicom/blob/dev/CONTRIBUTING.md>`_
+
+📄 Copyright and licence
+-------------------------
 
 Copyright (C) 2021 - 2026 by `vroncevic.github.io/armpicom <https://vroncevic.github.io/armpicom>`_
 
@@ -155,20 +216,3 @@ it under the same terms as Python itself, either Python version 3.x or,
 at your option, any later version of Python 3 you may have available.
 
 Lets help and support PSF.
-
-|python software foundation|
-
-.. |python software foundation| image:: https://raw.githubusercontent.com/vroncevic/armpicom/dev/docs/psf-logo-alpha.png
-   :target: https://www.python.org/psf/
-
-|donate|
-
-.. |donate| image:: https://www.paypalobjects.com/en_us/i/btn/btn_donatecc_lg.gif
-   :target: https://www.python.org/psf/donations/
-
-Indices and tables
-------------------
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

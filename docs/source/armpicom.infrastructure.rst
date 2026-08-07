@@ -1,17 +1,21 @@
 armpicom.infrastructure package
 ===============================
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   armpicom.infrastructure.cli
+   armpicom.infrastructure.command
+
 Submodules
 ----------
 
 .. toctree::
    :maxdepth: 4
 
-   armpicom.infrastructure.cli
-   armpicom.infrastructure.cli_bundle
-   armpicom.infrastructure.gen_picom_command
-   armpicom.infrastructure.icli
-   armpicom.infrastructure.icli_command
    armpicom.infrastructure.subprocessor
 
 Module contents
