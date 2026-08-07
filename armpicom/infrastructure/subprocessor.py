@@ -92,39 +92,43 @@ class SubProcessor:
             :return: Return code, stdout and stderr messages.
             :exceptions: None.
         '''
-        current_dir: str = dirname(realpath(__file__))
-        output_dir: str = params.get('output')
-        project_name: str = params.get('name')
-        scheme: str = f'{current_dir}/{self._scheme}'
-        templates: str = f'{current_dir}/{self._templates}'
+        try:
+            current_dir: str = dirname(realpath(__file__))
+            output_dir: str = params.get('output')
+            project_name: str = params.get('name')
+            scheme: str = f'{current_dir}/{self._scheme}'
+            templates: str = f'{current_dir}/{self._templates}'
 
-        success = self._generator.generate(
-            data=GeneratorData(
-                archive_path=templates,
-                target_dir=output_dir,
-                template_key='base',
-                scheme=scheme,
-                template_values={'project_name': project_name}
+            success = self._generator.generate(
+                data=GeneratorData(
+                    archive_path=templates,
+                    target_dir=output_dir,
+                    template_key='base',
+                    scheme=scheme,
+                    template_values={'project_name': project_name}
+                )
             )
-        )
 
-        if success:
-            self._logger.write_log(INFO, '    Generated files:',)
+            if success:
+                self._logger.write_log(INFO, '    Generated files:',)
 
-            for root, dirs, files in walk(output_dir):
-                for file in files:
-                    rel_dir = relpath(root, output_dir)
+                for root, dirs, files in walk(output_dir):
+                    for file in files:
+                        rel_dir = relpath(root, output_dir)
 
-                    if rel_dir == '.':
-                        self._logger.write_log(INFO, f'      {file}')
-                    else:
-                        self._logger.write_log(INFO, f'      {rel_dir}/{file}')
+                        if rel_dir == '.':
+                            self._logger.write_log(INFO, f'      {file}')
+                        else:
+                            self._logger.write_log(INFO, f'      {rel_dir}/{file}')
 
-        return {
-            'returncode': 0 if success else 1,
-            'stdout': f'project {project_name} successfully generated.' if success else '',
-            'stderr': f'failed to generate {project_name} project.' if not success else ''
-        }
+            return {
+                'returncode': 0 if success else 1,
+                'stdout': f'project {project_name} successfully generated.' if success else '',
+                'stderr': f'failed to generate {project_name} project.' if not success else ''
+            }
+
+        except Exception as exc:
+            return {'returncode': 1, 'stdout': '', 'stderr': f'failed to generate {project_name} project {exc}'}
 
     def is_initialized(self) -> bool:
         '''

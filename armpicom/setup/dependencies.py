@@ -47,8 +47,8 @@ class ARMPicomBundleDependencies(TypedDict):
 
             :attributes:
                 | base - The base bundle with the base components for the armpicom bundle.
-                | service - The service orchestrating the tool's execution for the armpicom bundle.
-                | subprocessor - The adapter executing the tool's sub-processes for the armpicom bundle.
+                | service - The service orchestrating the armpicom's execution for the armpicom bundle.
+                | subprocessor - The adapter executing the armpicom's sub-processes for the armpicom bundle.
                 | cli - The command-line interface adapter for the armpicom bundle.
     '''
 

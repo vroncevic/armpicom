@@ -100,13 +100,12 @@ class ARMPicomBundleFactory:
             )
         )
 
-        subprocessor: SubProcessor = SubProcessor(
-            generator=base_bundle.generation_manager
-        )
+        subprocessor: SubProcessor = SubProcessor(generator=base_bundle.generation_manager)
 
         service: Service = Service(subprocessor=subprocessor)
 
-        gen_picom_definition = GenPicomCommandDefinition()
+        gen_picom_definition: GenPicomCommandDefinition = GenPicomCommandDefinition()
+
         gen_picom_bundle: CommandBundle = CommandBundle(
             definition=gen_picom_definition,
             executor=GenPicomCommandExecutor(gen_picom_definition)

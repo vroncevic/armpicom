@@ -43,8 +43,6 @@ class ProjectSetup:
 
             :attributes:
                 | chip_config - Mapping with chip configuration.
-                | device - Name of the target device.
     '''
 
     chip_config: Mapping[str, object]
-    device: str

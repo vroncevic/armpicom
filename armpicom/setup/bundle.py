@@ -43,17 +43,17 @@ __status__ = 'Updated'
 @dataclass(slots=True, frozen=True, kw_only=True)
 class ARMPicomBundle:
     '''
-        ARMPicom bundle holding the components of the armpicom tool.
+        ARMPicom bundle holding the components of the armpicom.
 
         It defines:
 
             :attributes:
                 | base - The base bundle with the base components.
-                | service - The service orchestrating the tool's execution.
-                | subprocessor - The adapter executing the tool's sub-processes.
+                | service - The service orchestrating the armpicom's execution.
+                | subprocessor - The adapter executing the armpicom's sub-processes.
                 | cli - The command-line interface adapter.
             :methods:
-                | to_dict - Converts the tool bundle to a dictionary.
+                | to_dict - Converts the armpicom bundle to a dictionary.
     '''
 
     base: BaseBundle

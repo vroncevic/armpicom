@@ -78,19 +78,9 @@ class Service:
 
             :param params: The ProjectSetup object.
             :return: The result of the execution (return code, stdout, stderr).
-            :exceptions:
-                | ValueError: Parameters mapping must be provided.
-                | TypeError: Parameters mapping must be a mapping.
-                | ATSTypeError: If parameters are of invalid type.
-                | ATSValueError: If parameter constraints are violated.
-                | ATSGeneratorError: If archive parsing or template rendering fails.
+            :exceptions: None.
         '''
-        try:
-            return self._subprocessor.run(params=params)
-
-        except (ValueError, TypeError) as exc:
-            return {'returncode': 1, 'stdout': '', 'stderr': str(exc)}
-
+        return self._subprocessor.run(params=params)
 
     def is_initialized(self) -> bool:
         '''

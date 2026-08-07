@@ -70,7 +70,7 @@ class GenPicomCommandExecutor:
             :return: The result of the subcommand execution.
         '''
         return service.execute(params=params) if service.is_initialized() else {
-            "return_code": -1, "stdout": [], "stderr": ["Service not initialized"]
+            'returncode': 1, 'stdout': '', 'stderr': 'service not initialized'
         }
 
     def __str__(self) -> str:
