@@ -1,4 +1,7 @@
-name: armpicom_python_checker
+name: armpicom_srp_checker
+
+permissions:
+  contents: read
 
 on:
   push:
@@ -12,17 +15,15 @@ on:
       - 'armpicom/**/*.py'
       - 'setup.py'
 
-permissions:
-  contents: read
-
 jobs:
-  build:
+  srp_gate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository code
+        uses: actions/checkout@v4
         with:
           submodules: true
 
-      - name: Check module length and line limits
+      - name: Check Single Responsibility Principle violations
         run: |
-          python3 gates/gates/limits_checker.py armpicom
+          python3 gates/gates/srp_checker.py armpicom

@@ -10,6 +10,9 @@ on:
     paths:
       - 'armpicom/**'
       - 'setup.py'
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
