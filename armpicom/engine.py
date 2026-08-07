@@ -23,6 +23,7 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from logging import INFO, ERROR
+from sys import stdout
 
 from ats_utilities.base.engine import Base
 from ats_utilities.logger.ilogger import ILogger
@@ -68,6 +69,8 @@ class ARMPicom(Base):
             :param bundle: armpicom bundle containing adapters and services.
             :exceptions: None.
         '''
+        self._is_initialized = False
+
         try:
             ARMPicomBundleValidator.validate(bundle)
 
@@ -95,10 +98,10 @@ class ARMPicom(Base):
             self._logger.write_log(INFO, '✅ armpicom: engine initialized successfully!')
 
         except (ATSValueError, ATSTypeError) as exc:
-            self._logger.write_log(ERROR, f'❌ armpicom: {exc}!')
+            stdout.write(f'❌ armpicom: {exc}!\n')
 
         except Exception as exc:
-            self._logger.write_log(ERROR, f'❌ armpicom unexpected exception: {exc}!')
+            stdout.write(f'❌ armpicom unexpected exception: {exc}!\n')
 
     def process(self) -> bool:
         '''

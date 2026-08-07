@@ -7,6 +7,5 @@
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 
-python3 run_coverage.py
-python3 ats_coverage.py -n armpicom
+python3 ats_coverage.py
 echo "Done"

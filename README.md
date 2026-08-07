@@ -16,22 +16,23 @@ other information that should be provided before the modules are installed.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [Installation](#installation)
+- [🚀 Installation](#installation)
     - [Install using pip](#install-using-pip)
     - [Install using build](#install-using-build)
     - [Install using py setup](#install-using-py-setup)
     - [Install using docker](#install-using-docker)
-- [Dependencies](#dependencies)
-- [Tool structure](#tool-structure)
-- [Code coverage](#code-coverage)
-- [Usage](#usage)
-- [Docs](#docs)
-- [Contributing](#contributing)
-- [Copyright and licence](#copyright-and-licence)
+- [📦 Dependencies](#dependencies)
+- [📁 Tool structure](#tool-structure)
+  - [✨ Features](#-features)
+- [📊 Code coverage](#code-coverage)
+- [🛠 Usage](#usage)
+- [📚 Docs](#docs)
+- [👥 Contributing](#contributing)
+- [📄 Copyright and licence](#copyright-and-licence)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-### Installation
+### 🚀 Installation
 
 Used next development environment
 
@@ -98,13 +99,13 @@ python3 setup.py install_egg_info
 
 You can use Dockerfile to create image/container.
 
-### Dependencies
+### 📦 Dependencies
 
 **armpicom** requires next modules and libraries
 
 * [ats-utilities - Python App/Tool/Script Utilities](https://pypi.org/project/ats-utilities/)
 
-### Tool structure
+### 📁 Tool structure
 
 **armpicom** is based on OOP.
 
@@ -115,37 +116,75 @@ Tool structure
 
 ```bash
     armpicom/
-         ├── armpicom_bundle.py
+         ├── core/
+         │   ├── __init__.py
+         │   ├── model/
+         │   │   ├── __init__.py
+         │   │   └── project_setup.py
+         │   └── service/
+         │       ├── engine.py
+         │       ├── __init__.py
+         │       ├── iservice.py
+         │       └── isubprocessor.py
          ├── engine.py
          ├── infrastructure/
-         │   ├── cli.py
-         │   ├── cli_bundle.py
+         │   ├── cli/
+         │   │   ├── engine.py
+         │   │   ├── icli.py
+         │   │   ├── __init__.py
+         │   │   └── setup/
+         │   │       ├── bundle.py
+         │   │       ├── dep_validator.py
+         │   │       ├── dependencies.py
+         │   │       ├── factory.py
+         │   │       ├── __init__.py
+         │   │       ├── keys.py
+         │   │       ├── opt_validator.py
+         │   │       ├── options.py
+         │   │       ├── registry.py
+         │   │       └── validator.py
+         │   ├── command/
+         │   │   ├── command.py
+         │   │   ├── gen_picom_command_definition.py
+         │   │   ├── gen_picom_command_executor.py
+         │   │   ├── icommand_definition.py
+         │   │   ├── icommand_executor.py
+         │   │   └── __init__.py
          │   ├── config/
          │   │   ├── armpicom.cfg
          │   │   ├── armpicom.logo
          │   │   ├── scheme.json
          │   │   └── templates.tgz
-         │   ├── gen_picom_command.py
-         │   ├── icli.py
-         │   ├── icli_command.py
          │   ├── __init__.py
          │   └── subprocessor.py
          ├── __init__.py
-         ├── model/
-         │   ├── generate_project.py
-         │   └── __init__.py
          ├── py.typed
-         └── service/
-             ├── engine.py
+         └── setup/
+             ├── bundle.py
+             ├── dep_validator.py
+             ├── dependencies.py
+             ├── factory.py
              ├── __init__.py
-             ├── iservice.py
-             └── isubprocessor.py
+             ├── keys.py
+             ├── opt_validator.py
+             ├── options.py
+             ├── registry.py
+             └── validator.py
 
-     5 directories, 21 files
+     10 directories, 45 files
 ```
 </details>
 
-### Code coverage
+#### ✨ Features
+
+* Automatically scaffolds Raspberry Pi Pico projects with proper configuration and build setups.
+* Provides a modular and extensible architecture based on OOP and SOLID principles.
+* Includes command line interface (CLI) support via a command/executor structure.
+* Robust validation of project bundles, dependencies, and options.
+* Comes with configurable templates and JSON schema definitions.
+* High code quality with full type checking and 100% unit test coverage.
+
+### 📊 Code coverage
 
 <details>
 <summary><b>Click to expand code coverage</b></summary>
@@ -153,26 +192,50 @@ Tool structure
 | Name | Stmts | Miss | Cover |
 |------|-------|------|-------|
 | `armpicom/__init__.py` | 9 | 0 | 100%|
-| `armpicom/armpicom_bundle.py` | 45 | 0 | 100%|
-| `armpicom/engine.py` | 77 | 0 | 100%|
+| `armpicom/core/__init__.py` | 9 | 0 | 100%|
+| `armpicom/core/model/__init__.py` | 9 | 0 | 100%|
+| `armpicom/core/model/project_setup.py` | 14 | 0 | 100%|
+| `armpicom/core/service/__init__.py` | 9 | 0 | 100%|
+| `armpicom/core/service/engine.py` | 27 | 0 | 100%|
+| `armpicom/core/service/iservice.py` | 14 | 0 | 100%|
+| `armpicom/core/service/isubprocessor.py` | 14 | 0 | 100%|
+| `armpicom/engine.py` | 57 | 0 | 100%|
 | `armpicom/infrastructure/__init__.py` | 8 | 0 | 100%|
-| `armpicom/infrastructure/cli.py` | 42 | 0 | 100%|
-| `armpicom/infrastructure/cli_bundle.py` | 38 | 0 | 100%|
-| `armpicom/infrastructure/gen_picom_command.py` | 34 | 0 | 100%|
-| `armpicom/infrastructure/icli.py` | 13 | 0 | 100%|
-| `armpicom/infrastructure/icli_command.py` | 16 | 0 | 100%|
+| `armpicom/infrastructure/cli/__init__.py` | 9 | 0 | 100%|
+| `armpicom/infrastructure/cli/engine.py` | 39 | 0 | 100%|
+| `armpicom/infrastructure/cli/icli.py` | 16 | 0 | 100%|
+| `armpicom/infrastructure/cli/setup/__init__.py` | 9 | 0 | 100%|
+| `armpicom/infrastructure/cli/setup/bundle.py` | 22 | 0 | 100%|
+| `armpicom/infrastructure/cli/setup/dep_validator.py` | 28 | 0 | 100%|
+| `armpicom/infrastructure/cli/setup/dependencies.py` | 18 | 0 | 100%|
+| `armpicom/infrastructure/cli/setup/factory.py` | 32 | 0 | 100%|
+| `armpicom/infrastructure/cli/setup/keys.py` | 26 | 0 | 100%|
+| `armpicom/infrastructure/cli/setup/opt_validator.py` | 28 | 0 | 100%|
+| `armpicom/infrastructure/cli/setup/options.py` | 15 | 0 | 100%|
+| `armpicom/infrastructure/cli/setup/registry.py` | 21 | 0 | 100%|
+| `armpicom/infrastructure/cli/setup/validator.py` | 35 | 0 | 100%|
+| `armpicom/infrastructure/command/__init__.py` | 9 | 0 | 100%|
+| `armpicom/infrastructure/command/command.py` | 16 | 0 | 100%|
+| `armpicom/infrastructure/command/gen_picom_command_definition.py` | 24 | 0 | 100%|
+| `armpicom/infrastructure/command/gen_picom_command_executor.py` | 21 | 0 | 100%|
+| `armpicom/infrastructure/command/icommand_definition.py` | 15 | 0 | 100%|
+| `armpicom/infrastructure/command/icommand_executor.py` | 14 | 0 | 100%|
 | `armpicom/infrastructure/subprocessor.py` | 55 | 0 | 100%|
-| `armpicom/model/__init__.py` | 9 | 0 | 100%|
-| `armpicom/model/generate_project.py` | 22 | 0 | 100%|
-| `armpicom/service/__init__.py` | 9 | 0 | 100%|
-| `armpicom/service/engine.py` | 26 | 0 | 100%|
-| `armpicom/service/iservice.py` | 13 | 0 | 100%|
-| `armpicom/service/isubprocessor.py` | 13 | 0 | 100%|
-| **Total** | 429 | 0 | 100% |
+| `armpicom/setup/__init__.py` | 9 | 0 | 100%|
+| `armpicom/setup/bundle.py` | 23 | 0 | 100%|
+| `armpicom/setup/dep_validator.py` | 28 | 0 | 100%|
+| `armpicom/setup/dependencies.py` | 19 | 0 | 100%|
+| `armpicom/setup/factory.py` | 45 | 0 | 100%|
+| `armpicom/setup/keys.py` | 27 | 0 | 100%|
+| `armpicom/setup/opt_validator.py` | 26 | 0 | 100%|
+| `armpicom/setup/options.py` | 12 | 0 | 100%|
+| `armpicom/setup/registry.py` | 29 | 0 | 100%|
+| `armpicom/setup/validator.py` | 40 | 0 | 100%|
+| **Total** | 880 | 0 | 100% |
 
 </details>
 
-### Usage
+### 🛠 Usage
 
 Install package
 
@@ -193,7 +256,7 @@ Running tool for creating new ARM Pico M project
 python3 main.py create --name mytool --output ./demo/
 ```
 
-### Docs
+### 📚 Docs
 
 [![Documentation Status](https://readthedocs.org/projects/armpicom/badge/?version=latest)](https://armpicom.readthedocs.io/en/latest/?badge=latest)
 
@@ -202,11 +265,11 @@ More documentation and info at
 * [armpicom.readthedocs.io](https://armpicom.readthedocs.io)
 * [www.python.org](https://www.python.org/)
 
-### Contributing
+### 👥 Contributing
 
 [Contributing to armpicom](CONTRIBUTING.md)
 
-### Copyright and licence
+### 📄 Copyright and licence
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 

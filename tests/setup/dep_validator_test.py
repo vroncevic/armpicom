@@ -1,0 +1,76 @@
+# -*- coding: UTF-8 -*-
+
+'''
+Module
+    dep_validator_test.py
+Info
+    Unit tests for ARMPicomBundleDependenciesValidator class.
+'''
+
+from __future__ import annotations
+
+import unittest
+from unittest.mock import Mock
+
+from ats_utilities.base.setup.bundle import BaseBundle
+
+from armpicom.setup.dep_validator import ARMPicomBundleDependenciesValidator
+
+
+class DummyService:
+    def execute(self, *, params: object) -> object:
+        return None
+    def is_initialized(self) -> bool:
+        return True
+
+
+class DummySubProcessor:
+    def run(self, *, params: object) -> dict[str, object]:
+        return {}
+    def is_initialized(self) -> bool:
+        return True
+
+
+class DummyCLI:
+    def run(self) -> dict[str, object]:
+        return {}
+    def is_initialized(self) -> bool:
+        return True
+
+
+class TestARMPicomBundleDependenciesValidator(unittest.TestCase):
+    def test_validate_success(self) -> None:
+        mock_base = Mock(spec=BaseBundle)
+        dummy_service = DummyService()
+        dummy_subprocessor = DummySubProcessor()
+        dummy_cli = DummyCLI()
+
+        dependencies = {
+            'base': mock_base,
+            'service': dummy_service,
+            'subprocessor': dummy_subprocessor,
+            'cli': dummy_cli
+        }
+        ARMPicomBundleDependenciesValidator.validate(dependencies)
+
+    def test_validate_none(self) -> None:
+        with self.assertRaises(Exception):
+            ARMPicomBundleDependenciesValidator.validate(None)
+
+    def test_validate_invalid_type(self) -> None:
+        with self.assertRaises(Exception):
+            ARMPicomBundleDependenciesValidator.validate("not_a_mapping")
+
+    def test_validate_missing_dependency(self) -> None:
+        mock_base = Mock(spec=BaseBundle)
+        dummy_service = DummyService()
+        dummy_subprocessor = DummySubProcessor()
+
+        # cli is missing
+        dependencies = {
+            'base': mock_base,
+            'service': dummy_service,
+            'subprocessor': dummy_subprocessor
+        }
+        with self.assertRaises(Exception):
+            ARMPicomBundleDependenciesValidator.validate(dependencies)
