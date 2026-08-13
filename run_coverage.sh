@@ -1,8 +1,8 @@
 #!/bin/bash
 #
 # @brief   armpicom
-# @version v3.1.0
-# @date    Sun Jun 30 09:25:12 2026
+# @version v1.9.9
+# @date    Sat Aug 07 07:35:10 2026
 # @company None, free software to use 2026
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #

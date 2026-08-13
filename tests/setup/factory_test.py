@@ -32,5 +32,5 @@ class TestARMPicomBundleFactory(unittest.TestCase):
             ARMPicomBundleFactory.create_bundle(options)
 
     def test_get_version(self) -> None:
-        self.assertEqual(ARMPicomBundleFactory.get_version(), '1.9.8')
+        self.assertEqual(ARMPicomBundleFactory.get_version(), '1.9.9')
 

@@ -19,40 +19,40 @@ Info
     Defines properties for sphinx-doc.
 '''
 
-import os
-import sys
+from __future__ import annotations
 
-from typing import Any, List, Dict, Tuple
+from os.path import abspath
+from sys import path
 
-sys.path.insert(0, os.path.abspath('../../'))
+path.insert(0, abspath('../../'))
 
 project: str = 'armpicom'
 project_copyright: str = '2026, Vladimir Roncevic <elektron.ronca@gmail.com>'
 author: str = 'Vladimir Roncevic <elektron.ronca@gmail.com>'
-version: str = '1.9.6'
+version: str = '1.9.9'
 release: str = 'https://github.com/vroncevic/armpicom/releases'
-extensions: List[str] = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode']
-templates_path: List[str] = ['_templates']
+extensions: list[str] = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode']
+templates_path: list[str] = ['_templates']
 source_suffix: str = '.rst'
-master_doc: str = 'index'
+root_doc: str = 'index'
 language: str = 'en'
-exclude_patterns: List[str] = []
+exclude_patterns: list[str] = []
 pygments_style: str = 'sphinx'
 html_theme: str = 'classic'
-html_static_path: List[str] = ['_static']
+html_static_path: list[str] = ['_static']
 htmlhelp_basename: str = 'armpicomdoc'
-latex_elements: Dict[Any, Any] = {}
-latex_documents: List[Tuple[Any, ...]] = [(
-    master_doc, 'armpicom.tex', 'armpicom Documentation',
+latex_elements: dict[object, object] = {}
+latex_documents: list[tuple[object, ...]] = [(
+    root_doc, 'armpicom.tex', 'armpicom Documentation',
     'Vladimir Roncevic \\textless{}elektron.ronca@gmail.com\\textgreater{}',
     'manual'
 )]
-man_pages: List[Tuple[Any, ...]] = [(
-    master_doc, 'armpicom', 'armpicom Documentation', [author], 1
+man_pages: list[tuple[object, ...]] = [(
+    root_doc, 'armpicom', 'armpicom Documentation', [author], 1
 )]
-texinfo_documents: List[Tuple[Any, ...]] = [(
-    master_doc, 'armpicom', 'armpicom Documentation', author, 'armpicom',
+texinfo_documents: list[tuple[object, ...]] = [(
+    root_doc, 'armpicom', 'armpicom Documentation', author, 'armpicom',
     'One line description of project.', 'Miscellaneous'
 )]
 epub_title: str = project
-epub_exclude_files: List[str] = ['search.html']
+epub_exclude_files: list[str] = ['search.html']
