@@ -19,6 +19,8 @@ Info
     Defines setup for tool armpicom.
 '''
 
+from __future__ import annotations
+
 from os import walk
 from os.path import abspath, dirname, join, relpath
 from setuptools import setup, find_packages
@@ -27,7 +29,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2026, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.9.8'
+__version__ = '1.9.9'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -68,7 +70,7 @@ def find_package_data(pkg: str) -> list[str]:
 
 setup(
     name='armpicom',
-    version='1.9.8',
+    version='1.9.9',
     description='Python package for generation of RPI configuration/build',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
