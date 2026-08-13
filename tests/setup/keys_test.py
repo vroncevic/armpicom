@@ -16,6 +16,7 @@ from armpicom.setup.keys import ARMPicomBundleKeys
 
 
 class TestARMPicomBundleKeys(unittest.TestCase):
+
     def test_get_dependency_to_type(self) -> None:
         deps = ARMPicomBundleKeys.get_dependency_to_type()
         self.assertIsInstance(deps, MappingProxyType)

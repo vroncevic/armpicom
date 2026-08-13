@@ -22,6 +22,7 @@ Info
 from __future__ import annotations
 
 from collections.abc import Mapping
+from ats_utilities.exceptions import ATSValueError, ATSTypeError
 
 from ats_utilities.validation.check_type import istype
 from ats_utilities.validation.check_value import not_none
@@ -33,7 +34,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2026, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.9.7'
+__version__ = '1.9.8'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -47,6 +48,7 @@ class CLIBundleOptionsValidator:
 
             :methods:
                 | validate - Validates the CLI bundle options.
+                | is_valid - Checks if the CLI bundle options is valid.
     '''
 
     @classmethod
@@ -75,3 +77,18 @@ class CLIBundleOptionsValidator:
 
             not_none(attribute, ctx, msg_attr_name_none)
             istype(attribute, expected_type, ctx, msg_attr_name_istype)
+
+    @classmethod
+    def is_valid(cls, options: CLIBundleOptions) -> bool:
+        '''
+            Checks if the CLI bundle options is valid.
+
+            :param options: The CLI bundle options to be checked.
+            :return: True if valid, False otherwise.
+        '''
+        try:
+            cls.validate(options)
+            return True
+
+        except (ATSValueError, ATSTypeError):
+            return False

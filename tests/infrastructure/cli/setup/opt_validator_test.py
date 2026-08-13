@@ -18,13 +18,16 @@ from armpicom.infrastructure.cli.setup.opt_validator import CLIBundleOptionsVali
 
 
 class DummyService:
+
     def execute(self, *, params: object) -> object:
         return None
+
     def is_initialized(self) -> bool:
         return True
 
 
 class TestCLIBundleOptionsValidator(unittest.TestCase):
+
     def test_validate_success(self) -> None:
         mock_service = DummyService()
         mock_parser = Mock(spec=IOptionManager)
@@ -51,11 +54,24 @@ class TestCLIBundleOptionsValidator(unittest.TestCase):
         with self.assertRaises(Exception):
             CLIBundleOptionsValidator.validate(options)
 
-    def test_validate_invalid_option_type(self) -> None:
-        mock_parser = Mock(spec=IOptionManager)
-        options = {
-            'service': "not_a_service",
-            'parser': mock_parser
-        }
         with self.assertRaises(Exception):
             CLIBundleOptionsValidator.validate(options)
+
+    def test_is_valid_success(self) -> None:
+        mock_service = DummyService()
+        mock_parser = Mock(spec=IOptionManager)
+
+        options = {
+            'service': mock_service,
+            'parser': mock_parser
+        }
+        self.assertTrue(CLIBundleOptionsValidator.is_valid(options))
+
+    def test_is_valid_failure(self) -> None:
+        self.assertFalse(CLIBundleOptionsValidator.is_valid(None))
+        self.assertFalse(CLIBundleOptionsValidator.is_valid("invalid"))
+        options = {
+            'service': DummyService()
+        }
+        self.assertFalse(CLIBundleOptionsValidator.is_valid(options))
+

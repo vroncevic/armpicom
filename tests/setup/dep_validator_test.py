@@ -18,27 +18,34 @@ from armpicom.setup.dep_validator import ARMPicomBundleDependenciesValidator
 
 
 class DummyService:
+
     def execute(self, *, params: object) -> object:
         return None
+
     def is_initialized(self) -> bool:
         return True
 
 
 class DummySubProcessor:
+
     def run(self, *, params: object) -> dict[str, object]:
         return {}
+
     def is_initialized(self) -> bool:
         return True
 
 
 class DummyCLI:
+
     def run(self) -> dict[str, object]:
         return {}
+
     def is_initialized(self) -> bool:
         return True
 
 
 class TestARMPicomBundleDependenciesValidator(unittest.TestCase):
+
     def test_validate_success(self) -> None:
         mock_base = Mock(spec=BaseBundle)
         dummy_service = DummyService()
@@ -66,7 +73,6 @@ class TestARMPicomBundleDependenciesValidator(unittest.TestCase):
         dummy_service = DummyService()
         dummy_subprocessor = DummySubProcessor()
 
-        # cli is missing
         dependencies = {
             'base': mock_base,
             'service': dummy_service,
@@ -74,3 +80,27 @@ class TestARMPicomBundleDependenciesValidator(unittest.TestCase):
         }
         with self.assertRaises(Exception):
             ARMPicomBundleDependenciesValidator.validate(dependencies)
+
+    def test_is_valid_success(self) -> None:
+        mock_base = Mock(spec=BaseBundle)
+        dummy_service = DummyService()
+        dummy_subprocessor = DummySubProcessor()
+        dummy_cli = DummyCLI()
+
+        dependencies = {
+            'base': mock_base,
+            'service': dummy_service,
+            'subprocessor': dummy_subprocessor,
+            'cli': dummy_cli
+        }
+        self.assertTrue(ARMPicomBundleDependenciesValidator.is_valid(dependencies))
+
+    def test_is_valid_failure(self) -> None:
+        self.assertFalse(ARMPicomBundleDependenciesValidator.is_valid(None))
+        self.assertFalse(ARMPicomBundleDependenciesValidator.is_valid("not_a_mapping"))
+        dependencies = {
+            'base': Mock(spec=BaseBundle),
+            'service': DummyService(),
+            'subprocessor': DummySubProcessor()
+        }
+        self.assertFalse(ARMPicomBundleDependenciesValidator.is_valid(dependencies))

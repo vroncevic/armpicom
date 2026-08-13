@@ -47,7 +47,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2026, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.9.7'
+__version__ = '1.9.8'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -63,6 +63,7 @@ class ARMPicomBundleFactory:
                 | _info_file - Path to the armpicom info file.
             :methods:
                 | create_bundle - Creates the armpicom bundle with optional pre-configured options.
+                | get_version - Returns the factory version.
     '''
 
     _info_file: str = 'armpicom/infrastructure/config/armpicom.cfg'
@@ -129,3 +130,12 @@ class ARMPicomBundleFactory:
                 cli=cli
             )
         )
+    @classmethod
+    def get_version(cls) -> str:
+        '''
+            Returns the factory version.
+
+            :return: The factory version.
+            :exceptions: None.
+        '''
+        return __version__

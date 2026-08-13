@@ -16,6 +16,7 @@ from armpicom.setup.factory import ARMPicomBundleFactory
 
 
 class TestARMPicomBundleFactory(unittest.TestCase):
+
     def test_create_bundle_default(self) -> None:
         bundle = ARMPicomBundleFactory.create_bundle()
         self.assertIsInstance(bundle, ARMPicomBundle)
@@ -29,3 +30,7 @@ class TestARMPicomBundleFactory(unittest.TestCase):
         options = {'info_file': 123}
         with self.assertRaises(Exception):
             ARMPicomBundleFactory.create_bundle(options)
+
+    def test_get_version(self) -> None:
+        self.assertEqual(ARMPicomBundleFactory.get_version(), '1.9.8')
+
