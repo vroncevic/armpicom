@@ -72,5 +72,5 @@ class TestARMPicomBundleRegistry(unittest.TestCase):
             ARMPicomBundleRegistry.create_bundle(None)
 
     def test_get_version(self) -> None:
-        self.assertEqual(ARMPicomBundleRegistry.get_version(), '1.9.9')
+        self.assertEqual(ARMPicomBundleRegistry.get_version(), '2.0.0')
 
