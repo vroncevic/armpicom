@@ -8,4 +8,5 @@
 #
 
 python3 ats_coverage.py
+pylint armpicom > armpicom.report
 echo "Done"

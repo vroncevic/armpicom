@@ -18,11 +18,15 @@ from ats_utilities.option.imanager import IOptionManager
 from armpicom.infrastructure.cli.engine import CLI
 from armpicom.infrastructure.cli.setup.bundle import CLIBundle
 from armpicom.infrastructure.command.command import CommandBundle
+from armpicom.infrastructure.cli.icli import ICLI
+from armpicom.infrastructure.command.icommand_executor import ICommandExecutor
 
 
 class DummyService:
+
     def execute(self, *, params: object) -> object:
         return None
+
     def is_initialized(self) -> bool:
         return True
 
@@ -39,10 +43,12 @@ class DummyCommandExecutor:
 def create_mock_parser() -> Mock:
     mock_parser = Mock(spec=IOptionManager)
     mock_parser.parse_command.return_value = ("gen", {})
+
     return mock_parser
 
 
 class TestCLI(unittest.TestCase):
+
     def test_cli_init_and_run_success(self) -> None:
         dummy_service = DummyService()
         mock_parser = create_mock_parser()
@@ -107,9 +113,6 @@ class TestCLI(unittest.TestCase):
         self.assertTrue(isinstance(str(cli), str))
 
     def test_extra_coverage_for_protocols_and_bundles(self) -> None:
-        from armpicom.infrastructure.cli.icli import ICLI
-        from armpicom.infrastructure.command.icommand_executor import ICommandExecutor
-
         ICLI.run(None)
         ICLI.is_initialized(None)
         ICommandExecutor.execute(None, params={}, service=None)

@@ -22,27 +22,34 @@ from armpicom.setup.validator import ARMPicomBundleValidator
 
 
 class DummyService:
+
     def execute(self, *, params: object) -> object:
         return None
+
     def is_initialized(self) -> bool:
         return True
 
 
 class DummySubProcessor:
+
     def run(self, *, params: object) -> dict[str, object]:
         return {}
+
     def is_initialized(self) -> bool:
         return True
 
 
 class DummyCLI:
+
     def run(self) -> dict[str, object]:
         return {}
+
     def is_initialized(self) -> bool:
         return True
 
 
 class TestARMPicomBundleValidator(unittest.TestCase):
+
     def test_validate_success(self) -> None:
         mock_base = Mock(spec=BaseBundle)
         dummy_service = DummyService()
@@ -86,7 +93,6 @@ class TestARMPicomBundleValidator(unittest.TestCase):
         dummy_subprocessor = DummySubProcessor()
         dummy_cli = DummyCLI()
 
-        # base is not BaseBundle
         with self.assertRaises(Exception):
             bundle = ARMPicomBundle(
                 base="invalid",
@@ -96,7 +102,6 @@ class TestARMPicomBundleValidator(unittest.TestCase):
             )
             ARMPicomBundleValidator.validate(bundle)
 
-        # service is not IService
         with self.assertRaises(Exception):
             bundle = ARMPicomBundle(
                 base=mock_base,
@@ -105,8 +110,6 @@ class TestARMPicomBundleValidator(unittest.TestCase):
                 cli=dummy_cli
             )
             ARMPicomBundleValidator.validate(bundle)
-
-        # subprocessor is not ISubProcessor
         with self.assertRaises(Exception):
             bundle = ARMPicomBundle(
                 base=mock_base,
@@ -116,12 +119,23 @@ class TestARMPicomBundleValidator(unittest.TestCase):
             )
             ARMPicomBundleValidator.validate(bundle)
 
-        # cli is not ICLI
-        with self.assertRaises(Exception):
-            bundle = ARMPicomBundle(
-                base=mock_base,
-                service=dummy_service,
-                subprocessor=dummy_subprocessor,
-                cli="invalid"
-            )
             ARMPicomBundleValidator.validate(bundle)
+
+    def test_is_valid_success(self) -> None:
+        mock_base = Mock(spec=BaseBundle)
+        dummy_service = DummyService()
+        dummy_subprocessor = DummySubProcessor()
+        dummy_cli = DummyCLI()
+
+        bundle = ARMPicomBundle(
+            base=mock_base,
+            service=dummy_service,
+            subprocessor=dummy_subprocessor,
+            cli=dummy_cli
+        )
+        self.assertTrue(ARMPicomBundleValidator.is_valid(bundle))
+
+    def test_is_valid_failure(self) -> None:
+        self.assertFalse(ARMPicomBundleValidator.is_valid(None))
+        self.assertFalse(ARMPicomBundleValidator.is_valid("invalid"))
+

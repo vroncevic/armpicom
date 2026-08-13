@@ -17,16 +17,19 @@ from armpicom.infrastructure.subprocessor import SubProcessor
 
 
 class DummyLogger:
+
     def write_log(self, level: int, message: str) -> None:
         pass
 
 
 class DummyContext:
+
     def __init__(self) -> None:
         self.logger = DummyLogger()
 
 
 class DummyGenerator(IGeneratorManager):
+
     def get_context(self) -> DummyContext:
         return DummyContext()
 
@@ -50,6 +53,7 @@ class DummyGenerator(IGeneratorManager):
 
 
 class TestSubProcessor(unittest.TestCase):
+
     def test_init_success(self) -> None:
         generator = DummyGenerator()
         sub = SubProcessor(generator)

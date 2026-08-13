@@ -98,46 +98,46 @@ Tool structure
 
     armpicom/
          ├── core/
-         │   ├── __init__.py
-         │   ├── model/
-         │   │   ├── __init__.py
-         │   │   └── project_setup.py
-         │   └── service/
-         │       ├── engine.py
-         │       ├── __init__.py
-         │       ├── iservice.py
-         │       └── isubprocessor.py
+         │   ├── __init__.py
+         │   ├── model/
+         │   │   ├── __init__.py
+         │   │   └── project_setup.py
+         │   └── service/
+         │       ├── engine.py
+         │       ├── __init__.py
+         │       ├── iservice.py
+         │       └── isubprocessor.py
          ├── engine.py
          ├── infrastructure/
-         │   ├── cli/
-         │   │   ├── engine.py
-         │   │   ├── icli.py
-         │   │   ├── __init__.py
-         │   │   └── setup/
-         │   │       ├── bundle.py
-         │   │       ├── dep_validator.py
-         │   │       ├── dependencies.py
-         │   │       ├── factory.py
-         │   │       ├── __init__.py
-         │   │       ├── keys.py
-         │   │       ├── opt_validator.py
-         │   │       ├── options.py
-         │   │       ├── registry.py
-         │   │       └── validator.py
-         │   ├── command/
-         │   │   ├── command.py
-         │   │   ├── gen_picom_command_definition.py
-         │   │   ├── gen_picom_command_executor.py
-         │   │   ├── icommand_definition.py
-         │   │   ├── icommand_executor.py
-         │   │   └── __init__.py
-         │   ├── config/
-         │   │   ├── armpicom.cfg
-         │   │   ├── armpicom.logo
-         │   │   ├── scheme.json
-         │   │   └── templates.tgz
-         │   ├── __init__.py
-         │   └── subprocessor.py
+         │   ├── cli/
+         │   │   ├── engine.py
+         │   │   ├── icli.py
+         │   │   ├── __init__.py
+         │   │   └── setup/
+         │   │       ├── bundle.py
+         │   │       ├── dep_validator.py
+         │   │       ├── dependencies.py
+         │   │       ├── factory.py
+         │   │       ├── __init__.py
+         │   │       ├── keys.py
+         │   │       ├── opt_validator.py
+         │   │       ├── options.py
+         │   │       ├── registry.py
+         │   │       └── validator.py
+         │   ├── command/
+         │   │   ├── command.py
+         │   │   ├── gen_picom_command_definition.py
+         │   │   ├── gen_picom_command_executor.py
+         │   │   ├── icommand_definition.py
+         │   │   ├── icommand_executor.py
+         │   │   └── __init__.py
+         │   ├── config/
+         │   │   ├── armpicom.cfg
+         │   │   ├── armpicom.logo
+         │   │   ├── scheme.json
+         │   │   └── templates.tgz
+         │   ├── __init__.py
+         │   └── subprocessor.py
          ├── __init__.py
          ├── py.typed
          └── setup/

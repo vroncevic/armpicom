@@ -26,24 +26,31 @@ from armpicom.infrastructure.cli.icli import ICLI
 
 
 class DummyService(IService):
+
     def execute(self, *, params: object) -> object:
         return None
+
     def is_initialized(self) -> bool:
         return True
+
     def __str__(self) -> str:
         return 'DummyService'
 
 
 class DummySubProcessor(ISubProcessor):
+
     def run(self, *, params: object) -> dict[str, object]:
         return {}
+
     def is_initialized(self) -> bool:
         return True
+
     def __str__(self) -> str:
         return 'DummySubProcessor'
 
 
 class DummyCLI(ICLI):
+
     def __init__(self, return_code: int = 0, stderr: str = '') -> None:
         self.return_code = return_code
         self.stderr = stderr
@@ -59,6 +66,7 @@ class DummyCLI(ICLI):
 
 
 class TestARMPicom(unittest.TestCase):
+
     def test_engine_init_success(self) -> None:
         bundle = ARMPicomBundleFactory.create_bundle()
         engine = ARMPicom(bundle)
@@ -132,7 +140,6 @@ class TestARMPicom(unittest.TestCase):
         dummy_subprocessor = DummySubProcessor()
         dummy_cli = DummyCLI()
 
-        # Force base option_manager initialization to return False
         mock_base.option_manager.is_initialized = Mock(return_value=False)
 
         bundle = ARMPicomBundle(

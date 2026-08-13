@@ -18,6 +18,7 @@ from armpicom.infrastructure.command.gen_picom_command_executor import GenPicomC
 
 
 class TestGenPicomCommand(unittest.TestCase):
+
     def test_definition(self) -> None:
         definition = GenPicomCommandDefinition()
         self.assertEqual(definition.name, 'create')
@@ -54,3 +55,9 @@ class TestGenPicomCommand(unittest.TestCase):
         definition = GenPicomCommandDefinition()
         executor = GenPicomCommandExecutor(definition)
         self.assertTrue(isinstance(str(executor), str))
+
+    def test_executor_get_definition(self) -> None:
+        definition = GenPicomCommandDefinition()
+        executor = GenPicomCommandExecutor(definition)
+        self.assertEqual(executor.get_definition(), definition)
+

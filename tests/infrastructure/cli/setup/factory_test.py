@@ -19,13 +19,16 @@ from armpicom.infrastructure.cli.setup.factory import CLIBundleFactory
 
 
 class DummyService:
+
     def execute(self, *, params: object) -> object:
         return None
+
     def is_initialized(self) -> bool:
         return True
 
 
 class TestCLIBundleFactory(unittest.TestCase):
+
     def test_create_bundle_success(self) -> None:
         mock_service = DummyService()
         mock_parser = Mock(spec=IOptionManager)
@@ -36,3 +39,7 @@ class TestCLIBundleFactory(unittest.TestCase):
         }
         bundle = CLIBundleFactory.create_bundle(options)
         self.assertIsInstance(bundle, CLIBundle)
+
+    def test_get_version(self) -> None:
+        self.assertEqual(CLIBundleFactory.get_version(), '1.9.8')
+

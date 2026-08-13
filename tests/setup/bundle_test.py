@@ -21,6 +21,7 @@ from armpicom.setup.bundle import ARMPicomBundle
 
 
 class TestARMPicomBundle(unittest.TestCase):
+
     def test_bundle_creation_and_to_dict(self) -> None:
         mock_base = Mock(spec=BaseBundle)
         mock_service = Mock(spec=IService)

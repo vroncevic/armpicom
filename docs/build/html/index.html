@@ -115,46 +115,46 @@ pip3<span class="w"> </span>install<span class="w"> </span>armpicom
 <p>Tool structure</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>armpicom/
 <span class="w">     </span>├──<span class="w"> </span>core/
-<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
-<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>model/
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>project_setup.py
-<span class="w">     </span>│<span class="w">   </span>└──<span class="w"> </span>service/
-<span class="w">     </span>│<span class="w">       </span>├──<span class="w"> </span>engine.py
-<span class="w">     </span>│<span class="w">       </span>├──<span class="w"> </span>__init__.py
-<span class="w">     </span>│<span class="w">       </span>├──<span class="w"> </span>iservice.py
-<span class="w">     </span>│<span class="w">       </span>└──<span class="w"> </span>isubprocessor.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>model/
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>project_setup.py
+<span class="w">     </span>│<span class="w">   </span>└──<span class="w"> </span>service/
+<span class="w">     </span>│<span class="w">       </span>├──<span class="w"> </span>engine.py
+<span class="w">     </span>│<span class="w">       </span>├──<span class="w"> </span>__init__.py
+<span class="w">     </span>│<span class="w">       </span>├──<span class="w"> </span>iservice.py
+<span class="w">     </span>│<span class="w">       </span>└──<span class="w"> </span>isubprocessor.py
 <span class="w">     </span>├──<span class="w"> </span>engine.py
 <span class="w">     </span>├──<span class="w"> </span>infrastructure/
-<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>cli/
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>engine.py
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>icli.py
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>setup/
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>bundle.py
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>dep_validator.py
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>dependencies.py
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>factory.py
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>__init__.py
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>keys.py
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>opt_validator.py
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>options.py
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>registry.py
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>└──<span class="w"> </span>validator.py
-<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>command/
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>command.py
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>gen_picom_command_definition.py
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>gen_picom_command_executor.py
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>icommand_definition.py
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>icommand_executor.py
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>__init__.py
-<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>config/
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>armpicom.cfg
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>armpicom.logo
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>scheme.json
-<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>templates.tgz
-<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
-<span class="w">     </span>│<span class="w">   </span>└──<span class="w"> </span>subprocessor.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>cli/
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>engine.py
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>icli.py
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>setup/
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>bundle.py
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>dep_validator.py
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>dependencies.py
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>factory.py
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>__init__.py
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>keys.py
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>opt_validator.py
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>options.py
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>registry.py
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">       </span>└──<span class="w"> </span>validator.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>command/
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>command.py
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>gen_picom_command_definition.py
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>gen_picom_command_executor.py
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>icommand_definition.py
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>icommand_executor.py
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>__init__.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>config/
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>armpicom.cfg
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>armpicom.logo
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>scheme.json
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>templates.tgz
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+<span class="w">     </span>│<span class="w">   </span>└──<span class="w"> </span>subprocessor.py
 <span class="w">     </span>├──<span class="w"> </span>__init__.py
 <span class="w">     </span>├──<span class="w"> </span>py.typed
 <span class="w">     </span>└──<span class="w"> </span>setup/
@@ -258,12 +258,12 @@ pip3<span class="w"> </span>install<span class="w"> </span>armpicom
 <td><p>100%</p></td>
 </tr>
 <tr class="row-odd"><td><p>armpicom/infrastructure/cli/engine.py</p></td>
-<td><p>39</p></td>
+<td><p>40</p></td>
 <td><p>0</p></td>
 <td><p>100%</p></td>
 </tr>
 <tr class="row-even"><td><p>armpicom/infrastructure/cli/icli.py</p></td>
-<td><p>16</p></td>
+<td><p>14</p></td>
 <td><p>0</p></td>
 <td><p>100%</p></td>
 </tr>
@@ -278,7 +278,7 @@ pip3<span class="w"> </span>install<span class="w"> </span>armpicom
 <td><p>100%</p></td>
 </tr>
 <tr class="row-odd"><td><p>armpicom/infrastructure/cli/setup/dep_validator.py</p></td>
-<td><p>28</p></td>
+<td><p>36</p></td>
 <td><p>0</p></td>
 <td><p>100%</p></td>
 </tr>
@@ -288,7 +288,7 @@ pip3<span class="w"> </span>install<span class="w"> </span>armpicom
 <td><p>100%</p></td>
 </tr>
 <tr class="row-odd"><td><p>armpicom/infrastructure/cli/setup/factory.py</p></td>
-<td><p>32</p></td>
+<td><p>35</p></td>
 <td><p>0</p></td>
 <td><p>100%</p></td>
 </tr>
@@ -298,7 +298,7 @@ pip3<span class="w"> </span>install<span class="w"> </span>armpicom
 <td><p>100%</p></td>
 </tr>
 <tr class="row-odd"><td><p>armpicom/infrastructure/cli/setup/opt_validator.py</p></td>
-<td><p>28</p></td>
+<td><p>36</p></td>
 <td><p>0</p></td>
 <td><p>100%</p></td>
 </tr>
@@ -308,12 +308,12 @@ pip3<span class="w"> </span>install<span class="w"> </span>armpicom
 <td><p>100%</p></td>
 </tr>
 <tr class="row-odd"><td><p>armpicom/infrastructure/cli/setup/registry.py</p></td>
-<td><p>21</p></td>
+<td><p>24</p></td>
 <td><p>0</p></td>
 <td><p>100%</p></td>
 </tr>
 <tr class="row-even"><td><p>armpicom/infrastructure/cli/setup/validator.py</p></td>
-<td><p>35</p></td>
+<td><p>43</p></td>
 <td><p>0</p></td>
 <td><p>100%</p></td>
 </tr>
@@ -333,12 +333,12 @@ pip3<span class="w"> </span>install<span class="w"> </span>armpicom
 <td><p>100%</p></td>
 </tr>
 <tr class="row-even"><td><p>armpicom/infrastructure/command/gen_picom_command_executor.py</p></td>
-<td><p>21</p></td>
+<td><p>23</p></td>
 <td><p>0</p></td>
 <td><p>100%</p></td>
 </tr>
 <tr class="row-odd"><td><p>armpicom/infrastructure/command/icommand_definition.py</p></td>
-<td><p>15</p></td>
+<td><p>14</p></td>
 <td><p>0</p></td>
 <td><p>100%</p></td>
 </tr>
@@ -363,7 +363,7 @@ pip3<span class="w"> </span>install<span class="w"> </span>armpicom
 <td><p>100%</p></td>
 </tr>
 <tr class="row-even"><td><p>armpicom/setup/dep_validator.py</p></td>
-<td><p>28</p></td>
+<td><p>36</p></td>
 <td><p>0</p></td>
 <td><p>100%</p></td>
 </tr>
@@ -373,7 +373,7 @@ pip3<span class="w"> </span>install<span class="w"> </span>armpicom
 <td><p>100%</p></td>
 </tr>
 <tr class="row-even"><td><p>armpicom/setup/factory.py</p></td>
-<td><p>45</p></td>
+<td><p>48</p></td>
 <td><p>0</p></td>
 <td><p>100%</p></td>
 </tr>
@@ -383,7 +383,7 @@ pip3<span class="w"> </span>install<span class="w"> </span>armpicom
 <td><p>100%</p></td>
 </tr>
 <tr class="row-even"><td><p>armpicom/setup/opt_validator.py</p></td>
-<td><p>26</p></td>
+<td><p>34</p></td>
 <td><p>0</p></td>
 <td><p>100%</p></td>
 </tr>
@@ -393,17 +393,17 @@ pip3<span class="w"> </span>install<span class="w"> </span>armpicom
 <td><p>100%</p></td>
 </tr>
 <tr class="row-even"><td><p>armpicom/setup/registry.py</p></td>
-<td><p>29</p></td>
+<td><p>32</p></td>
 <td><p>0</p></td>
 <td><p>100%</p></td>
 </tr>
 <tr class="row-odd"><td><p>armpicom/setup/validator.py</p></td>
-<td><p>40</p></td>
+<td><p>48</p></td>
 <td><p>0</p></td>
 <td><p>100%</p></td>
 </tr>
 <tr class="row-even"><td><p>Total</p></td>
-<td><p>880</p></td>
+<td><p>940</p></td>
 <td><p>0</p></td>
 <td><p>100%</p></td>
 </tr>

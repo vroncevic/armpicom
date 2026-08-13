@@ -31,13 +31,14 @@ from armpicom.infrastructure.cli.icli import ICLI
 from armpicom.infrastructure.cli.setup.bundle import CLIBundle
 from armpicom.infrastructure.cli.setup.validator import CLIBundleValidator
 from armpicom.core.service.iservice import IService
+from armpicom.infrastructure.command.icommand_definition import ICommandDefinition
 from armpicom.infrastructure.command.icommand_executor import ICommandExecutor
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2026, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '1.9.7'
+__version__ = '1.9.8'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -62,7 +63,8 @@ class CLI(ICLI):
 
     _service: IService
     _parser: IOptionManager
-    _executors: Mapping[str, ICommandExecutor[object, object, object]]
+    _executors: Mapping[str, ICommandExecutor[ICommandDefinition, object, object, object]]
+
 
     def __init__(self, bundle: CLIBundle) -> None:
         '''
@@ -92,7 +94,8 @@ class CLI(ICLI):
         '''
         try:
             command_name, params = self._parser.parse_command()
-            executor: ICommandExecutor[object, object, object] | None = self._executors.get(command_name)
+            executor: ICommandExecutor[ICommandDefinition, object, object, object] | None = self._executors.get(command_name)
+
 
             return executor.execute(params=params, service=self._service) if executor else {
                 'returncode': 1, 'stdout': '', 'stderr': 'cli::run - command not found'
