@@ -70,7 +70,7 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 <dl class="py class">
 <dt class="sig sig-object py" id="armpicom.infrastructure.cli.engine.CLI">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">armpicom.infrastructure.cli.engine.</span></span><span class="sig-name descname"><span class="pre">CLI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bundle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="armpicom.infrastructure.cli.setup.bundle.html#armpicom.infrastructure.cli.setup.bundle.CLIBundle" title="armpicom.infrastructure.cli.setup.bundle.CLIBundle"><span class="pre">CLIBundle</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/armpicom/infrastructure/cli/engine.html#CLI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#armpicom.infrastructure.cli.engine.CLI" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="armpicom.infrastructure.cli.icli.html#armpicom.infrastructure.cli.icli.ICLI" title="armpicom.infrastructure.cli.icli.ICLI"><code class="xref py py-class docutils literal notranslate"><span class="pre">ICLI</span></code></a></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Adapter that implements CLI commands for the code generator.</p>
 <p>It defines:</p>
 <blockquote>
@@ -93,18 +93,8 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
 </dl>
 </div></blockquote>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="armpicom.infrastructure.cli.engine.CLI._abc_impl">
-<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#armpicom.infrastructure.cli.engine.CLI._abc_impl" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
 <dt class="sig sig-object py" id="armpicom.infrastructure.cli.engine.CLI._executors">
 <span class="sig-name descname"><span class="pre">_executors</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="armpicom.infrastructure.command.icommand_executor.html#armpicom.infrastructure.command.icommand_executor.ICommandExecutor" title="armpicom.infrastructure.command.icommand_executor.ICommandExecutor"><span class="pre">ICommandExecutor</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="armpicom.infrastructure.command.icommand_definition.html#armpicom.infrastructure.command.icommand_definition.ICommandDefinition" title="armpicom.infrastructure.command.icommand_definition.ICommandDefinition"><span class="pre">ICommandDefinition</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#armpicom.infrastructure.cli.engine.CLI._executors" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="armpicom.infrastructure.cli.engine.CLI._is_protocol">
-<span class="sig-name descname"><span class="pre">_is_protocol</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#armpicom.infrastructure.cli.engine.CLI._is_protocol" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -163,9 +153,7 @@ None if process timed out or failed to start, otherwise it is the integer exit c
     <ul>
 <li><a class="reference internal" href="#">armpicom.infrastructure.cli.engine module</a><ul>
 <li><a class="reference internal" href="#armpicom.infrastructure.cli.engine.CLI"><code class="docutils literal notranslate"><span class="pre">CLI</span></code></a><ul>
-<li><a class="reference internal" href="#armpicom.infrastructure.cli.engine.CLI._abc_impl"><code class="docutils literal notranslate"><span class="pre">CLI._abc_impl</span></code></a></li>
 <li><a class="reference internal" href="#armpicom.infrastructure.cli.engine.CLI._executors"><code class="docutils literal notranslate"><span class="pre">CLI._executors</span></code></a></li>
-<li><a class="reference internal" href="#armpicom.infrastructure.cli.engine.CLI._is_protocol"><code class="docutils literal notranslate"><span class="pre">CLI._is_protocol</span></code></a></li>
 <li><a class="reference internal" href="#armpicom.infrastructure.cli.engine.CLI._parser"><code class="docutils literal notranslate"><span class="pre">CLI._parser</span></code></a></li>
 <li><a class="reference internal" href="#armpicom.infrastructure.cli.engine.CLI._service"><code class="docutils literal notranslate"><span class="pre">CLI._service</span></code></a></li>
 <li><a class="reference internal" href="#armpicom.infrastructure.cli.engine.CLI.is_initialized"><code class="docutils literal notranslate"><span class="pre">CLI.is_initialized()</span></code></a></li>

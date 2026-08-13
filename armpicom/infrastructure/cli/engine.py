@@ -27,7 +27,6 @@ from ats_utilities.option.imanager import IOptionManager
 from ats_utilities.exceptions import ATSRuntimeError, ATSValueError, ATSTypeError
 from ats_utilities.utils.reflection import to_str
 
-from armpicom.infrastructure.cli.icli import ICLI
 from armpicom.infrastructure.cli.setup.bundle import CLIBundle
 from armpicom.infrastructure.cli.setup.validator import CLIBundleValidator
 from armpicom.core.service.iservice import IService
@@ -38,13 +37,13 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2026, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '2.0.0'
+__version__ = '2.0.1'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class CLI(ICLI):
+class CLI:
     '''
         Adapter that implements CLI commands for the code generator.
 

@@ -202,7 +202,7 @@ Tool structure
 | `armpicom/engine.py` | 57 | 0 | 100%|
 | `armpicom/infrastructure/__init__.py` | 8 | 0 | 100%|
 | `armpicom/infrastructure/cli/__init__.py` | 9 | 0 | 100%|
-| `armpicom/infrastructure/cli/engine.py` | 40 | 0 | 100%|
+| `armpicom/infrastructure/cli/engine.py` | 39 | 0 | 100%|
 | `armpicom/infrastructure/cli/icli.py` | 14 | 0 | 100%|
 | `armpicom/infrastructure/cli/setup/__init__.py` | 9 | 0 | 100%|
 | `armpicom/infrastructure/cli/setup/bundle.py` | 22 | 0 | 100%|
@@ -231,7 +231,7 @@ Tool structure
 | `armpicom/setup/options.py` | 12 | 0 | 100%|
 | `armpicom/setup/registry.py` | 32 | 0 | 100%|
 | `armpicom/setup/validator.py` | 48 | 0 | 100%|
-| **Total** | 940 | 0 | 100% |
+| **Total** | 939 | 0 | 100% |
 
 </details>
 
