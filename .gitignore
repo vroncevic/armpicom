@@ -8,3 +8,4 @@ __pycache__/
 *.json
 .coverage
 htmlcov/
+.coverage.armpicom
