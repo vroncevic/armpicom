@@ -7,6 +7,6 @@
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 
-python3 ats_coverage.py
+python3 coverage/ats_coverage.py armpicom
 pylint armpicom > armpicom.report
 echo "Done"
