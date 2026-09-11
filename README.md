@@ -200,7 +200,7 @@ Tool structure
 | `armpicom/core/service/iservice.py` | 14 | 0 | 100%|
 | `armpicom/core/service/isubprocessor.py` | 14 | 0 | 100%|
 | `armpicom/engine.py` | 57 | 0 | 100%|
-| `armpicom/infrastructure/__init__.py` | 8 | 0 | 100%|
+| `armpicom/infrastructure/__init__.py` | 9 | 0 | 100%|
 | `armpicom/infrastructure/cli/__init__.py` | 9 | 0 | 100%|
 | `armpicom/infrastructure/cli/engine.py` | 39 | 0 | 100%|
 | `armpicom/infrastructure/cli/icli.py` | 14 | 0 | 100%|
@@ -225,13 +225,13 @@ Tool structure
 | `armpicom/setup/bundle.py` | 23 | 0 | 100%|
 | `armpicom/setup/dep_validator.py` | 36 | 0 | 100%|
 | `armpicom/setup/dependencies.py` | 19 | 0 | 100%|
-| `armpicom/setup/factory.py` | 48 | 0 | 100%|
+| `armpicom/setup/factory.py` | 49 | 0 | 100%|
 | `armpicom/setup/keys.py` | 27 | 0 | 100%|
 | `armpicom/setup/opt_validator.py` | 34 | 0 | 100%|
 | `armpicom/setup/options.py` | 12 | 0 | 100%|
 | `armpicom/setup/registry.py` | 32 | 0 | 100%|
 | `armpicom/setup/validator.py` | 48 | 0 | 100%|
-| **Total** | 939 | 0 | 100% |
+| **Total** | 941 | 0 | 100% |
 
 </details>
 

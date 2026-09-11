@@ -1,14 +1,14 @@
 name: armpicom_python3_build
 on:
   push:
-    branches: [ main ]
+    branches: [ master, main ]
     paths:
       - 'armpicom/**'
       - 'MANIFEST.in'
       - 'pyproject.toml'
       - 'setup.py'
   pull_request:
-    branches: [ main ]
+    branches: [ master, main ]
     paths:
       - 'armpicom/**'
       - 'MANIFEST.in'
