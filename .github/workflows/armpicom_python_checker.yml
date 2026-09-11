@@ -2,12 +2,12 @@ name: armpicom_python_checker
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master, main ]
     paths:
       - 'armpicom/**/*.py'
       - 'setup.py'
   pull_request:
-    branches: [ main ]
+    branches: [ master, main ]
     paths:
       - 'armpicom/**/*.py'
       - 'setup.py'

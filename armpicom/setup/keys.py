@@ -34,7 +34,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2026, https://vroncevic.github.io/armpicom'
 __credits__ = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/armpicom/blob/dev/LICENSE'
-__version__ = '2.0.3'
+__version__ = '2.0.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -89,6 +89,4 @@ class ARMPicomBundleKeys:
             :return: The mapping of the armpicom bundle options to their types.
             :exceptions: None.
         '''
-        return MappingProxyType({
-            cls.OPTION_INFO_FILE: str,
-        })
+        return MappingProxyType({cls.OPTION_INFO_FILE: str,})
